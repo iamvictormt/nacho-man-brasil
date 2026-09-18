@@ -5,22 +5,16 @@ import { useEffect, useRef, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
-  Building2,
   ChevronRight,
   Instagram,
   Hand,
-  MapPin,
-  Menu,
   Navigation,
   Quote,
   Search,
-  Store,
-  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import heroBurrito from "@/assets/hero-burrito.png";
-import mapCity from "@/assets/map-city.jpg";
 import comboFeast from "@/assets/combo-feast.jpg";
 import friendsFood from "@/assets/friends-food.jpg";
 import menuNachos from "@/assets/menu-nachos.png";
@@ -28,7 +22,6 @@ import menuBurritos from "@/assets/menu-burritos.png";
 import menuChurros from "@/assets/menu-churros.png";
 import historiaPreparo from "@/assets/historia-preparo.jpg";
 import franquiaLoja from "@/assets/franquia-loja.png";
-import logoWhite from "@/assets/logo-white.png";
 import {
   IconAbacate,
   IconBurrito,
@@ -39,9 +32,10 @@ import {
   IconMascara,
   IconNachos,
   IconPimenta,
-  IconSombrero,
   IconTaco,
 } from "@/components/brand-icons";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 
 const categories = [
   {
@@ -81,8 +75,6 @@ const marqueeItems = [
   { label: "Muita festa", Icon: IconMaracas },
 ];
 
-const markerPositions = ["left-[28%] top-[34%]", "left-[62%] top-[58%]"];
-
 const stores = [
   {
     name: "Goiânia",
@@ -91,6 +83,8 @@ const stores = [
     hours: "Terça a domingo, 18h às 22h30",
     phone: "(62) 99365-3223",
     maps: "https://www.google.com/maps/search/?api=1&query=Nacho+Man+Goi%C3%A2nia+Setor+Marista",
+    coordinates: { lat: -16.69459, lon: -49.27066 },
+    mapBounds: "-49.285,-16.708,-49.256,-16.681",
   },
   {
     name: "Cristalina",
@@ -99,6 +93,8 @@ const stores = [
     hours: "Ter a qui, 18h às 23h · Sex e sáb, 18h à 0h",
     phone: "(61) 99827-0888",
     maps: "https://www.google.com/maps/search/?api=1&query=Nacho+Man+Cristalina+Centro",
+    coordinates: { lat: -16.77964, lon: -47.6159 },
+    mapBounds: "-47.63,-16.793,-47.602,-16.766",
   },
 ];
 
@@ -122,10 +118,8 @@ const testimonials = [
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const [newsletter, setNewsletter] = useState("");
-  const [joined, setJoined] = useState(false);
+  const [selectedStore, setSelectedStore] = useState(stores[0]);
   const trackRef = useRef<HTMLDivElement>(null);
 
   const slide = (dir: number) => {
@@ -140,6 +134,15 @@ export default function Home() {
         `${s.name} ${s.address} ${s.city} ${s.phone}`.toLowerCase().includes(query),
       )
     : stores;
+  const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${selectedStore.mapBounds}&layer=mapnik&marker=${selectedStore.coordinates.lat},${selectedStore.coordinates.lon}`;
+  const searchStores = () => {
+    const firstStore = foundStores[0];
+    if (firstStore) setSelectedStore(firstStore);
+    document.getElementById("unidades-resultados")?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+    });
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -147,99 +150,16 @@ export default function Home() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const nav = [
-    { label: "Home", href: "#inicio" },
-    { label: "Quem Somos", href: "#historia" },
-    { label: "Cardápio", href: "#cardapio" },
-    { label: "Contato", href: "#contato" },
-  ];
-  const navSecondary = [
-    { label: "Encontrar loja", href: "#unidades" },
-    { label: "Unidades", href: "#unidades" },
-    { label: "Tenha sua Franquia", href: "#franquia" },
-  ];
-  const allNav = [...nav, ...navSecondary];
-
   return (
     <main>
-      <header
-        className={`fixed inset-x-0 top-0 z-50 border-b border-background/15 bg-foreground/95 text-background backdrop-blur-md transition-all ${scrolled ? "py-2" : "py-4"}`}
-      >
-        <div className="site-container grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 lg:flex">
-          <a href="#inicio" className="flex min-w-0 items-center">
-            <Image
-              src={logoWhite}
-              alt="Nacho Man"
-              width={220}
-              height={40}
-              className="h-6 w-auto sm:h-7"
-            />
-          </a>
-          <nav
-            className="ml-auto hidden items-center gap-7 lg:flex"
-            aria-label="Navegação principal"
-          >
-            {nav.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-sm font-semibold text-background/85 transition-colors hover:text-primary"
-              >
-                {item.label}
-              </a>
-            ))}
-            <span className="h-5 w-px bg-background/20" aria-hidden="true" />
-            <a
-              href="#unidades"
-              className="inline-flex items-center gap-2 rounded-full bg-background px-4 py-2 text-xs font-bold uppercase tracking-wide text-foreground transition-transform hover:scale-[1.04]"
-            >
-              <MapPin className="size-4" /> Encontrar loja
-            </a>
-            <a
-              href="#unidades"
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-xs font-bold uppercase tracking-wide text-primary-foreground transition-transform hover:scale-[1.04]"
-            >
-              <Building2 className="size-4" /> Unidades
-            </a>
-            <a
-              href="#franquia"
-              className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-xs font-bold uppercase tracking-wide text-accent-foreground transition-transform hover:scale-[1.04]"
-            >
-              <Store className="size-4" /> Tenha sua Franquia
-            </a>
-          </nav>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="lg:hidden hover:bg-background/10 hover:text-primary"
-            aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            {menuOpen ? <X /> : <Menu />}
-          </Button>
-        </div>
-        {menuOpen && (
-          <nav className="grid border-t border-background/15 px-5 py-4 lg:hidden">
-            {allNav.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={() => setMenuOpen(false)}
-                className={`border-b border-background/15 py-3 font-semibold text-background/85 transition-colors hover:text-primary ${item.label === "Tenha sua Franquia" ? "text-primary" : ""}`}
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
-        )}
-      </header>
+      <SiteHeader />
 
       <Button
         variant="ink"
         asChild
         className={`fixed bottom-5 right-5 z-50 h-auto rounded-full border border-background/15 py-2 pl-2 pr-2.5 shadow-xl transition-all duration-300 hover:scale-[1.02] sm:bottom-7 sm:right-7 ${scrolled ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"}`}
       >
-        <a href="#cardapio" aria-label="Pedir Nacho Man agora">
+        <a href="/pedido" aria-label="Pedir Nacho Man agora">
           <span className="grid size-10 place-content-center rounded-full bg-primary text-primary-foreground">
             <IconTaco className="size-6" aria-hidden="true" />
           </span>
@@ -271,12 +191,12 @@ export default function Home() {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Button variant="ink" size="pill" asChild>
-                <a href="#cardapio">
+                <a href="/pedido">
                   Pedir agora <ArrowRight />
                 </a>
               </Button>
               <Button variant="link" asChild className="font-bold text-foreground">
-                <a href="#cardapio">
+                <a href="/cardapio">
                   Ver cardápio <ArrowRight />
                 </a>
               </Button>
@@ -472,10 +392,13 @@ export default function Home() {
                 <Button
                   variant={index === 1 ? "lime" : "ink"}
                   size="icon"
+                  asChild
                   className="relative z-20 mt-auto size-11"
                   aria-label={`Ver ${item.name}`}
                 >
-                  <ArrowRight />
+                  <a href="/pedido">
+                    <ArrowRight />
+                  </a>
                 </Button>
               </article>
             ))}
@@ -533,9 +456,12 @@ export default function Home() {
               <Button
                 variant="lime"
                 size="pill"
+                asChild
                 className="h-14 min-w-48 flex-1 justify-between px-7 text-sm sm:max-w-72 xl:h-16"
               >
-                Quero esse <ArrowRight />
+                <a href="/pedido">
+                  Quero esse <ArrowRight />
+                </a>
               </Button>
             </div>
           </div>
@@ -558,45 +484,56 @@ export default function Home() {
               <Input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    searchStores();
+                  }
+                }}
                 placeholder="Digite sua cidade ou CEP"
                 className="h-13 rounded-full bg-background pl-12 pr-14"
               />
               <Search className="absolute left-4 top-4 size-5 text-muted-foreground" />
-              <Button size="icon" variant="ink" className="absolute right-1.5 top-1.5">
+              <Button
+                type="button"
+                size="icon"
+                variant="ink"
+                className="absolute right-1.5 top-1.5"
+                onClick={searchStores}
+                aria-label="Buscar unidade"
+              >
                 <ArrowRight />
               </Button>
             </div>
           </div>
-          <div className="relative min-h-80 overflow-hidden rounded-2xl border border-border shadow-sm lg:col-span-5">
-            <Image
-              src={mapCity}
-              alt="Mapa da região com as unidades Nacho Man"
+          <div className="relative min-h-80 overflow-hidden rounded-2xl border border-border bg-muted shadow-sm lg:col-span-5">
+            <iframe
+              key={selectedStore.name}
+              title={`Mapa da unidade Nacho Man ${selectedStore.name}`}
+              src={mapUrl}
+              className="absolute inset-0 size-full border-0"
               loading="lazy"
-              width={1280}
-              height={960}
-              className="absolute inset-0 size-full object-cover"
             />
-            {markerPositions.map((position, i) => (
-              <span
-                key={i}
-                className={`absolute grid size-10 place-content-center rounded-full border-2 border-background bg-foreground text-primary shadow-lg ${position}`}
-                aria-hidden="true"
-              >
-                <IconSombrero className="size-6" />
-              </span>
-            ))}
-            <div className="absolute left-[28%] top-[52%] rounded-lg bg-foreground px-3 py-2 text-xs font-bold text-background shadow-lg">
-              NACHO MAN
-              <br />
-              <span className="font-normal">Goiânia</span>
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-foreground/20 to-transparent" />
+            <div className="absolute left-3 top-3 rounded-full bg-background/95 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-foreground shadow-sm backdrop-blur-sm">
+              Mapa real · OpenStreetMap
             </div>
           </div>
-          <div className="grid content-start gap-3 lg:col-span-3">
+          <div id="unidades-resultados" className="grid content-start gap-3 lg:col-span-3">
             {foundStores.map((store) => (
-              <article key={store.name} className="rounded-xl border border-border p-5">
+              <article
+                key={store.name}
+                className={`rounded-xl border p-5 transition-colors ${selectedStore.name === store.name ? "border-primary bg-primary/5" : "border-border"}`}
+              >
                 <div className="grid grid-cols-[1fr_auto] gap-2">
                   <div>
-                    <h3 className="font-bold">Nacho Man {store.name}</h3>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedStore(store)}
+                      className="text-left font-bold hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                    >
+                      Nacho Man {store.name}
+                    </button>
                     <p className="mt-1 text-xs text-muted-foreground">
                       {store.address}
                       <br />
@@ -618,12 +555,11 @@ export default function Home() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    asChild
-                    aria-label={`Traçar rota para Nacho Man ${store.name}`}
+                    onClick={() => setSelectedStore(store)}
+                    aria-label={`Mostrar localização da unidade Nacho Man ${store.name} no mapa`}
+                    aria-pressed={selectedStore.name === store.name}
                   >
-                    <a href={store.maps} target="_blank" rel="noreferrer">
-                      <Navigation />
-                    </a>
+                    <Navigation />
                   </Button>
                 </div>
               </article>
@@ -795,97 +731,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer id="contato" className="bg-foreground py-16 text-background">
-        <div className="site-container">
-          <div className="grid gap-10 border-b border-background/15 pb-12 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1.3fr]">
-            <div>
-              <Image
-                src={logoWhite}
-                alt="Nacho Man"
-                width={220}
-                height={40}
-                className="h-9 w-auto"
-              />
-              <p className="mt-3 max-w-[14rem] text-sm leading-6 text-background/60">
-                Mexicano do nosso jeito. Feito para comer junto e lembrar depois.
-              </p>
-            </div>
-            <div>
-              <p className="mb-4 text-xs font-bold uppercase text-background/45">Explore</p>
-              <nav className="grid gap-3 text-sm text-background/70">
-                {allNav.map((x) => (
-                  <a key={x.label} href={x.href} className="transition-colors hover:text-primary">
-                    {x.label}
-                  </a>
-                ))}
-              </nav>
-            </div>
-            <div>
-              <p className="mb-4 text-xs font-bold uppercase text-background/45">
-                Fale com a gente
-              </p>
-              <div className="grid gap-3 text-sm text-background/70">
-                <a href="#unidades" className="hover:text-primary">
-                  Encontre uma unidade
-                </a>
-                <a href="#franquia" className="hover:text-primary">
-                  Quero ser franqueado
-                </a>
-                <a href="#social" className="flex items-center gap-2 hover:text-primary">
-                  <Instagram className="size-4" /> Instagram
-                </a>
-              </div>
-            </div>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                if (newsletter) setJoined(true);
-              }}
-            >
-              <label htmlFor="email" className="font-heading text-xl font-extrabold uppercase">
-                Receba novidades
-              </label>
-              <p className="mt-1 text-xs text-background/50">Novos sabores, combos e aberturas.</p>
-              {joined ? (
-                <p className="mt-4 text-primary">Pronto! Você está na lista.</p>
-              ) : (
-                <div className="mt-4 flex">
-                  <Input
-                    id="email"
-                    type="email"
-                    required
-                    value={newsletter}
-                    onChange={(e) => setNewsletter(e.target.value)}
-                    placeholder="Seu e-mail"
-                    className="h-11 rounded-l-lg rounded-r-none border-background/25 text-background"
-                  />
-                  <Button
-                    type="submit"
-                    variant="lime"
-                    size="icon"
-                    className="h-11 rounded-l-none rounded-r-lg"
-                    aria-label="Cadastrar e-mail"
-                  >
-                    <ChevronRight />
-                  </Button>
-                </div>
-              )}
-            </form>
-          </div>
-          <div className="flex flex-wrap justify-between gap-4 pt-6 text-xs text-background/45">
-            <p>© 2026 Nacho Man. Todos os direitos reservados.</p>
-            <p>
-              <a href="#inicio" className="hover:text-background">
-                Política de Privacidade
-              </a>{" "}
-              ·{" "}
-              <a href="#inicio" className="hover:text-background">
-                Termos de Uso
-              </a>
-            </p>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }
