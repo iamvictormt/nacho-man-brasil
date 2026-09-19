@@ -1,0 +1,26 @@
+export const stores = [
+  {
+    name: "Goiânia",
+    state: "Goiás",
+    uf: "GO",
+    address: "Avenida T-50, Quadra 26, Casa 3 - Setor Marista",
+    city: "Goiânia · GO",
+    hours: "Terça a domingo, 18h às 22h30",
+    phone: "(62) 99365-3223",
+    maps: "https://www.google.com/maps/search/?api=1&query=Nacho+Man+Goi%C3%A2nia+Setor+Marista",
+    coordinates: { lat: -16.69459, lon: -49.27066 },
+    mapBounds: "-49.285,-16.708,-49.256,-16.681",
+  },
+  {
+    name: "Cristalina",
+    state: "Goiás",
+    uf: "GO",
+    address: "Av. Antonino Camilo de Andrade, 213 - Centro",
+    city: "Cristalina · GO",
+    hours: "Ter a qui, 18h às 23h · Sex e sáb, 18h à 0h",
+    phone: "(61) 99827-0888",
+    maps: "https://www.google.com/maps/search/?api=1&query=Nacho+Man+Cristalina+Centro",
+    coordinates: { lat: -16.77964, lon: -47.6159 },
+    mapBounds: "-47.63,-16.793,-47.602,-16.766",
+  },
+];

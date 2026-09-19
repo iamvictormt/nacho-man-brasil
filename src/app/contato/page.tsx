@@ -5,7 +5,6 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
 import comboFeast from "@/assets/combo-feast.jpg";
-import mapCity from "@/assets/map-city.jpg";
 
 const contactItems = [
   {
@@ -32,139 +31,151 @@ export default function ContatoPage() {
     <main className="overflow-hidden bg-background text-foreground">
       <SiteHeader />
 
-      <section className="relative overflow-hidden bg-background pt-32 lg:pt-40">
-        <div className="site-container grid items-center gap-10 pb-16 lg:grid-cols-12 lg:pb-24">
-          <div className="relative z-10 lg:col-span-6">
-            <p className="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.12em] text-primary">
-              <span className="h-1 w-8 bg-primary" /> Contato
+      <section className="relative pt-28 lg:pt-36">
+        <div className="site-container grid items-center gap-10 pb-16 lg:grid-cols-2 lg:pb-20">
+          <div className="hero-enter">
+            <p className="mb-6 flex items-center gap-3 text-xs font-extrabold uppercase tracking-widest">
+              <span className="h-1 w-8 bg-primary" /> A conversa começa aqui
             </p>
-            <h1 className="max-w-2xl font-display text-6xl uppercase leading-[.84] sm:text-7xl lg:text-[7.1rem]">
-              Bora
+            <h1 className="font-display text-6xl uppercase leading-[1.02] sm:text-7xl lg:text-[6.4rem]">
+              Pode chegar.
               <br />
-              trocar
-              <br />
-              <span className="text-primary">ideia?</span>
+              <span className="text-accent">A casa é sua.</span>
             </h1>
             <p className="mt-7 max-w-md text-base leading-7 text-muted-foreground">
-              Dúvida, sugestão, parceria ou vontade de contar como foi sua experiência? A gente
-              está por aqui.
+              Dúvida, sugestão, parceria ou vontade de contar como foi sua experiência? Puxa uma
+              cadeira e fala com a gente.
             </p>
-            <Link href="#mensagem" className="mt-8 inline-flex items-center gap-3 text-xs font-extrabold uppercase hover:text-accent">
-              Manda um recado <ArrowDown className="size-4 text-primary" />
+            <Button variant="ink" size="pill" asChild className="mt-8">
+              <a href="https://wa.me/5535997405132" target="_blank" rel="noreferrer">
+                Chamar no WhatsApp <MessageCircle />
+              </a>
+            </Button>
+            <Link href="#mensagem" className="mt-5 flex w-fit items-center gap-2 text-sm font-bold">
+              Prefere escrever? <ArrowDown className="size-4" />
             </Link>
           </div>
-
-          <div className="relative min-h-[390px] lg:col-span-6 lg:min-h-[500px]">
-            <div className="absolute inset-[7%] rounded-full bg-primary" />
+          <div className="relative pb-5 pl-5">
+            <div className="absolute bottom-0 left-0 right-8 top-8 rounded-2xl bg-primary" />
             <Image
               src={comboFeast}
               alt="Comida mexicana compartilhada à mesa"
               width={1400}
               height={1000}
+              sizes="(min-width: 1024px) 45vw, 90vw"
               priority
-              className="relative z-10 h-full w-full rounded-2xl object-cover shadow-xl"
+              className="relative aspect-[6/5] w-full rounded-2xl object-cover"
             />
-            <span className="absolute -bottom-2 left-0 z-20 rotate-[-5deg] bg-accent px-4 py-3 font-heading text-2xl font-extrabold uppercase leading-none text-accent-foreground shadow-lg sm:left-4">
-              Feito para
-              <br />
-              conversar.
+            <span className="absolute -bottom-2 right-4 rotate-3 bg-accent px-5 py-3 font-heading text-2xl font-extrabold uppercase text-accent-foreground">
+              Conversa boa dá fome.
             </span>
           </div>
         </div>
       </section>
-
-      <section className="bg-foreground py-16 text-background lg:py-20">
-        <div className="site-container grid gap-12 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
-          <div>
-            <p className="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase text-primary">
-              <span className="h-1 w-8 bg-primary" /> Por onde começar
-            </p>
-            <h2 className="font-display text-5xl uppercase leading-[.86] sm:text-6xl lg:text-7xl">
-              Escolhe
-              <br />
-              seu
-              <br />
-              <span className="text-primary">caminho.</span>
-            </h2>
-          </div>
-
-          <div className="grid gap-2 sm:grid-cols-3">
-            {contactItems.map(({ Icon, label, value, href }) => {
-              const content = (
-                <>
-                  <span className="grid size-11 shrink-0 place-content-center rounded-full bg-primary text-primary-foreground">
-                    <Icon className="size-5" />
-                  </span>
-                  <span className="min-w-0">
-                    <strong className="block font-heading text-2xl font-extrabold uppercase leading-none">{label}</strong>
-                    <span className="mt-3 block whitespace-pre-line text-xs leading-5 text-background/60">{value}</span>
-                  </span>
-                </>
-              );
-
-              return href ? (
-                <a
-                  key={label}
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel={href.startsWith("http") ? "noreferrer" : undefined}
-                  className="group flex min-h-48 flex-col justify-between gap-6 rounded-xl bg-background/5 p-5 transition-colors hover:bg-background/10"
-                >
-                  {content}
-                  <ArrowRight className="size-4 text-primary transition-transform group-hover:translate-x-1" />
-                </a>
-              ) : (
-                <div key={label} className="flex min-h-48 flex-col justify-between gap-6 rounded-xl bg-background/5 p-5">
-                  {content}
-                  <MapPin className="size-4 text-primary" />
-                </div>
-              );
-            })}
-          </div>
+      <section aria-label="Canais de contato" className="site-container pb-16">
+        <div className="grid overflow-hidden rounded-2xl border border-border bg-card md:grid-cols-3">
+          {contactItems.map(({ Icon, label, value, href }) => (
+            <a
+              key={label}
+              href={
+                href || "https://www.google.com/maps/search/?api=1&query=R.+Joinville+861+Blumenau"
+              }
+              target={href?.startsWith("mailto:") ? undefined : "_blank"}
+              rel="noreferrer"
+              className="group flex flex-col items-start border-b border-border p-7 transition-colors last:border-0 hover:bg-primary/20 md:border-b-0 md:border-r"
+            >
+              <span className="mb-6 grid size-12 place-content-center rounded-full bg-primary">
+                <Icon className="size-5" />
+              </span>
+              <strong className="font-heading text-3xl font-extrabold uppercase">{label}</strong>
+              <span className="mb-6 mt-2 whitespace-pre-line break-all text-sm leading-6 text-muted-foreground">
+                {value}
+              </span>
+              <ArrowRight className="mt-auto size-5 transition-transform group-hover:translate-x-1" />
+            </a>
+          ))}
         </div>
       </section>
 
-      <section id="mensagem" className="bg-card py-20 lg:py-28">
+      <section id="mensagem" className="scroll-mt-24 bg-foreground py-16 text-background lg:py-24">
         <div className="site-container grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
           <div>
             <p className="mb-4 flex items-center gap-3 text-xs font-extrabold uppercase text-primary">
               <span className="h-1 w-8 bg-primary" /> Escreve aí
             </p>
-            <h2 className="max-w-md font-display text-5xl uppercase leading-[.86] sm:text-6xl lg:text-7xl">
-              A gente
+            <h2 className="max-w-md font-display text-5xl uppercase leading-[1.02] sm:text-6xl lg:text-7xl">
+              Seu recado.
               <br />
-              lê
-              <br />
-              <span className="text-accent">tudo.</span>
+              Nossa <span className="text-accent">atenção.</span>
             </h2>
-            <p className="mt-6 max-w-sm text-sm leading-7 text-muted-foreground">
+            <p className="mt-6 max-w-sm text-sm leading-7 text-background/65">
               Toda mensagem chega para uma equipe de verdade. Conta pra gente o que você precisa.
             </p>
           </div>
 
-          <div className="relative overflow-hidden rounded-2xl bg-foreground p-6 text-background shadow-xl sm:p-9">
-            <Image src={mapCity} alt="" width={800} height={500} className="pointer-events-none absolute -bottom-16 -right-16 w-64 opacity-10" />
-            <form action={process.env.NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT || "#"} method="POST" className="relative grid gap-5">
-              <div className="grid gap-5 sm:grid-cols-2">
+          <div className="relative overflow-hidden rounded-2xl border border-background/15 bg-background/5 p-6 text-background sm:p-9">
+            {process.env.NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT ? (
+              <form
+                action={process.env.NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT}
+                method="POST"
+                className="relative grid gap-5"
+              >
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <label className="grid gap-2 text-xs font-bold uppercase">
+                    Nome
+                    <input
+                      name="name"
+                      autoComplete="name"
+                      required
+                      placeholder="Seu nome"
+                      className="h-12 rounded-lg border border-background/15 bg-background px-4 text-sm font-normal normal-case text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
+                    />
+                  </label>
+                  <label className="grid gap-2 text-xs font-bold uppercase">
+                    E-mail
+                    <input
+                      name="email"
+                      autoComplete="email"
+                      type="email"
+                      required
+                      placeholder="voce@email.com"
+                      className="h-12 rounded-lg border border-background/15 bg-background px-4 text-sm font-normal normal-case text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
+                    />
+                  </label>
+                </div>
                 <label className="grid gap-2 text-xs font-bold uppercase">
-                  Nome
-                  <input name="name" required placeholder="Seu nome" className="h-12 rounded-lg border border-background/15 bg-background px-4 text-sm font-normal normal-case text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20" />
+                  Mensagem
+                  <textarea
+                    name="message"
+                    required
+                    placeholder="Como podemos ajudar?"
+                    rows={6}
+                    className="resize-y rounded-lg border border-background/15 bg-background px-4 py-3 text-sm font-normal normal-case text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
+                  />
                 </label>
-                <label className="grid gap-2 text-xs font-bold uppercase">
-                  E-mail
-                  <input name="email" type="email" required placeholder="voce@email.com" className="h-12 rounded-lg border border-background/15 bg-background px-4 text-sm font-normal normal-case text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20" />
-                </label>
+                <Button type="submit" variant="lime" size="pill" className="mt-1 w-fit">
+                  Enviar mensagem <ArrowRight />
+                </Button>
+              </form>
+            ) : (
+              <div className="relative">
+                <Mail className="mb-6 size-9 text-primary" />
+                <h3 className="font-heading text-3xl font-extrabold uppercase">
+                  Uma boa conversa começa com um oi.
+                </h3>
+                <p className="mt-4 max-w-md text-sm leading-7 text-background/70">
+                  Envie sua dúvida, sugestão ou proposta por e-mail. Conte seu nome e como podemos
+                  ajudar.
+                </p>
+                <Button variant="lime" size="pill" asChild className="mt-8">
+                  <a href="mailto:franquias@nachomanbrasil.com.br">
+                    Escrever e-mail <ArrowRight />
+                  </a>
+                </Button>
+                <p className="mt-5 break-all text-xs text-background/60">
+                  franquias@nachomanbrasil.com.br
+                </p>
               </div>
-              <label className="grid gap-2 text-xs font-bold uppercase">
-                Mensagem
-                <textarea name="message" required placeholder="Como podemos ajudar?" rows={6} className="resize-y rounded-lg border border-background/15 bg-background px-4 py-3 text-sm font-normal normal-case text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20" />
-              </label>
-              <Button type="submit" variant="lime" size="pill" className="mt-1 w-fit">
-                Enviar mensagem <ArrowRight />
-              </Button>
-            </form>
-            {!process.env.NEXT_PUBLIC_FORMSPREE_CONTACT_ENDPOINT && (
-              <p className="relative mt-4 text-xs text-background/55">Formulário aguardando configuração do endpoint de contato.</p>
             )}
           </div>
         </div>

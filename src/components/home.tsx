@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { stores } from "@/lib/stores";
 import { useEffect, useRef, useState } from "react";
 import {
   ArrowLeft,
@@ -75,28 +76,7 @@ const marqueeItems = [
   { label: "Muita festa", Icon: IconMaracas },
 ];
 
-const stores = [
-  {
-    name: "Goiânia",
-    address: "Avenida T-50, Quadra 26, Casa 3 - Setor Marista",
-    city: "Goiânia · GO",
-    hours: "Terça a domingo, 18h às 22h30",
-    phone: "(62) 99365-3223",
-    maps: "https://www.google.com/maps/search/?api=1&query=Nacho+Man+Goi%C3%A2nia+Setor+Marista",
-    coordinates: { lat: -16.69459, lon: -49.27066 },
-    mapBounds: "-49.285,-16.708,-49.256,-16.681",
-  },
-  {
-    name: "Cristalina",
-    address: "Av. Antonino Camilo de Andrade, 213 - Centro",
-    city: "Cristalina · GO",
-    hours: "Ter a qui, 18h às 23h · Sex e sáb, 18h à 0h",
-    phone: "(61) 99827-0888",
-    maps: "https://www.google.com/maps/search/?api=1&query=Nacho+Man+Cristalina+Centro",
-    coordinates: { lat: -16.77964, lon: -47.6159 },
-    mapBounds: "-47.63,-16.793,-47.602,-16.766",
-  },
-];
+
 
 const testimonials = [
   {
@@ -178,7 +158,7 @@ export default function Home() {
         className="relative min-h-[720px] overflow-hidden pt-28 lg:min-h-[760px]"
       >
         <div className="site-container grid items-center gap-8 pb-12 lg:grid-cols-12 lg:pt-8">
-          <div className="relative z-10 lg:col-span-6">
+          <div className="hero-enter relative z-10 lg:col-span-6">
             <div className="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase">
               <span className="h-1 w-8 bg-primary" /> Tacos · Burritos · Nachos
             </div>

@@ -16,7 +16,7 @@ const nav = [
 ];
 
 const navSecondary = [
-  { label: "Encontrar loja", href: "/#unidades" },
+  { label: "Encontrar loja", href: "/encontrar-loja" },
   { label: "Unidades", href: "/#unidades" },
   { label: "Tenha sua Franquia", href: "/#franquia" },
 ];
@@ -78,7 +78,8 @@ export function SiteHeader() {
           ))}
           <span className="h-5 w-px bg-background/20" aria-hidden="true" />
           <Link
-            href="/#unidades"
+            href="/encontrar-loja"
+            aria-current={pathname === "/encontrar-loja" ? "page" : undefined}
             className="inline-flex items-center gap-2 rounded-full bg-background px-4 py-2 text-xs font-bold uppercase tracking-wide text-foreground transition-transform hover:scale-[1.04]"
           >
             <MapPin className="size-4" /> Encontrar loja

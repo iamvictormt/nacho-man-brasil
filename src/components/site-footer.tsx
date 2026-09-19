@@ -13,7 +13,7 @@ const navItems = [
   { label: "Quem Somos", href: "/quem-somos" },
   { label: "Cardápio", href: "/cardapio" },
   { label: "Contato", href: "/contato" },
-  { label: "Encontrar loja", href: "/#unidades" },
+  { label: "Encontrar loja", href: "/encontrar-loja" },
 ];
 
 const stores = [
