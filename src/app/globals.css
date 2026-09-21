@@ -214,6 +214,160 @@
   }
 }
 
+@layer components {
+  .home-sticker {
+    position: relative;
+    display: inline-block;
+    color: var(--foreground);
+    font-family: var(--font-barlow-condensed);
+    font-size: 1.45rem;
+    font-weight: 800;
+    line-height: 0.9;
+    text-transform: uppercase;
+    filter: drop-shadow(0.3rem 0.35rem 0 color-mix(in oklch, var(--foreground) 28%, transparent));
+  }
+
+  .home-sticker::after {
+    position: absolute;
+    inset: -0.22rem;
+    z-index: -1;
+    content: "";
+    border: 1px solid color-mix(in oklch, var(--foreground) 28%, transparent);
+    background: inherit;
+  }
+
+  .home-sticker-round {
+    display: grid;
+    width: 6.2rem;
+    height: 6.2rem;
+    place-content: center;
+    border: 2px solid var(--foreground);
+    border-radius: 999px;
+    background: var(--background);
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.3rem;
+  }
+
+  .home-sticker-round::after {
+    inset: 0.25rem -0.16rem -0.2rem 0.18rem;
+    border-radius: inherit;
+    transform: rotate(-5deg);
+  }
+
+  .home-sticker-tape {
+    background: var(--background);
+    padding: 0.8rem 1rem 0.7rem;
+  }
+
+  .home-sticker-tape::after {
+    inset: 0.18rem -0.22rem -0.18rem 0.16rem;
+    transform: rotate(2deg);
+  }
+
+  .home-sticker-red {
+    background: var(--accent);
+    color: var(--accent-foreground);
+  }
+
+  .home-sticker-badge {
+    display: grid;
+    width: 6rem;
+    height: 6rem;
+    place-content: center;
+    border: 1px solid var(--background);
+    border-radius: 999px;
+    background: var(--foreground);
+    color: var(--background);
+    text-align: center;
+    font-family: var(--font-manrope);
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    line-height: 1.1;
+  }
+
+  .home-sticker-badge::after {
+    inset: 0.2rem;
+    border-color: color-mix(in oklch, var(--background) 35%, transparent);
+    border-radius: inherit;
+    transform: rotate(7deg);
+  }
+
+  .home-section-light {
+    --home-ink: var(--foreground);
+    --home-soft-ink: var(--muted-foreground);
+    --home-signal: var(--primary);
+    --home-accent: var(--accent);
+  }
+
+  .home-section-dark {
+    --home-ink: var(--background);
+    --home-soft-ink: color-mix(in oklch, var(--background) 68%, transparent);
+    --home-signal: var(--primary);
+    --home-accent: var(--accent);
+  }
+
+  .home-eyebrow {
+    color: var(--home-signal);
+  }
+
+  .home-eyebrow-accent {
+    color: var(--home-accent);
+  }
+
+  .home-eyebrow-signal {
+    color: var(--home-signal);
+  }
+
+  .home-title {
+    color: var(--home-ink);
+  }
+
+  .home-title .home-highlight {
+    color: var(--home-signal);
+  }
+
+  .home-title .home-highlight-accent {
+    color: var(--home-accent);
+  }
+
+  .home-copy {
+    color: var(--home-soft-ink);
+  }
+
+  .home-grain {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .home-grain::before {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    content: "";
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+
+  .home-grain section {
+    position: relative;
+  }
+
+  .home-grain section:not(:first-of-type)::before {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: min(100% - 2.5rem, 88rem);
+    height: 1px;
+    content: "";
+    background: linear-gradient(90deg, transparent, color-mix(in oklch, var(--foreground) 14%, transparent), transparent);
+    transform: translateX(-50%);
+  }
+}
+
 @layer utilities {
   .font-display {
     line-height: 1.02;
@@ -226,6 +380,12 @@
 }
 
 @keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes home-collage-marquee {
   to {
     transform: translateX(-50%);
   }
@@ -246,6 +406,19 @@
   /* Two identical groups, each covering at least the viewport. */
   animation: marquee 20s linear infinite;
   will-change: transform;
+}
+
+.home-collage-band {
+  width: 100%;
+}
+
+.home-collage-track {
+  animation: home-collage-marquee 24s linear infinite;
+  will-change: transform;
+}
+
+.home-collage-band:hover .home-collage-track {
+  animation-play-state: paused;
 }
 @utility drift {
   animation: drift 5s ease-in-out infinite;

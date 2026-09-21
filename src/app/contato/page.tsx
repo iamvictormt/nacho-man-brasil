@@ -31,21 +31,26 @@ const contactItems = [
 
 export default function ContatoPage() {
   return (
-    <main className="overflow-hidden bg-background text-foreground">
+    <main className="home-grain overflow-hidden bg-background text-foreground">
       <SiteHeader />
 
-      <section className="relative pt-28 lg:pt-36">
-        <div className="site-container grid items-center gap-10 pb-16 lg:grid-cols-2 lg:pb-20">
-          <div className="hero-enter">
-            <p className="mb-6 flex items-center gap-3 text-xs font-extrabold uppercase tracking-widest">
-              <span className="h-1 w-8 bg-primary" /> A conversa começa aqui
+      <section className="relative overflow-hidden bg-primary pt-28 text-primary-foreground lg:pt-36">
+        <div className="pointer-events-none absolute -right-20 -top-16 font-display text-[18rem] leading-none text-primary-foreground/10">?</div>
+        <div className="site-container grid min-h-[650px] items-center gap-10 pb-16 lg:grid-cols-[1.1fr_0.9fr] lg:pb-20">
+          <div className="hero-enter relative z-10">
+            <p className="mb-6 flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.2em] text-primary-foreground">
+              <span className="h-1 w-10 bg-primary-foreground" /> A conversa começa aqui
             </p>
-            <h1 className="font-display text-6xl uppercase leading-[1.02] sm:text-7xl lg:text-[6.4rem]">
-              Pode chegar.
+            <h1 className="font-display text-6xl uppercase leading-[0.8] sm:text-8xl lg:text-[8rem]">
+              Pode
               <br />
-              <span className="text-accent">A casa é sua.</span>
+              <span className="text-foreground">chegar.</span>
+              <br />
+              A casa
+              <br />
+              <span className="text-foreground">é sua.</span>
             </h1>
-            <p className="mt-7 max-w-md text-base leading-7 text-muted-foreground">
+            <p className="mt-8 max-w-md text-base leading-7 text-primary-foreground/75">
               Dúvida, sugestão, parceria ou vontade de contar como foi sua experiência? Puxa uma
               cadeira e fala com a gente.
             </p>
@@ -58,7 +63,8 @@ export default function ContatoPage() {
               Prefere escrever? <ArrowDown className="size-4" />
             </Link>
           </div>
-          <div className="relative pb-5 pl-5">
+          <div className="relative pb-5 pl-5 lg:pl-10">
+            <div className="absolute -left-1 top-8 h-3/4 w-4 bg-accent lg:left-4" />
             <Image
               src={photos.contact}
               alt="Amigas brindando juntas na Nacho Man"
@@ -66,15 +72,15 @@ export default function ContatoPage() {
               height={1000}
               sizes="(min-width: 1024px) 45vw, 90vw"
               priority
-              className="relative aspect-[6/5] w-full rounded-2xl object-cover"
+              className="relative aspect-[5/6] w-full rounded-[2rem] border-4 border-foreground object-cover"
             />
-            <span className="absolute -bottom-2 right-4 rotate-3 bg-accent border border-foreground px-5 py-3 font-heading text-2xl font-extrabold uppercase text-accent-foreground">
+            <span className="home-sticker home-sticker-tape home-sticker-red absolute -bottom-2 right-4 rotate-3">
               Conversa boa dá fome.
             </span>
           </div>
         </div>
       </section>
-      <section aria-label="Canais de contato" className="site-container pb-16">
+      <section aria-label="Canais de contato" className="home-section-light site-container py-16 lg:py-20">
         <div className="grid overflow-hidden rounded-2xl border border-border bg-card md:grid-cols-3">
           {contactItems.map(({ Icon, label, value, href }) => (
             <a
@@ -84,7 +90,7 @@ export default function ContatoPage() {
               }
               target={href?.startsWith("mailto:") ? undefined : "_blank"}
               rel="noreferrer"
-              className="group flex flex-col items-start border-b border-border p-7 transition-colors last:border-0 hover:bg-primary/20 md:border-b-0 md:border-r"
+              className="group flex flex-col items-start border-b border-border p-7 transition-colors last:border-0 hover:bg-primary/10 md:border-b-0 md:border-r"
             >
               <span className="mb-6 grid size-12 place-content-center rounded-full bg-primary">
                 <Icon className="size-5" />
@@ -99,16 +105,16 @@ export default function ContatoPage() {
         </div>
       </section>
 
-      <section id="mensagem" className="scroll-mt-24 bg-foreground py-16 text-background lg:py-24">
+      <section id="mensagem" className="home-section-dark scroll-mt-24 bg-foreground py-20 text-background lg:py-28">
         <div className="site-container grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
           <div>
-            <p className="mb-4 flex items-center gap-3 text-xs font-extrabold uppercase text-primary">
-              <span className="h-1 w-8 bg-primary" /> Escreve aí
+            <p className="home-eyebrow-accent mb-4 flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.2em]">
+              <span className="h-1 w-10 bg-accent" /> Escreve aí
             </p>
-            <h2 className="max-w-md font-display text-5xl uppercase leading-[1.02] sm:text-6xl lg:text-7xl">
+            <h2 className="home-title max-w-md font-display text-6xl uppercase leading-[0.88] sm:text-8xl">
               Seu recado.
               <br />
-              Nossa <span className="text-accent">atenção.</span>
+              Nossa <span className="home-highlight home-highlight-accent">atenção.</span>
             </h2>
             <p className="mt-6 max-w-sm text-sm leading-7 text-background/65">
               Toda mensagem chega para uma equipe de verdade. Conta pra gente o que você precisa.

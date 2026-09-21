@@ -1,465 +1,420 @@
 "use client";
 
 import Image from "next/image";
-import { photos } from "@/lib/photos";
-const {
-  heroBurrito,
-  feast: comboFeast,
-  friends: friendsFood,
-  chips: menuNachos,
-  burrito: menuBurritos,
-  churros: menuChurros,
-  preparation: historiaPreparo,
-  masks: franquiaLoja,
-} = photos;
-import { ORDER_URL } from "@/lib/links";
-import { stores } from "@/lib/stores";
-import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { useEffect, useState, type ReactNode } from "react";
 import {
-  ArrowLeft,
+  ArrowDownRight,
   ArrowRight,
-  ChevronRight,
   Instagram,
-  Hand,
+  MapPin,
   Navigation,
   Quote,
   Search,
+  ShoppingBag,
+  Star,
 } from "lucide-react";
+import { photos } from "@/lib/photos";
+import { ORDER_URL } from "@/lib/links";
+import { stores } from "@/lib/stores";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  IconAbacate,
-  IconBurrito,
-  IconCoracao,
-  IconEstrela,
-  IconFogo,
-  IconMaracas,
-  IconMascara,
-  IconNachos,
-  IconPimenta,
-  IconTaco,
-} from "@/components/brand-icons";
+import { IconFogo, IconNachos, IconTaco } from "@/components/brand-icons";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
-const categories = [
+const menuCards = [
   {
-    name: "Chips",
-    copy: "Crocantes, generosos e irresistíveis.",
-    image: menuNachos,
-    tone: "bg-card",
-    accent: "bg-accent",
+    name: "Nachos",
+    eyebrow: "Para dividir",
+    copy: "Crocantes, carregados e prontos para a mesa.",
+    image: photos.chips,
+    tone: "bg-primary text-foreground",
   },
   {
     name: "Burritos",
-    copy: "Recheios na medida pra matar a sua fome.",
-    image: menuBurritos,
+    eyebrow: "Para resolver",
+    copy: "Recheio de verdade, enrolado sem economizar.",
+    image: photos.burrito,
     tone: "bg-foreground text-background",
-    accent: "bg-primary",
   },
   {
-    name: "Doce",
-    copy: "O final perfeito pra uma grande refeição.",
-    image: menuChurros,
-    tone: "bg-primary",
-    accent: "bg-accent",
+    name: "Tacos",
+    eyebrow: "Para morder",
+    copy: "Pequenos no tamanho. Grandes na atitude.",
+    image: photos.tacos,
+    tone: "bg-accent text-accent-foreground",
+  },
+  {
+    name: "Churros",
+    eyebrow: "Para fechar",
+    copy: "O último pedaço é sempre o mais disputado.",
+    image: photos.churros,
+    tone: "bg-card text-foreground",
   },
 ];
 
-const marqueeItems = [
-  { label: "Nachos", Icon: IconNachos },
-  { label: "Burritos", Icon: IconBurrito },
-  { label: "Tacos", Icon: IconTaco },
-  { label: "Muito sabor", Icon: IconPimenta },
-  { label: "Guacamole", Icon: IconAbacate },
-  { label: "Bem picante", Icon: IconFogo },
-  { label: "Do nosso jeito", Icon: IconMascara },
-  { label: "Muita festa", Icon: IconMaracas },
-];
-
-const testimonials = [
+const reviews = [
   {
-    quote:
-      "Melhor comida mexicana da cidade, da cidade não, do país! Hehehe. Já comi em Blumenau e sempre que vou em Balneário como lá também. Os tacos de camarão são a melhor pedida.",
-    name: "Maria. M B",
+    quote: "Os tacos de camarão são a melhor pedida. Já estou planejando a próxima visita.",
+    name: "Maria M. B.",
+    city: "Blumenau",
   },
   {
-    quote:
-      "A comida é muito boa. O ambiente é muito divertido, cheio de referência e detalhes que remetem a cultura mexicana. Os pratos chegaram bem rápido. Foi uma ótima experiência.",
-    name: "Karine S",
+    quote: "A comida chegou rápido e o ambiente é cheio de referência e detalhes incríveis.",
+    name: "Karine S.",
+    city: "Balneário Camboriú",
   },
   {
-    quote:
-      "Tudo extremamente saboroso, a guacamole é sensacional! Atendimento excelente, ambiente ótimo. Super recomendo.",
+    quote: "A guacamole é sensacional. Atendimento excelente e sabor de verdade.",
     name: "B. Lum",
+    city: "Goiânia",
   },
 ];
+
+function Eyebrow({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
+  return (
+    <p
+      className={`mb-5 flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.2em] ${
+        dark ? "text-primary" : "text-primary"
+      }`}
+    >
+      <span className="h-1 w-8 bg-current" />
+      {children}
+    </p>
+  );
+}
+
+function SectionTitle({
+  eyebrow,
+  children,
+  dark = false,
+}: {
+  eyebrow: string;
+  children: ReactNode;
+  dark?: boolean;
+}) {
+  return (
+    <div>
+      <Eyebrow dark={dark}>{eyebrow}</Eyebrow>
+      <h2 className="font-display text-5xl uppercase leading-[0.86] tracking-[-0.02em] sm:text-7xl">
+        {children}
+      </h2>
+    </div>
+  );
+}
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [search, setSearch] = useState("");
   const [selectedStore, setSelectedStore] = useState(stores[0]);
-  const trackRef = useRef<HTMLDivElement>(null);
-
-  const slide = (dir: number) => {
-    const track = trackRef.current;
-    if (!track) return;
-    track.scrollBy({ left: dir * (track.clientWidth * 0.8), behavior: "smooth" });
-  };
-
-  const query = search.trim().toLowerCase();
-  const foundStores = query
-    ? stores.filter((s) =>
-        `${s.name} ${s.address} ${s.city} ${s.phone}`.toLowerCase().includes(query),
-      )
-    : stores;
-  const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${selectedStore.mapBounds}&layer=mapnik&marker=${selectedStore.coordinates.lat},${selectedStore.coordinates.lon}`;
-  const searchStores = () => {
-    const firstStore = foundStores[0];
-    if (firstStore) setSelectedStore(firstStore);
-    document.getElementById("unidades-resultados")?.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-    });
-  };
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
+    const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const query = search.trim().toLowerCase();
+  const foundStores = query
+    ? stores.filter((store) =>
+        `${store.name} ${store.address} ${store.city} ${store.phone}`.toLowerCase().includes(query),
+      )
+    : stores;
+  const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${selectedStore.mapBounds}&layer=mapnik&marker=${selectedStore.coordinates.lat},${selectedStore.coordinates.lon}`;
+  const searchStores = () => {
+    if (foundStores[0]) setSelectedStore(foundStores[0]);
+    document.getElementById("unidades-resultados")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <main>
+    <main className="home-grain overflow-hidden bg-background text-foreground">
       <SiteHeader />
 
       <Button
         variant="ink"
         asChild
-        className={`fixed bottom-5 right-5 z-50 h-auto rounded-full border border-background/15 py-2 pl-2 pr-2.5 shadow-xl transition-all duration-300 hover:scale-[1.02] sm:bottom-7 sm:right-7 ${scrolled ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"}`}
+        className={`fixed bottom-5 right-5 z-50 h-auto rounded-full border border-background/15 py-2 pl-2 pr-3 shadow-2xl transition-all duration-300 sm:bottom-7 sm:right-7 ${
+          scrolled ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
+        }`}
       >
         <a href={ORDER_URL} aria-label="Pedir Nacho Man agora">
           <span className="grid size-10 place-content-center rounded-full bg-primary text-primary-foreground">
-            <IconTaco className="!size-8" aria-hidden="true" />
+            <ShoppingBag className="size-5" />
           </span>
-          <span className="px-1 text-left">
-            <span className="block text-[10px] font-semibold normal-case text-background/60">
-              Bateu a fome?
-            </span>
+          <span className="px-2 text-left">
+            <span className="block text-[10px] text-background/55">BATEU A FOME?</span>
             <strong className="block text-xs uppercase">Pedir agora</strong>
           </span>
-          <ArrowRight className="mx-1 text-primary" />
+          <ArrowRight className="text-primary" />
         </a>
       </Button>
 
-      <section
-        id="inicio"
-        className="relative min-h-[720px] overflow-hidden pt-28 lg:min-h-[760px]"
-      >
-        <div className="site-container grid items-center gap-8 pb-12 lg:grid-cols-12 lg:pt-8">
-          <div className="hero-enter relative z-10 lg:col-span-6">
-            <div className="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase">
-              <span className="h-1 w-8 bg-primary" /> Tacos · Burritos · Nachos
-            </div>
-            <h1 className="max-w-2xl font-display text-6xl uppercase sm:text-7xl lg:text-[7.1rem]">
-              Mexicano do nosso <span className="text-primary">jeito.</span>
+      {/* 1. Hero */}
+      <section id="inicio" className="bg-foreground text-background">
+        <div className="site-container grid min-h-[calc(100svh-4rem)] items-center gap-12 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:py-12">
+          <div className="max-w-2xl">
+            <Eyebrow dark>Comida de rua, sem pedir licença</Eyebrow>
+            <h1 className="font-display text-[clamp(4.5rem,12vw,10rem)] uppercase leading-[0.78] tracking-[-0.035em]">
+              Fome <span className="text-primary">sem</span> freio.
             </h1>
-            <p className="mt-7 max-w-md text-base leading-7 text-muted-foreground">
-              Ingredientes frescos, receitas autorais e todo o sabor do México, com a alma
-              brasileira.
+            <p className="mt-9 max-w-md text-base leading-7 text-background/65">
+              Tortilla, pimenta e recheio de verdade. O México encontrou a rua brasileira.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Button variant="ink" size="pill" asChild>
+            <div className="mt-8 flex flex-wrap items-center gap-5">
+              <Button variant="lime" size="pill" asChild>
                 <a href={ORDER_URL}>
-                  Pedir agora <ArrowRight />
+                  Quero pedir <ArrowRight />
                 </a>
               </Button>
-              <Button variant="link" asChild className="font-bold text-foreground">
-                <a href="/cardapio">
-                  Ver cardápio <ArrowRight />
-                </a>
-              </Button>
+              <Link href="#menu" className="group inline-flex items-center gap-2 text-sm font-bold">
+                Ver a fome de perto
+                <ArrowDownRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:translate-y-1" />
+              </Link>
             </div>
           </div>
-          <div className="relative lg:col-span-6">
-            <div className="absolute inset-[8%] rounded-full bg-primary" />
-            <p className="absolute left-0 top-8 z-20 rotate-[-8deg] border border-foreground bg-background px-4 py-3 font-heading text-2xl font-extrabold uppercase leading-[1.05] text-foreground shadow-sm sm:text-3xl">
-              Mais sabor
-              <br />
-              <span className="text-accent">sempre ↘</span>
-            </p>
+          <div className="relative min-h-[430px] lg:min-h-[680px]">
             <Image
-              src={heroBurrito}
-              width={1200}
-              height={1200}
-              alt="Dois burritos Nacho Man recheados"
+              src={photos.heroBurrito}
+              alt="Burrito Nacho Man recheado"
+              fill
               priority
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              className="hero-enter relative z-10 aspect-[5/4] w-full rounded-[2rem] object-cover lg:aspect-square"
+              sizes="(min-width: 1024px) 55vw, 100vw"
+              className="object-cover lg:rounded-bl-[7rem] lg:rounded-tl-[2rem]"
             />
-            <span className="absolute bottom-8 right-0 z-20 rotate-[-6deg] border border-foreground bg-background px-4 py-3 font-heading text-xl font-extrabold uppercase leading-[1.05] text-foreground shadow-sm sm:text-2xl">
-              Burritos
+            <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent" />
+            <p className="absolute bottom-7 left-6 font-heading text-2xl font-extrabold uppercase sm:left-10">
+              Brasil, pode chegar.
+            </p>
+            <span className="home-sticker home-sticker-round absolute -left-3 top-8 z-10 rotate-[-8deg] bg-primary sm:left-6">
+              Desde
               <br />
-              que fazem sentido!
+              <b className="text-accent">2014</b>
             </span>
           </div>
         </div>
       </section>
 
-      <div className="overflow-hidden bg-primary py-4" aria-label="Categorias">
-        <div className="marquee-track flex w-max items-center font-heading text-xl font-extrabold uppercase text-primary-foreground">
-          {[0, 1].map((group) => (
-            <div
-              key={group}
-              className="flex w-max min-w-[100vw] shrink-0 items-center justify-around"
-              aria-hidden={group === 1}
-            >
-              {marqueeItems.map(({ label, Icon }, i) => (
-                <span
-                  key={`${label}-${i}`}
-                  className="flex shrink-0 items-center gap-8 whitespace-nowrap px-5"
-                >
-                  {label}
-                  <Icon className="size-7 shrink-0" aria-hidden="true" />
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <section
-        id="historia"
-        className="overflow-hidden bg-foreground py-16 text-background lg:py-20"
-      >
-        <div className="site-container grid items-center gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <p className="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase text-primary">
-              <span className="h-1 w-8 bg-primary" /> Desde o primeiro pedido
-            </p>
-            <h2 className="font-display text-5xl uppercase sm:text-6xl lg:text-7xl">
-              A gente leva a sério essa coisa de{" "}
-              <span className="text-primary">comida mexicana.</span>
-            </h2>
-            <p className="mt-6 max-w-lg text-sm leading-7 text-background/70">
-              Receitas cheias de personalidade, ingredientes preparados todos os dias e combinações
-              feitas para dividir — ou não.
-            </p>
-            <div className="mt-8 grid gap-5 border-t border-background/15 pt-7 sm:grid-cols-2">
-              <div className="flex gap-3">
-                <IconCoracao className="mt-0.5 size-7 shrink-0 text-primary" aria-hidden="true" />
-                <div>
-                  <h3 className="font-heading text-xl font-extrabold uppercase">
-                    Feito de verdade
-                  </h3>
-                  <p className="mt-1 text-xs leading-5 text-background/60">
-                    Ingredientes frescos e preparo cuidadoso.
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-3">
-                <IconMascara className="mt-0.5 size-7 shrink-0 text-primary" aria-hidden="true" />
-                <div>
-                  <h3 className="font-heading text-xl font-extrabold uppercase">
-                    Bom de compartilhar
-                  </h3>
-                  <p className="mt-1 text-xs leading-5 text-background/60">
-                    Comida que aproxima e vira história.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="relative lg:col-span-7">
-            <div className="absolute -left-5 -top-5 z-10 rotate-[-7deg] bg-accent px-4 py-2 font-heading text-lg font-extrabold uppercase text-accent-foreground">
-              Sem cerimônia
-            </div>
-            <Image
-              src={historiaPreparo}
-              loading="lazy"
-              width={1600}
-              height={1200}
-              alt="Mesa com pratos mexicanos e acompanhamentos Nacho Man"
-              className="aspect-[4/3] w-full rounded-2xl object-cover"
-            />
-            <div className="absolute bottom-5 right-5 max-w-52 rounded-xl bg-primary p-4 text-primary-foreground">
-              <p className="font-heading text-2xl font-extrabold uppercase leading-[1.05]">
-                Muito sabor.
-                <br />
-                Do nosso jeito.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="cardapio" className="bg-card py-20 lg:py-28">
-        <div className="site-container">
-          <div className="mb-9 grid items-end gap-6 md:grid-cols-[1fr_auto_auto]">
-            <div>
-              <p className="mb-3 flex items-center gap-3 text-xs font-extrabold uppercase text-primary">
-                <span className="h-1 w-8 bg-primary" /> Do nosso jeito
-              </p>
-              <h2 className="max-w-3xl font-display text-5xl uppercase sm:text-6xl lg:text-7xl">
-                Qual é a sua fome de hoje?
-              </h2>
-            </div>
-            <p className="max-w-xs text-sm leading-5 text-muted-foreground">
-              Do clássico ao surpreendente, sempre tem um Nacho Man perfeito para o seu momento.
-            </p>
-            <div className="hidden gap-2 md:flex lg:hidden" aria-label="Navegar pelas categorias">
-              <Button
-                variant="outline"
-                size="icon"
-                className="rounded-full"
-                aria-label="Categoria anterior"
-                onClick={() => slide(-1)}
-              >
-                <ArrowLeft />
-              </Button>
-              <Button
-                variant="ink"
-                size="icon"
-                aria-label="Próxima categoria"
-                onClick={() => slide(1)}
-              >
-                <ArrowRight />
-              </Button>
-            </div>
-          </div>
-          <div
-            ref={trackRef}
-            className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 sm:mx-0 sm:px-0 lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0"
-          >
-            {categories.map((item, index) => (
-              <article
-                key={item.name}
-                className={`${item.tone} group relative flex min-h-[510px] min-w-[86vw] snap-center flex-col overflow-hidden rounded-2xl border border-border p-6 transition-transform duration-300 hover:-translate-y-1 sm:min-w-[390px] lg:min-w-0 lg:p-7`}
-              >
-                <div className="relative z-20">
-                  <span
-                    className="mb-3 inline-grid size-12 place-content-center rounded-full border border-current/25 bg-current/10"
-                    aria-hidden="true"
-                  >
-                    {index === 0 ? (
-                      <IconNachos className="size-7" />
-                    ) : index === 1 ? (
-                      <IconBurrito className="size-7" />
-                    ) : (
-                      <IconEstrela className="size-7" />
-                    )}
+      {/* 2. Tira de marca */}
+      <section aria-label="Manifesto Nacho Man" className="border-y-4 border-foreground bg-primary py-5">
+        <div className="home-collage-band overflow-hidden">
+          <div className="home-collage-track flex w-max items-center font-heading text-2xl font-extrabold uppercase tracking-[0.06em]">
+            {[0, 1].map((group) => (
+              <div key={group} className="flex shrink-0 items-center" aria-hidden={group === 1}>
+                {Array.from({ length: 4 }).map((_, index) => (
+                  <span key={index} className="flex items-center gap-5 whitespace-nowrap px-7">
+                    <IconTaco className="size-7" />
+                    Não é só comida <span className="text-accent">é atitude.</span>
+                    <span className="text-foreground/30">✦</span>
                   </span>
-                  <h3 className="font-display text-5xl uppercase lg:text-6xl">{item.name}</h3>
-                  <p className="mt-2 max-w-[15rem] text-sm leading-5 opacity-80">{item.copy}</p>
-                </div>
-
-                <Image
-                  src={item.image}
-                  loading="lazy"
-                  width={1024}
-                  height={1024}
-                  alt={`${item.name} Nacho Man`}
-                  sizes="(min-width: 1024px) 33vw, 90vw"
-                  className="absolute inset-x-0 bottom-0 z-10 h-[52%] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                />
-                <Button
-                  variant={index === 1 ? "lime" : "ink"}
-                  size="icon"
-                  asChild
-                  className="relative z-20 mt-auto size-11"
-                  aria-label={`Ver ${item.name}`}
-                >
-                  <a href={ORDER_URL}>
-                    <ArrowRight />
-                  </a>
-                </Button>
-              </article>
+                ))}
+              </div>
             ))}
           </div>
-          <div className="mt-5 flex items-center justify-center gap-3 text-muted-foreground lg:hidden">
-            <span className="relative flex h-8 w-12 items-center justify-center" aria-hidden="true">
-              <span className="absolute inset-x-0 top-1/2 border-t border-dashed border-current/35" />
-              <Hand
-                className="swipe-hint relative size-6 fill-card text-foreground"
-                strokeWidth={1.5}
+        </div>
+      </section>
+
+      {/* 3. Escolha de fome */}
+      <section id="menu" className="site-container py-20 lg:py-28">
+        <div className="mb-12 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+          <SectionTitle eyebrow="Escolha seu caminho">
+            Qual é o tamanho
+            <br />
+            da sua <span className="text-primary">fome?</span>
+          </SectionTitle>
+          <Link href="/cardapio" className="group inline-flex items-center gap-2 text-sm font-bold">
+            Ver cardápio inteiro <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+          </Link>
+        </div>
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {menuCards.map((item, index) => (
+            <Link
+              href="/cardapio"
+              key={item.name}
+              className={`group relative flex min-h-[390px] flex-col overflow-hidden rounded-[1.5rem] border-2 border-foreground/10 p-6 transition-transform hover:-translate-y-2 ${item.tone}`}
+            >
+              <div className="relative z-10">
+                <p className="text-[10px] font-extrabold uppercase tracking-[0.16em] opacity-65">
+                  0{index + 1} / {item.eyebrow}
+                </p>
+                <h3 className="mt-3 font-display text-5xl uppercase leading-none">{item.name}</h3>
+                <p className="mt-3 max-w-[12rem] text-sm leading-5 opacity-75">{item.copy}</p>
+              </div>
+              <Image
+                src={item.image}
+                alt={`${item.name} Nacho Man`}
+                width={1000}
+                height={800}
+                sizes="(min-width: 1024px) 25vw, 90vw"
+                className="absolute inset-x-0 bottom-0 h-[57%] w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-            </span>
-            <p className="text-xs font-semibold">Arraste para o lado</p>
+              <span className="relative z-10 mt-auto grid size-11 place-content-center self-end rounded-full bg-foreground text-background">
+                <ArrowRight className="size-5" />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* 4. Manifesto */}
+      <section id="manifesto" className="bg-card py-20 lg:py-28">
+        <div className="site-container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
+          <SectionTitle eyebrow="Receita com identidade">
+            O México
+            <br />
+            encontrou
+            <br />
+            o <span className="text-primary">Brasil.</span>
+          </SectionTitle>
+          <div className="lg:pt-12">
+            <p className="max-w-md text-base leading-7 text-muted-foreground">
+              A gente respeita a raiz, mas não fica parado nela. Cada receita nasce desse encontro:
+              ingredientes mexicanos, apetite brasileiro e uma vontade enorme de fazer do nosso jeito.
+            </p>
+            <div className="mt-10 grid grid-cols-2 gap-8 border-y border-foreground/15 py-8 sm:grid-cols-3">
+              <div>
+                <p className="font-display text-7xl leading-none text-primary sm:text-8xl">12</p>
+                <p className="mt-3 font-heading text-lg font-extrabold uppercase">anos de rua</p>
+              </div>
+              <div>
+                <p className="font-display text-7xl leading-none text-accent sm:text-8xl">∞</p>
+                <p className="mt-3 font-heading text-lg font-extrabold uppercase">vontade de criar</p>
+              </div>
+              <span className="hidden self-center font-display text-7xl text-primary sm:block">→</span>
+            </div>
+            <div className="mt-10 grid gap-8 sm:grid-cols-2">
+              <div>
+                <IconNachos className="size-9 text-primary" />
+                <h3 className="mt-4 font-heading text-2xl font-extrabold uppercase">Raiz, não fantasia</h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                  Milho, tortilla, pimenta e frescor. A base é mexicana; a atitude é Nacho Man.
+                </p>
+              </div>
+              <div>
+                <IconFogo className="size-9 text-accent" />
+                <h3 className="mt-4 font-heading text-2xl font-extrabold uppercase">Receita com RG</h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                  Combinações autorais, molhos da casa e uma mordida que não passa batida.
+                </p>
+              </div>
+            </div>
+            <div className="mt-10 overflow-hidden rounded-[1.5rem] border-2 border-foreground">
+              <Image
+                src={photos.preparation}
+                alt="Mesa com pratos mexicanos Nacho Man"
+                width={1600}
+                height={900}
+                className="aspect-[2/1] w-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="combos" className="relative overflow-hidden bg-foreground text-background">
-        <div className="site-container grid items-center gap-8 py-12 lg:grid-cols-2 lg:gap-12 lg:py-16">
-          <div className="relative overflow-hidden rounded-2xl">
+      {/* 5. Oferta combo */}
+      <section id="combo" className="bg-accent py-20 text-accent-foreground lg:py-28">
+        <div className="site-container grid items-center gap-12 lg:grid-cols-2 lg:gap-24">
+          <div className="order-2 lg:order-1">
+            <SectionTitle eyebrow="O plano que salva a noite">
+              Mordeu,
+              <br />
+              <span className="text-primary">resolveu.</span>
+            </SectionTitle>
+            <p className="mt-7 max-w-md text-base leading-7 opacity-80">
+              Burrito ou taco, nachos e bebida. Para a mesa que diz “vou comer pouco” e termina
+              pedindo sobremesa.
+            </p>
+            <Button variant="ink" size="pill" asChild className="mt-8">
+              <a href={ORDER_URL}>
+                Montar meu combo <ArrowRight />
+              </a>
+            </Button>
+          </div>
+          <div className="relative order-1 lg:order-2">
             <Image
-              src={comboFeast}
-              loading="lazy"
+              src={photos.feast}
+              alt="Mesa com combo Nacho Man"
               width={1600}
               height={912}
-              sizes="(min-width: 1536px) 680px, (min-width: 1024px) 50vw, 100vw"
-              alt="Mesa com pratos e embalagem de combo Nacho Man"
-              className="aspect-[4/3] w-full object-cover object-left"
+              className="aspect-square w-full rounded-[1.5rem] object-cover"
             />
-            <div className="pointer-events-none absolute left-5 top-6 rotate-[-8deg] border border-background/25 bg-foreground/95 px-4 py-3 font-heading text-2xl font-extrabold uppercase leading-[.95] text-primary shadow-lg sm:left-8 sm:top-8 sm:text-3xl">
+            <span className="home-sticker home-sticker-tape absolute -left-3 top-6 -rotate-6">
               Juntos
-              <br />é melhor
-              <span className="mt-2 block h-1 w-20 rotate-[-5deg] bg-primary" />
-            </div>
-          </div>
-          <div className="flex flex-col justify-center py-3 lg:self-stretch lg:py-5 lg:pl-2">
-            <div className="mb-4 flex items-center gap-3 text-xs font-extrabold uppercase text-primary">
-              <span className="h-1 w-8 shrink-0 bg-primary" /> Sabor e praticidade.
-            </div>
-            <h2 className="font-display text-5xl uppercase sm:text-6xl lg:text-[clamp(3.5rem,6.7vw,6.5rem)]">
-              O combo que <span className="block text-primary">resolve tudo</span>
-            </h2>
-            <p className="mt-6 text-base leading-7 text-background/75 xl:text-lg xl:leading-8">
-              Burrito ou taco + nachos + bebida.
-              <br />A combinação perfeita pra qualquer momento.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center justify-between gap-5 border-t border-background/20 pt-7 lg:mt-10 lg:pt-8">
-              <Button
-                variant="lime"
-                size="pill"
-                asChild
-                className="h-14 min-w-48 flex-1 justify-between px-7 text-sm sm:max-w-72 xl:h-16"
-              >
-                <a href={ORDER_URL}>
-                  Fazer pedido <ArrowRight />
-                </a>
-              </Button>
-            </div>
+              <br />
+              é melhor.
+            </span>
           </div>
         </div>
       </section>
 
-      <section id="unidades" className="bg-background py-24">
-        <div className="site-container grid gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <p className="mb-3 flex items-center gap-3 text-xs font-extrabold uppercase text-primary">
-              <span className="h-1 w-8 bg-primary" /> Perto de você
-            </p>
-            <h2 className="font-display text-5xl uppercase sm:text-6xl">
-              Tem <span className="text-primary">Nacho Man</span> perto de você
-            </h2>
-            <p className="mt-4 text-sm text-muted-foreground">
-              Encontre a unidade mais próxima e venha viver essa experiência.
+      {/* 6. Prova social */}
+      <section id="prova-social" className="bg-foreground py-20 text-background lg:py-28">
+        <div className="site-container">
+          <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+            <SectionTitle eyebrow="A rua já falou" dark>
+              O sabor fica.
+              <br />
+              <span className="text-primary">A galera conta.</span>
+            </SectionTitle>
+            <a
+              href="https://www.instagram.com/nachomanbrasil/"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-bold text-background/70 hover:text-primary"
+            >
+              <Instagram className="size-4" /> @nachomanbrasil <ArrowRight className="size-4" />
+            </a>
+          </div>
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {reviews.map((review) => (
+              <figure
+                key={review.name}
+                className="flex min-h-64 flex-col rounded-[1.5rem] border border-background/15 p-6 transition-colors hover:border-primary/60"
+              >
+                <div className="flex gap-1 text-primary">
+                  {[0, 1, 2, 3, 4].map((star) => (
+                    <Star key={star} className="size-4 fill-current" />
+                  ))}
+                </div>
+                <Quote className="mt-8 size-7 fill-primary text-primary" />
+                <blockquote className="mt-4 text-base leading-7 text-background/80">
+                  “{review.quote}”
+                </blockquote>
+                <figcaption className="mt-auto flex items-center gap-2 pt-7 text-xs font-bold uppercase tracking-wider">
+                  <span className="h-px w-5 bg-primary" />
+                  {review.name} · <span className="text-background/45">{review.city}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Encontrar unidade */}
+      <section id="unidades" className="site-container py-20 lg:py-28">
+        <div className="grid gap-10 lg:grid-cols-[0.75fr_1fr_0.75fr]">
+          <div>
+            <SectionTitle eyebrow="Chega mais">
+              Tem Nacho
+              <br />
+              <span className="text-primary">perto.</span>
+            </SectionTitle>
+            <p className="mt-5 text-sm leading-6 text-muted-foreground">
+              Encontre a unidade mais próxima e apareça. A mesa está esperando.
             </p>
             <div className="relative mt-7">
               <Input
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    e.preventDefault();
+                onChange={(event) => setSearch(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    event.preventDefault();
                     searchStores();
                   }
                 }}
                 aria-label="Buscar unidade por cidade ou endereço"
-                type="search"
-                placeholder="Digite sua cidade ou endereço"
-                className="h-13 rounded-full bg-background pl-12 pr-14"
+                placeholder="Cidade ou endereço"
+                className="h-13 rounded-full bg-card pl-12 pr-14"
               />
               <Search className="absolute left-4 top-4 size-5 text-muted-foreground" />
               <Button
@@ -474,7 +429,7 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <div className="relative min-h-80 overflow-hidden rounded-2xl border border-border bg-muted shadow-sm lg:col-span-5">
+          <div className="relative min-h-80 overflow-hidden rounded-[1.5rem] border-2 border-foreground bg-muted">
             <iframe
               key={selectedStore.name}
               title={`Mapa da unidade Nacho Man ${selectedStore.name}`}
@@ -482,50 +437,42 @@ export default function Home() {
               className="absolute inset-0 size-full border-0"
               loading="lazy"
             />
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-foreground/20 to-transparent" />
-            <div className="absolute left-3 top-3 rounded-full bg-background/95 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-foreground shadow-sm backdrop-blur-sm">
-              Mapa real · OpenStreetMap
+            <div className="absolute left-3 top-3 rounded-full bg-background/90 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-widest shadow-sm">
+              <MapPin className="mr-1 inline size-3" /> Mapa real
             </div>
           </div>
-          <div id="unidades-resultados" className="grid content-start gap-3 lg:col-span-3">
+          <div id="unidades-resultados" className="grid content-start gap-3">
             {foundStores.map((store) => (
               <article
                 key={store.name}
-                className={`rounded-xl border p-5 transition-colors ${selectedStore.name === store.name ? "border-primary bg-primary/5" : "border-border"}`}
+                className={`rounded-[1.5rem] border-2 p-5 transition-colors ${
+                  selectedStore.name === store.name ? "border-primary bg-primary/5" : "border-border"
+                }`}
               >
-                <div className="grid grid-cols-[1fr_auto] gap-2">
+                <div className="flex justify-between gap-3">
                   <div>
                     <button
                       type="button"
                       onClick={() => setSelectedStore(store)}
-                      className="text-left font-bold hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                      className="text-left font-bold hover:text-primary"
                     >
                       Nacho Man {store.name}
                     </button>
-                    <p className="mt-1 text-xs text-muted-foreground">
+                    <p className="mt-1 text-xs leading-5 text-muted-foreground">
                       {store.address}
                       <br />
                       {store.city}
                     </p>
-                    <p className="mt-2 text-xs leading-4 text-muted-foreground">
-                      <strong className="font-bold text-foreground">Horários:</strong> {store.hours}
+                    <p className="mt-3 text-xs text-muted-foreground">
+                      <strong className="text-foreground">Horários:</strong> {store.hours}
                     </p>
-                    <a
-                      href={`tel:${store.phone.replace(/\D/g, "")}`}
-                      className="mt-1 block text-xs font-bold text-foreground hover:text-primary"
-                    >
-                      {store.phone}
-                    </a>
-                    <span className="mt-3 block text-xs font-bold text-secondary">
-                      ● Aberto agora
-                    </span>
+                    <span className="mt-3 block text-xs font-bold text-secondary">● Aberto agora</span>
                   </div>
                   <Button
                     variant="ghost"
                     size="icon"
                     onClick={() => setSelectedStore(store)}
-                    aria-label={`Mostrar localização da unidade Nacho Man ${store.name} no mapa`}
-                    aria-pressed={selectedStore.name === store.name}
+                    aria-label={`Mostrar ${store.name} no mapa`}
                   >
                     <Navigation />
                   </Button>
@@ -533,7 +480,7 @@ export default function Home() {
               </article>
             ))}
             {foundStores.length === 0 && (
-              <p className="rounded-xl border border-dashed border-border p-5 text-sm text-muted-foreground">
+              <p className="rounded-[1.5rem] border-2 border-dashed border-border p-5 text-sm text-muted-foreground">
                 Ainda não temos unidade por aí. Em breve!
               </p>
             )}
@@ -541,161 +488,57 @@ export default function Home() {
         </div>
       </section>
 
-      <section
-        id="social"
-        aria-labelledby="social-title"
-        className="overflow-hidden bg-foreground py-16 text-background lg:py-24"
-      >
-        <div className="site-container">
-          <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-            <div className="relative col-span-2 overflow-hidden rounded-2xl">
-              <Image
-                src={friendsFood}
-                alt="Amigos compartilhando uma refeição Nacho Man"
-                sizes="(min-width: 1536px) 704px, (min-width: 1024px) 50vw, 100vw"
-                className="aspect-[4/3] h-full w-full object-cover"
-              />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent px-6 pb-6 pt-24 sm:px-8 sm:pb-8">
-                <p className="mb-3 text-[10px] font-extrabold uppercase tracking-[0.18em] text-primary">
-                  Na mesa, todo mundo é de casa.
-                </p>
-                <p className="max-w-sm font-display text-4xl uppercase sm:text-5xl">
-                  Bom mesmo é<br />
-                  comer junto.
-                </p>
-              </div>
-            </div>
-            <div className="flex min-w-0 flex-col overflow-hidden rounded-2xl bg-primary text-primary-foreground">
-              <div className="px-5 pt-5 sm:px-6 sm:pt-6">
-                <span className="text-[10px] font-bold uppercase tracking-[0.12em]">
-                  01 / Pra dividir
-                </span>
-                <p className="mt-2 font-heading text-2xl font-extrabold uppercase leading-none sm:text-3xl">
-                  Só mais
-                  <br />
-                  um nacho.
-                </p>
-              </div>
-              <Image
-                src={menuNachos}
-                alt="Chips crocantes com guacamole"
-                sizes="(min-width: 1536px) 352px, (min-width: 1024px) 25vw, 50vw"
-                className="my-5 aspect-square w-full object-cover"
-              />
-              <p className="px-5 pb-5 text-xs font-semibold sm:px-6 sm:pb-6">
-                Crocante. Generoso. Nosso.
-              </p>
-            </div>
-            <div className="flex min-w-0 flex-col overflow-hidden rounded-2xl bg-background text-foreground">
-              <div className="px-5 pt-5 sm:px-6 sm:pt-6">
-                <span className="text-[10px] font-bold uppercase tracking-[0.12em]">
-                  02 / Pra fechar
-                </span>
-                <p className="mt-2 font-heading text-2xl font-extrabold uppercase leading-none sm:text-3xl">
-                  Sempre cabe
-                  <br />
-                  um doce.
-                </p>
-              </div>
-              <Image
-                src={photos.churrosSocial}
-                alt="Churros servidos com molho doce"
-                sizes="(min-width: 1536px) 352px, (min-width: 1024px) 25vw, 50vw"
-                className="my-5 aspect-square w-full object-cover"
-              />
-              <p className="px-5 pb-5 text-xs font-semibold sm:px-6 sm:pb-6">
-                O último pedaço é seu.
-              </p>
-            </div>
+      {/* 8. Franquia */}
+      <section id="franquia" className="bg-foreground py-20 text-background lg:py-28">
+        <div className="site-container grid items-center gap-10 lg:grid-cols-[1fr_0.8fr]">
+          <div>
+            <SectionTitle eyebrow="Negócio com personalidade" dark>
+              Leve essa fome
+              <br />
+              <span className="text-primary">para sua cidade.</span>
+            </SectionTitle>
+            <p className="mt-7 max-w-md text-base leading-7 text-background/70">
+              Uma marca forte, operação enxuta e comida que faz a galera voltar. Conheça o modelo
+              de franquia Nacho Man.
+            </p>
+            <Button variant="lime" size="pill" asChild className="mt-8">
+              <a href="/contato">
+                Quero ser franqueado <ArrowRight />
+              </a>
+            </Button>
           </div>
-
-          <div className="mt-16 flex flex-col justify-between gap-6 sm:flex-row sm:items-end lg:mt-20">
-            <div>
-              <p className="mb-4 flex items-center gap-3 text-xs font-extrabold uppercase text-primary">
-                <span className="h-1 w-8 bg-primary" /> Quem prova, conta
-              </p>
-              <h2
-                id="social-title"
-                className="font-display text-4xl uppercase sm:text-5xl lg:text-6xl"
-              >
-                O sabor fica.
-                <br />
-                <span className="text-primary">A galera conta.</span>
-              </h2>
-            </div>
-            <a
-              href="https://www.instagram.com/nachomanbrasil/"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex w-fit items-center gap-3 border-b border-background/30 pb-2 text-xs font-bold transition-colors hover:border-primary hover:text-primary"
-            >
-              <Instagram className="size-4" /> @nachomanbrasil <ArrowRight className="size-4" />
-            </a>
-          </div>
-          <div className="mt-9 grid border-t border-background/20 md:grid-cols-3">
-            {testimonials.map((item) => (
-              <figure
-                key={item.name}
-                className="flex flex-col border-b border-background/20 py-8 last:border-b-0 md:border-b-0 md:px-7 md:not-last:border-r md:first:pl-0 md:last:pr-0 lg:py-10"
-              >
-                <Quote className="mb-5 size-7 fill-primary text-primary" aria-hidden="true" />
-                <blockquote className="text-sm leading-7 text-background/85">
-                  “{item.quote}”
-                </blockquote>
-                <figcaption className="mt-auto flex items-center gap-3 pt-7 text-xs font-bold">
-                  <span className="h-px w-5 bg-primary" aria-hidden="true" />
-                  {item.name}
-                </figcaption>
-              </figure>
-            ))}
+          <div className="relative">
+            <Image
+              src={photos.masks}
+              alt="Máscaras mexicanas na decoração da Nacho Man"
+              width={920}
+              height={1080}
+              className="aspect-[4/3] w-full rounded-[1.5rem] object-cover lg:aspect-[5/6]"
+            />
+            <span className="home-sticker home-sticker-tape absolute bottom-5 left-5 rotate-[-4deg]">
+              Uma marca
+              <br />
+              sem igual.
+            </span>
           </div>
         </div>
       </section>
 
-      <section id="franquia" className="bg-card py-20 lg:py-28">
-        <div className="site-container grid items-center gap-10 lg:grid-cols-12">
-          <div className="relative overflow-hidden rounded-2xl lg:col-span-6">
-            <Image
-              src={franquiaLoja}
-              loading="lazy"
-              width={920}
-              height={1080}
-              alt="Máscaras mexicanas na decoração da Nacho Man"
-              className="aspect-[10/9] h-full w-full object-cover"
-            />
-            <span className="absolute bottom-4 left-4 rotate-[-3deg] border border-foreground bg-background px-4 py-2 font-heading text-lg font-extrabold uppercase shadow-sm">
-              Uma marca cheia de personalidade.
-            </span>
-          </div>
-          <div className="lg:col-span-5 lg:col-start-8">
-            <div className="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase text-primary">
-              <span className="h-1 w-8 bg-primary" /> Negócio com personalidade
-            </div>
-            <h2 className="max-w-xl font-display text-5xl uppercase sm:text-6xl">
-              Tenha uma franquia <span className="text-primary">Nacho Man.</span>
-            </h2>
-            <p className="mt-6 max-w-md text-base leading-7 text-muted-foreground">
-              Operação enxuta, identidade forte e suporte do projeto à operação — para você faturar
-              mais de 1 milhão ao ano.
-            </p>
-            <ul className="mt-7 grid gap-3">
-              <li className="flex items-center gap-3 font-heading text-xl font-extrabold uppercase">
-                <span className="grid size-7 shrink-0 place-content-center rounded-full bg-primary">
-                  <ChevronRight className="size-4 text-primary-foreground" />
-                </span>
-                Conheça nosso modelo de franquia
-              </li>
-              <li className="flex items-center gap-3 font-heading text-xl font-extrabold uppercase">
-                <span className="grid size-7 shrink-0 place-content-center rounded-full bg-primary">
-                  <ChevronRight className="size-4 text-primary-foreground" />
-                </span>
-                Alta rentabilidade
-              </li>
-            </ul>
-            <Button variant="lime" size="pill" className="mt-8 min-w-56">
-              Tenha a sua franquia <ArrowRight />
-            </Button>
-          </div>
+      {/* 9. CTA final */}
+      <section className="bg-primary py-20 text-center lg:py-28">
+        <div className="site-container">
+          <IconTaco className="mx-auto size-20" />
+          <h2 className="mx-auto mt-5 max-w-4xl font-display text-5xl uppercase leading-[0.83] sm:text-8xl">
+            Sua fome ainda está aí?
+          </h2>
+          <p className="mx-auto mt-6 max-w-md text-sm opacity-75">
+            Então a conversa não acabou. Bora tacar molho nessa fome.
+          </p>
+          <Button variant="ink" size="pill" asChild className="mt-8">
+            <a href={ORDER_URL}>
+              Pedir agora <ArrowRight />
+            </a>
+          </Button>
         </div>
       </section>
 
