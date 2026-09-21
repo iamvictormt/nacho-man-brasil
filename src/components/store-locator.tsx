@@ -1,4 +1,15 @@
 "use client";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
 
 import Image from "next/image";
 import { useState } from "react";
@@ -12,7 +23,7 @@ import {
   Search,
 } from "lucide-react";
 import { stores } from "@/lib/stores";
-import storePhoto from "@/assets/loja-cozinha.webp";
+import { photos } from "@/lib/photos";
 
 const states = [...new Set(stores.map((store) => store.state))];
 const normalize = (value: string) =>
@@ -37,7 +48,7 @@ export function StoreLocator() {
       <section className="grid lg:min-h-[760px] lg:grid-cols-[.85fr_1.6fr]">
         <div className="relative isolate overflow-hidden bg-foreground px-6 py-12 text-background sm:px-10 lg:px-12 lg:py-16 xl:pl-16">
           <Image
-            src={storePhoto}
+            src={photos.table}
             alt=""
             fill
             priority
@@ -57,37 +68,41 @@ export function StoreLocator() {
             Encontre uma loja, escolha o caminho e venha viver o seu momento Nacho Man.
           </p>
           <div className="mt-9 grid gap-5">
-            <label className="grid gap-2 text-xs font-bold uppercase tracking-wide">
+            <Label className="grid gap-2">
               Estado
-              <select
-                value={state}
-                onChange={(event) => setState(event.target.value)}
-                className="h-12 w-full rounded-xl border border-background/20 bg-background px-4 text-sm font-normal normal-case text-foreground focus-visible:outline-2 focus-visible:outline-primary"
+              <Select
+                value={state || "all"}
+                onValueChange={(value) => setState(value === "all" ? "" : value)}
               >
-                <option value="">Todos os estados</option>
-                {states.map((name) => (
-                  <option key={name} value={name}>
-                    {name}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="grid gap-2 text-xs font-bold uppercase tracking-wide">
+                <SelectTrigger aria-label="Estado">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Todos os estados</SelectItem>
+                  {states.map((name) => (
+                    <SelectItem key={name} value={name}>
+                      {name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </Label>
+            <Label className="grid gap-2">
               Cidade ou bairro
               <span className="relative">
                 <Search
                   aria-hidden="true"
                   className="absolute left-4 top-4 size-4 text-muted-foreground"
                 />
-                <input
+                <Input
                   type="search"
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder="Onde você quer comer?"
-                  className="h-12 w-full rounded-xl border border-background/20 bg-background pl-11 pr-4 text-sm font-normal normal-case text-foreground focus-visible:outline-2 focus-visible:outline-primary"
+                  className="pl-11"
                 />
               </span>
-            </label>
+            </Label>
           </div>
           <div className="mt-10 border-t border-background/20 pt-6">
             <p className="mb-4 text-xs font-bold uppercase tracking-widest text-background/50">
@@ -163,15 +178,18 @@ export function StoreLocator() {
                 <p className="mt-3 text-sm text-muted-foreground">
                   Tente outra cidade ou veja todas as unidades.
                 </p>
-                <button
+                <Button
+                  type="button"
+                  variant="ink"
                   onClick={() => {
                     setQuery("");
                     setState("");
                   }}
-                  className="mx-auto mt-6 rounded-full bg-foreground px-6 py-3 text-sm font-bold text-background"
+                  size="pill"
+                  className="mx-auto mt-6"
                 >
                   Ver todas as lojas
-                </button>
+                </Button>
               </div>
             )}
           </div>
@@ -204,13 +222,15 @@ export function StoreLocator() {
                   {store.phone}
                 </a>
                 <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-5">
-                  <button
+                  <Button
+                    type="button"
+                    variant="ink"
                     aria-pressed={selected?.name === store.name}
                     onClick={() => setSelectedName(store.name)}
-                    className="rounded-full bg-foreground px-4 py-2.5 text-xs font-bold text-background transition-colors hover:bg-accent"
+                    className="h-11 px-4 text-xs font-bold"
                   >
                     Ver no mapa<span className="sr-only">: {store.name}</span>
-                  </button>
+                  </Button>
                   <a
                     href={store.maps}
                     target="_blank"

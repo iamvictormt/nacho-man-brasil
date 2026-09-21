@@ -1,0 +1,2 @@
+export const fieldControlStyles =
+  "w-full rounded-xl border border-input bg-background text-foreground text-base sm:text-sm font-normal normal-case tracking-normal shadow-sm transition-colors placeholder:text-muted-foreground hover:border-foreground/40 focus-visible:outline-none focus-visible:border-foreground focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-input aria-invalid:border-destructive aria-invalid:focus-visible:ring-destructive";

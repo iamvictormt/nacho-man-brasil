@@ -1,6 +1,18 @@
 "use client";
 
 import Image from "next/image";
+import { photos } from "@/lib/photos";
+const {
+  heroBurrito,
+  feast: comboFeast,
+  friends: friendsFood,
+  chips: menuNachos,
+  burrito: menuBurritos,
+  churros: menuChurros,
+  preparation: historiaPreparo,
+  masks: franquiaLoja,
+} = photos;
+import { ORDER_URL } from "@/lib/links";
 import { stores } from "@/lib/stores";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -15,14 +27,6 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import heroBurrito from "@/assets/hero-burrito.png";
-import comboFeast from "@/assets/combo-feast.jpg";
-import friendsFood from "@/assets/friends-food.jpg";
-import menuNachos from "@/assets/menu-nachos.png";
-import menuBurritos from "@/assets/menu-burritos.png";
-import menuChurros from "@/assets/menu-churros.png";
-import historiaPreparo from "@/assets/historia-preparo.jpg";
-import franquiaLoja from "@/assets/franquia-loja.png";
 import {
   IconAbacate,
   IconBurrito,
@@ -40,9 +44,8 @@ import { SiteFooter } from "@/components/site-footer";
 
 const categories = [
   {
-    name: "Nachos",
+    name: "Chips",
     copy: "Crocantes, generosos e irresistíveis.",
-    price: "24,90",
     image: menuNachos,
     tone: "bg-card",
     accent: "bg-accent",
@@ -50,15 +53,13 @@ const categories = [
   {
     name: "Burritos",
     copy: "Recheios na medida pra matar a sua fome.",
-    price: "27,90",
     image: menuBurritos,
     tone: "bg-foreground text-background",
     accent: "bg-primary",
   },
   {
-    name: "Sobremesas",
+    name: "Doce",
     copy: "O final perfeito pra uma grande refeição.",
-    price: "16,90",
     image: menuChurros,
     tone: "bg-primary",
     accent: "bg-accent",
@@ -75,8 +76,6 @@ const marqueeItems = [
   { label: "Do nosso jeito", Icon: IconMascara },
   { label: "Muita festa", Icon: IconMaracas },
 ];
-
-
 
 const testimonials = [
   {
@@ -139,9 +138,9 @@ export default function Home() {
         asChild
         className={`fixed bottom-5 right-5 z-50 h-auto rounded-full border border-background/15 py-2 pl-2 pr-2.5 shadow-xl transition-all duration-300 hover:scale-[1.02] sm:bottom-7 sm:right-7 ${scrolled ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"}`}
       >
-        <a href="/pedido" aria-label="Pedir Nacho Man agora">
+        <a href={ORDER_URL} aria-label="Pedir Nacho Man agora">
           <span className="grid size-10 place-content-center rounded-full bg-primary text-primary-foreground">
-            <IconTaco className="size-6" aria-hidden="true" />
+            <IconTaco className="!size-8" aria-hidden="true" />
           </span>
           <span className="px-1 text-left">
             <span className="block text-[10px] font-semibold normal-case text-background/60">
@@ -171,7 +170,7 @@ export default function Home() {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Button variant="ink" size="pill" asChild>
-                <a href="/pedido">
+                <a href={ORDER_URL}>
                   Pedir agora <ArrowRight />
                 </a>
               </Button>
@@ -182,23 +181,21 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <div className="relative min-h-[390px] lg:col-span-6 lg:min-h-[570px]">
+          <div className="relative lg:col-span-6">
             <div className="absolute inset-[8%] rounded-full bg-primary" />
             <p className="absolute left-0 top-8 z-20 rotate-[-8deg] border border-foreground bg-background px-4 py-3 font-heading text-2xl font-extrabold uppercase leading-[1.05] text-foreground shadow-sm sm:text-3xl">
               Mais sabor
               <br />
               <span className="text-accent">sempre ↘</span>
             </p>
-            <div className="absolute right-0 top-10 z-20 grid h-32 w-32 rotate-6 place-content-center rounded-full bg-accent text-center font-heading text-background">
-              <span className="text-sm uppercase">a partir de</span>
-              <strong className="text-3xl">R$ 24,90</strong>
-            </div>
             <Image
               src={heroBurrito}
               width={1200}
               height={1200}
               alt="Dois burritos Nacho Man recheados"
-              className="hero-enter drift relative z-10 h-full w-full object-contain drop-shadow-2xl"
+              priority
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="hero-enter relative z-10 aspect-[5/4] w-full rounded-[2rem] object-cover lg:aspect-square"
             />
             <span className="absolute bottom-8 right-0 z-20 rotate-[-6deg] border border-foreground bg-background px-4 py-3 font-heading text-xl font-extrabold uppercase leading-[1.05] text-foreground shadow-sm sm:text-2xl">
               Burritos
@@ -282,7 +279,7 @@ export default function Home() {
               loading="lazy"
               width={1600}
               height={1200}
-              alt="Preparo de um burrito com ingredientes frescos"
+              alt="Mesa com pratos mexicanos e acompanhamentos Nacho Man"
               className="aspect-[4/3] w-full rounded-2xl object-cover"
             />
             <div className="absolute bottom-5 right-5 max-w-52 rounded-xl bg-primary p-4 text-primary-foreground">
@@ -354,11 +351,6 @@ export default function Home() {
                   </span>
                   <h3 className="font-display text-5xl uppercase lg:text-6xl">{item.name}</h3>
                   <p className="mt-2 max-w-[15rem] text-sm leading-5 opacity-80">{item.copy}</p>
-                  <p className="mt-6 text-xs leading-4">
-                    a partir de
-                    <br />
-                    <strong className="font-heading text-3xl leading-none">R$ {item.price}</strong>
-                  </p>
                 </div>
 
                 <Image
@@ -367,7 +359,8 @@ export default function Home() {
                   width={1024}
                   height={1024}
                   alt={`${item.name} Nacho Man`}
-                  className={`absolute bottom-[-8%] z-10 h-[68%] w-[112%] max-w-none object-contain drop-shadow-xl transition-transform duration-500 group-hover:scale-[1.03] ${index === 0 ? "left-[3%]" : index === 1 ? "left-[4%]" : "left-[8%]"}`}
+                  sizes="(min-width: 1024px) 33vw, 90vw"
+                  className="absolute inset-x-0 bottom-0 z-10 h-[52%] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 />
                 <Button
                   variant={index === 1 ? "lime" : "ink"}
@@ -376,7 +369,7 @@ export default function Home() {
                   className="relative z-20 mt-auto size-11"
                   aria-label={`Ver ${item.name}`}
                 >
-                  <a href="/pedido">
+                  <a href={ORDER_URL}>
                     <ArrowRight />
                   </a>
                 </Button>
@@ -405,7 +398,7 @@ export default function Home() {
               width={1600}
               height={912}
               sizes="(min-width: 1536px) 680px, (min-width: 1024px) 50vw, 100vw"
-              alt="Combo com nachos, burritos e bebida"
+              alt="Mesa com pratos e embalagem de combo Nacho Man"
               className="aspect-[4/3] w-full object-cover object-left"
             />
             <div className="pointer-events-none absolute left-5 top-6 rotate-[-8deg] border border-background/25 bg-foreground/95 px-4 py-3 font-heading text-2xl font-extrabold uppercase leading-[.95] text-primary shadow-lg sm:left-8 sm:top-8 sm:text-3xl">
@@ -426,21 +419,14 @@ export default function Home() {
               <br />A combinação perfeita pra qualquer momento.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-between gap-5 border-t border-background/20 pt-7 lg:mt-10 lg:pt-8">
-              <p className="text-xs leading-4">
-                a partir de
-                <br />
-                <strong className="mt-2 block font-heading text-5xl leading-none xl:text-6xl">
-                  R$ 39,90
-                </strong>
-              </p>
               <Button
                 variant="lime"
                 size="pill"
                 asChild
                 className="h-14 min-w-48 flex-1 justify-between px-7 text-sm sm:max-w-72 xl:h-16"
               >
-                <a href="/pedido">
-                  Quero esse <ArrowRight />
+                <a href={ORDER_URL}>
+                  Fazer pedido <ArrowRight />
                 </a>
               </Button>
             </div>
@@ -470,7 +456,9 @@ export default function Home() {
                     searchStores();
                   }
                 }}
-                placeholder="Digite sua cidade ou CEP"
+                aria-label="Buscar unidade por cidade ou endereço"
+                type="search"
+                placeholder="Digite sua cidade ou endereço"
                 className="h-13 rounded-full bg-background pl-12 pr-14"
               />
               <Search className="absolute left-4 top-4 size-5 text-muted-foreground" />
@@ -590,9 +578,9 @@ export default function Home() {
               </div>
               <Image
                 src={menuNachos}
-                alt="Nachos com guacamole e acompanhamentos"
+                alt="Chips crocantes com guacamole"
                 sizes="(min-width: 1536px) 352px, (min-width: 1024px) 25vw, 50vw"
-                className="my-auto aspect-square w-full scale-110 object-contain"
+                className="my-5 aspect-square w-full object-cover"
               />
               <p className="px-5 pb-5 text-xs font-semibold sm:px-6 sm:pb-6">
                 Crocante. Generoso. Nosso.
@@ -610,10 +598,10 @@ export default function Home() {
                 </p>
               </div>
               <Image
-                src={menuChurros}
-                alt="Churros com calda de chocolate"
+                src={photos.churrosSocial}
+                alt="Churros servidos com molho doce"
                 sizes="(min-width: 1536px) 352px, (min-width: 1024px) 25vw, 50vw"
-                className="my-auto aspect-square w-full object-contain"
+                className="my-5 aspect-square w-full object-cover"
               />
               <p className="px-5 pb-5 text-xs font-semibold sm:px-6 sm:pb-6">
                 O último pedaço é seu.
@@ -672,11 +660,11 @@ export default function Home() {
               loading="lazy"
               width={920}
               height={1080}
-              alt="Fachada de uma loja Nacho Man"
+              alt="Máscaras mexicanas na decoração da Nacho Man"
               className="aspect-[10/9] h-full w-full object-cover"
             />
             <span className="absolute bottom-4 left-4 rotate-[-3deg] border border-foreground bg-background px-4 py-2 font-heading text-lg font-extrabold uppercase shadow-sm">
-              Loja real. Resultado real.
+              Uma marca cheia de personalidade.
             </span>
           </div>
           <div className="lg:col-span-5 lg:col-start-8">
@@ -695,7 +683,7 @@ export default function Home() {
                 <span className="grid size-7 shrink-0 place-content-center rounded-full bg-primary">
                   <ChevronRight className="size-4 text-primary-foreground" />
                 </span>
-                Investimento a partir de R$ 199 mil
+                Conheça nosso modelo de franquia
               </li>
               <li className="flex items-center gap-3 font-heading text-xl font-extrabold uppercase">
                 <span className="grid size-7 shrink-0 place-content-center rounded-full bg-primary">

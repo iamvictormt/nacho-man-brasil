@@ -1,10 +1,13 @@
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown, ArrowRight, Mail, MapPin, MessageCircle } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
-import comboFeast from "@/assets/combo-feast.jpg";
+import { photos } from "@/lib/photos";
 
 const contactItems = [
   {
@@ -56,17 +59,16 @@ export default function ContatoPage() {
             </Link>
           </div>
           <div className="relative pb-5 pl-5">
-            <div className="absolute bottom-0 left-0 right-8 top-8 rounded-2xl bg-primary" />
             <Image
-              src={comboFeast}
-              alt="Comida mexicana compartilhada à mesa"
+              src={photos.contact}
+              alt="Amigas brindando juntas na Nacho Man"
               width={1400}
               height={1000}
               sizes="(min-width: 1024px) 45vw, 90vw"
               priority
               className="relative aspect-[6/5] w-full rounded-2xl object-cover"
             />
-            <span className="absolute -bottom-2 right-4 rotate-3 bg-accent px-5 py-3 font-heading text-2xl font-extrabold uppercase text-accent-foreground">
+            <span className="absolute -bottom-2 right-4 rotate-3 bg-accent border border-foreground px-5 py-3 font-heading text-2xl font-extrabold uppercase text-accent-foreground">
               Conversa boa dá fome.
             </span>
           </div>
@@ -121,38 +123,25 @@ export default function ContatoPage() {
                 className="relative grid gap-5"
               >
                 <div className="grid gap-5 sm:grid-cols-2">
-                  <label className="grid gap-2 text-xs font-bold uppercase">
+                  <Label className="grid gap-2">
                     Nome
-                    <input
-                      name="name"
-                      autoComplete="name"
-                      required
-                      placeholder="Seu nome"
-                      className="h-12 rounded-lg border border-background/15 bg-background px-4 text-sm font-normal normal-case text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
-                    />
-                  </label>
-                  <label className="grid gap-2 text-xs font-bold uppercase">
+                    <Input name="name" autoComplete="name" required placeholder="Seu nome" />
+                  </Label>
+                  <Label className="grid gap-2">
                     E-mail
-                    <input
+                    <Input
                       name="email"
                       autoComplete="email"
                       type="email"
                       required
                       placeholder="voce@email.com"
-                      className="h-12 rounded-lg border border-background/15 bg-background px-4 text-sm font-normal normal-case text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
                     />
-                  </label>
+                  </Label>
                 </div>
-                <label className="grid gap-2 text-xs font-bold uppercase">
+                <Label className="grid gap-2">
                   Mensagem
-                  <textarea
-                    name="message"
-                    required
-                    placeholder="Como podemos ajudar?"
-                    rows={6}
-                    className="resize-y rounded-lg border border-background/15 bg-background px-4 py-3 text-sm font-normal normal-case text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
-                  />
-                </label>
+                  <Textarea name="message" required placeholder="Como podemos ajudar?" rows={6} />
+                </Label>
                 <Button type="submit" variant="lime" size="pill" className="mt-1 w-fit">
                   Enviar mensagem <ArrowRight />
                 </Button>

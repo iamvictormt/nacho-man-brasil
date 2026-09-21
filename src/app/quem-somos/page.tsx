@@ -1,12 +1,10 @@
+import { photos } from "@/lib/photos";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { IconAbacate, IconCoracao, IconFogo } from "@/components/brand-icons";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import equipeNachoMan from "@/assets/equipe-nacho-man.png";
-import lojaSalao from "@/assets/loja-salao.webp";
-import historiaPreparo from "@/assets/historia-preparo.jpg";
 
 const milestones = [
   { value: "2018", label: "o começo em Blumenau" },
@@ -56,17 +54,16 @@ export default function QuemSomosPage() {
             </Link>
           </div>
           <div className="relative mx-auto w-full max-w-lg pb-8 pl-5 sm:pl-10">
-            <div className="absolute inset-x-0 bottom-0 top-12 rounded-t-full bg-primary" />
             <Image
-              src={equipeNachoMan}
+              src={photos.aboutPerson}
               width={800}
               height={1100}
               priority
               sizes="(min-width: 1024px) 42vw, 90vw"
-              alt="Equipe Nacho Man usando máscaras coloridas"
-              className="relative aspect-[5/6] w-full rounded-t-full rounded-b-2xl object-cover"
+              alt="Cliente em frente à marca Nacho Man"
+              className="relative aspect-[5/6] w-full rounded-2xl object-cover"
             />
-            <span className="absolute bottom-6 left-0 -rotate-6 bg-background px-6 py-4 font-heading text-2xl font-extrabold uppercase shadow-lg">
+            <span className="absolute bottom-8 right-0 z-20 rotate-[-6deg] border border-foreground bg-background px-4 py-3 font-heading text-xl font-extrabold uppercase leading-[1.05] text-foreground shadow-sm sm:text-2xl">
               Gente de verdade.
               <br />
               <span className="text-accent">Sabor de sobra.</span>
@@ -74,13 +71,6 @@ export default function QuemSomosPage() {
           </div>
         </div>
       </section>
-      <div className="bg-primary py-5">
-        <div className="site-container flex flex-wrap justify-between gap-4 font-heading text-xl font-extrabold uppercase">
-          <span>Desde 2018</span>
-          <span>Do México, a inspiração.</span>
-          <span>Do Brasil, o nosso jeito.</span>
-        </div>
-      </div>
 
       <section id="trajetoria" className="bg-foreground py-16 text-background lg:py-20">
         <div className="site-container grid gap-12 lg:grid-cols-12 lg:items-start">
@@ -128,10 +118,10 @@ export default function QuemSomosPage() {
         <div className="site-container grid gap-12 lg:grid-cols-12 lg:items-center">
           <div className="relative lg:col-span-6">
             <Image
-              src={historiaPreparo}
+              src={photos.aboutFood}
               width={1600}
               height={1200}
-              alt="Preparo de ingredientes frescos na cozinha Nacho Man"
+              alt="Pratos Nacho Man à mesa, com tacos, porções e acompanhamentos"
               className="aspect-[4/3] w-full rounded-2xl object-cover"
             />
             <div className="absolute -bottom-5 -right-3 rotate-3 bg-primary px-5 py-4 font-heading text-2xl font-extrabold uppercase leading-[.9] text-primary-foreground shadow-lg sm:right-5">
@@ -196,10 +186,10 @@ export default function QuemSomosPage() {
           </div>
           <div className="relative">
             <Image
-              src={lojaSalao}
+              src={photos.aboutAtmosphere}
               width={1400}
               height={1000}
-              alt="Salão Nacho Man com mesas de madeira e decoração de máscaras mexicanas"
+              alt="Cliente aproveitando um taco no ambiente da Nacho Man"
               className="aspect-[4/3] w-full rounded-2xl object-cover"
             />
             <div className="absolute bottom-5 left-5 max-w-56 bg-foreground p-5 text-background shadow-xl sm:bottom-8 sm:left-8">

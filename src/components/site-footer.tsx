@@ -52,17 +52,6 @@ export function SiteFooter() {
               <a href="https://www.instagram.com/nachomanbrasil/" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-primary">
                 <Instagram className="size-4" /> Instagram
               </a>
-              <div className="mt-2 border-t border-background/15 pt-3">
-                <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.12em] text-background/40">
-                  Unidades
-                </p>
-                {stores.map((store) => (
-                  <a key={store.name} href={`tel:${store.phone.replace(/\D/g, "")}`} className="mb-2 block text-xs hover:text-primary">
-                    Nacho Man {store.name}
-                    <span className="mt-0.5 block text-background/50">{store.phone}</span>
-                  </a>
-                ))}
-              </div>
             </div>
           </div>
           <form
@@ -107,9 +96,9 @@ export function SiteFooter() {
                   value={newsletter}
                   onChange={(event) => setNewsletter(event.target.value)}
                   placeholder="Seu e-mail"
-                  className="h-11 rounded-l-lg rounded-r-none border-background/25 text-background"
+                  className="rounded-r-none"
                 />
-                <Button type="submit" variant="lime" size="icon" className="h-11 rounded-l-none rounded-r-lg" aria-label="Cadastrar e-mail">
+                <Button type="submit" variant="lime" size="icon" className="h-12 w-12 shrink-0 rounded-l-none rounded-r-xl" aria-label="Cadastrar e-mail">
                   <ChevronRight />
                 </Button>
               </div>
