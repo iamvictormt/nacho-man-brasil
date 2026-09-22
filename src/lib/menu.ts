@@ -15,7 +15,6 @@ export const menuSections = [
   {
     name: "Burritos",
     id: "burritos",
-    eyebrow: "Enrolados, quentes e bem recheados",
     statement: "Recheio de ponta a ponta. Sem espaço para fome.",
     items: [
       {
@@ -31,7 +30,6 @@ export const menuSections = [
   {
     name: "Porções",
     id: "porcoes",
-    eyebrow: "Para colocar no meio da mesa",
     statement: "Começa compartilhando. Termina disputando o último pedaço.",
     items: [
       {
@@ -51,7 +49,6 @@ export const menuSections = [
   {
     name: "Nacho",
     id: "nacho",
-    eyebrow: "Crocância com atitude",
     statement: "Camadas de sabor, molho e crocância em cada garfada.",
     items: [
       {
@@ -67,7 +64,6 @@ export const menuSections = [
   {
     name: "Doce",
     id: "doce",
-    eyebrow: "Porque sempre cabe mais um",
     statement: "O final crocante, doce e exagerado que a mesa merece.",
     items: [
       {
@@ -87,7 +83,6 @@ export const menuSections = [
   {
     name: "Quesadilhas",
     id: "quesadilhas",
-    eyebrow: "Queijo derretido em cada mordida",
     statement: "Tortilla dourada por fora. Recheio generoso por dentro.",
     items: [
       {
@@ -107,7 +102,6 @@ export const menuSections = [
   {
     name: "Tacos",
     id: "tacos",
-    eyebrow: "Pequenos no tamanho. Brabos no sabor.",
     statement: "Feitos para comer com a mão, molho escorrendo e zero cerimônia.",
     items: [
       {
@@ -127,7 +121,6 @@ export const menuSections = [
   {
     name: "Chips",
     id: "chips",
-    eyebrow: "Crocantes para acompanhar",
     statement: "O começo perfeito para mergulhar nos molhos da casa.",
     items: [
       {
@@ -143,7 +136,6 @@ export const menuSections = [
   {
     name: "Molhos",
     id: "molhos",
-    eyebrow: "O toque final da casa",
     statement: "Frescos, cremosos e feitos para mudar cada mordida.",
     items: [
       {
@@ -163,7 +155,6 @@ export const menuSections = [
   {
     name: "Bowls",
     id: "bowls",
-    eyebrow: "Tudo junto e cheio de sabor",
     statement: "Uma refeição completa, colorida e montada do nosso jeito.",
     items: [
       {
@@ -179,7 +170,6 @@ export const menuSections = [
   {
     name: "Sodas",
     id: "sodas",
-    eyebrow: "Refrescância com personalidade",
     statement: "Sabores gelados para equilibrar a pimenta e continuar a conversa.",
     items: [
       {
@@ -199,7 +189,6 @@ export const menuSections = [
   {
     name: "Drinks",
     id: "drinks",
-    eyebrow: "Para brindar sem pressa",
     statement: "Misturas autorais, cores intensas e uma mesa que pede mais uma rodada.",
     items: [
       {

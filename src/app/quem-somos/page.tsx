@@ -1,241 +1,150 @@
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowDownRight, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { IconCoracao, IconPimenta, IconTaco } from "@/components/brand-icons";
-import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { EditorialHero, Eyebrow, ClosingBanner } from "@/components/editorial";
 import { photos } from "@/lib/photos";
-
-const chapters = [
-  {
-    number: "01",
-    date: "2014",
-    title: "A primeira mesa",
-    copy: "A ideia nasceu em Blumenau depois de muita pesquisa, teste e vontade de fazer comida mexicana com personalidade própria.",
-  },
-  {
-    number: "02",
-    date: "Hoje",
-    title: "Uma marca em movimento",
-    copy: "O cardápio cresceu, novas mesas chegaram e a experiência ganhou forma sem perder o cuidado do começo.",
-  },
-  {
-    number: "03",
-    date: "Amanhã",
-    title: "Mais encontros",
-    copy: "Continuamos crescendo para levar uma experiência mexicana autêntica, divertida e brasileira a cada vez mais cidades.",
-  },
-];
-
-const originValues = [
-  {
-    number: "01",
-    title: "Autenticidade na origem",
-    copy: "A inspiração vem do México. A forma de fazer é nossa.",
-  },
-  {
-    number: "02",
-    title: "Intensidade no sabor",
-    copy: "Pesquisa, teste e cuidado em tudo que chega à mesa.",
-  },
-  {
-    number: "03",
-    title: "Proximidade com as pessoas",
-    copy: "Uma marca feita para gente chegar, dividir e ficar.",
-  },
-];
 
 export default function QuemSomosPage() {
   return (
-    <main className="home-grain overflow-x-clip bg-background text-foreground">
+    <main className="nm-page">
       <SiteHeader />
-
-      <section className="relative min-h-svh overflow-hidden bg-foreground pt-24 text-background">
-        <Image
-          src={photos.blumenau}
-          alt="Cliente na Nacho Man segurando um burrito"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[center_55%] opacity-75"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-foreground via-foreground/70 to-foreground/5" />
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground via-transparent to-foreground/20" />
-
-        <div className="site-container relative flex min-h-[calc(100svh-6rem)] flex-col justify-end py-12 lg:py-16">
-          <div className="max-w-6xl">
-            <p className="mb-5 flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.22em] text-primary">
-              <span className="h-1 w-10 bg-primary" /> Desde 2014 · Blumenau
-            </p>
-            <h1 className="hero-enter font-display text-[4.7rem] uppercase leading-[0.8] sm:text-[7.5rem] lg:text-[10rem]">
-              Gente que faz.
-              <span className="block text-primary">Sabor que fica.</span>
-            </h1>
-          </div>
-
-          <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center">
-            <Link
-              href="#origem"
-              className="inline-flex w-fit items-center gap-2 text-xs font-extrabold uppercase"
-            >
-              Conhecer a história <ArrowDownRight className="size-4 text-primary" />
-            </Link>
-          </div>
+      <EditorialHero
+        variant="story"
+        eyebrow="Nossa história / Desde 2014"
+        title="Raiz mexicana."
+        accent="Alma brasileira."
+        copy="Uma vontade de fazer diferente. Uma mesa que não para de crescer. Muito prazer, somos a Nacho Man."
+        image={photos.homePeople}
+        alt="Amigos compartilhando um encontro na Nacho Man"
+        href="#origem"
+        action="Conheça nosso jeito"
+      />
+      <section id="origem" className="site-container nm-section nm-story-grid">
+        <div>
+          <Eyebrow>01 / Onde tudo começou</Eyebrow>
+          <h2 className="nm-title">
+            De Blumenau.
+            <br />
+            <em>
+              Pra dividir
+              <br />
+              com o mundo.
+            </em>
+          </h2>
         </div>
-      </section>
-
-      <section id="origem" className="bg-background py-20 lg:py-32">
-        <div className="site-container">
-          <p className="flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.18em] text-accent">
-            <span className="h-1 w-8 bg-accent" /> O começo
+        <div className="self-center">
+          <p className="font-heading text-3xl font-bold leading-tight sm:text-4xl">
+            A ideia nunca foi só servir comida. Foi criar um lugar que desse vontade de voltar.
           </p>
-            <h2 className="font-display text-6xl uppercase leading-[0.84] sm:text-8xl lg:col-span-9 lg:text-[8.5rem]">
-              A ideia nunca foi copiar.
-              <span className="block text-accent">Foi criar personalidade.</span>
-            </h2>
-
-          <div className="mt-14 grid gap-3 md:grid-cols-3">
-            {originValues.map((value, index) => (
-              <div
-                key={value.number}
-                className={`relative min-h-64 overflow-hidden p-7 bg-foreground text-background`}
-              >
-                <span className="font-display text-5xl opacity-30">{value.number}</span>
-                <h3 className="mt-16 max-w-xs font-display text-4xl uppercase leading-[0.9] sm:text-5xl">
-                  {value.title}
-                </h3>
-                <p className="mt-4 max-w-xs text-sm leading-6 opacity-75">{value.copy}</p>
-              </div>
-            ))}
-          </div>
+          <p className="nm-copy">
+            Em 2014, em Blumenau, a Nacho Man nasceu de pesquisa, testes e uma boa dose de
+            personalidade. A inspiração veio do México. O jeito de preparar, combinar e receber
+            ganhou o nosso sotaque.
+          </p>
+          <p className="nm-copy">
+            Da primeira mesa aos novos encontros, seguimos com a mesma vontade: comida marcante,
+            gente por perto e uma experiência sem cerimônia.
+          </p>
         </div>
       </section>
-
-      <section id="trajetoria" className="bg-foreground py-20 text-background lg:py-32">
+      <section className="nm-dark nm-section">
         <div className="site-container">
-          <div className="grid gap-9 lg:grid-cols-12 lg:items-end">
-            <div className="lg:col-span-12">
-              <p className="flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.18em] text-primary">
-                <span className="h-1 w-8 bg-primary" /> Nossa trajetória
-              </p>
-              <h2 className="mt-5 font-display text-6xl uppercase leading-[0.84] sm:text-8xl lg:text-[8.5rem]">
-                De uma mesa para <span className="text-primary">muitas.</span>
+          <div className="nm-section-heading">
+            <div>
+              <Eyebrow>02 / Nosso ingrediente principal</Eyebrow>
+              <h2 className="nm-title">
+                Personalidade.
+                <br />
+                <span className="text-primary">Em cada detalhe.</span>
               </h2>
             </div>
-          </div>
-
-          <div className="relative mt-14 min-h-[420px] overflow-hidden sm:min-h-[560px]">
-            <Image
-              src={photos.aboutFood}
-              alt="Mesa completa com pratos Nacho Man"
-              fill
-              sizes="(min-width: 1024px) 88vw, 100vw"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent" />
-            <p className="absolute bottom-7 left-7 max-w-2xl font-heading text-3xl font-extrabold uppercase leading-tight sm:bottom-10 sm:left-10 sm:text-5xl">
-              A mesa aumentou.
-              <span className="block text-primary">O cuidado continua o mesmo.</span>
+            <p className="max-w-xs text-sm leading-7 text-background/70">
+              Do primeiro preparo ao último nacho da mesa, é isso que faz a gente ser quem é.
             </p>
           </div>
-
-          <div className="border-t border-background/15">
-            {chapters.map((chapter) => (
-              <article
-                key={chapter.number}
-                className="grid gap-5 border-b border-background/15 py-8 sm:grid-cols-[4rem_10rem_1fr] sm:items-start lg:grid-cols-[5rem_15rem_1fr] lg:py-10"
-              >
-                <span className="font-display text-3xl text-primary">{chapter.number}</span>
-                <strong className="font-display text-5xl uppercase leading-none text-background/20 sm:text-6xl lg:text-7xl">
-                  {chapter.date}
-                </strong>
-                <div>
-                  <h3 className="font-heading text-2xl font-extrabold uppercase leading-tight sm:text-3xl">
-                    {chapter.title}
-                  </h3>
-                  <p className="mt-3 max-w-xl text-sm leading-7 text-background/55">
-                    {chapter.copy}
-                  </p>
-                </div>
+          <div className="nm-values">
+            {[
+              {
+                n: "01",
+                title: "Sabor que marca",
+                copy: "Tortilla, milho, pimenta e frescor. Inspiração mexicana com combinações do nosso jeito.",
+              },
+              {
+                n: "02",
+                title: "Cuidado que aparece",
+                copy: "Pesquisa, teste e atenção ao que chega à sua mesa. O detalhe também é ingrediente.",
+              },
+              {
+                n: "03",
+                title: "Gente que aproxima",
+                copy: "Um lugar para chegar, compartilhar e ficar. Porque comida boa pede companhia.",
+              },
+            ].map((v) => (
+              <article key={v.n}>
+                <span>{v.n}</span>
+                <h3>{v.title}</h3>
+                <p>{v.copy}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
-
-      <section id="valores" className="bg-background py-20 lg:py-32">
-        <div className="site-container">
-          <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
-            <div className="lg:col-span-12">
-              <p className="flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.18em] text-accent">
-                <span className="h-1 w-8 bg-accent" /> O que não muda
-              </p>
-              <h2 className="mt-5 font-display text-6xl uppercase leading-[0.84] sm:text-8xl lg:text-[8.5rem]">
-                Crescer sem perder <br/><span className="text-accent">a essência.</span>
-              </h2>
-            </div>
+      <section className="site-container nm-section">
+        <Eyebrow>03 / A vida acontece à mesa</Eyebrow>
+        <div className="nm-section-heading">
+          <h2 className="nm-title">
+            A comida é o começo.
+            <br />
+            <em>O encontro fica.</em>
+          </h2>
+          <p className="max-w-sm text-sm leading-7 text-muted-foreground">
+            Um brinde, mais uma porção e aquela conversa que rende. Tem coisa que só acontece quando
+            a gente se encontra.
+          </p>
+        </div>
+        <div className="nm-photo-duo">
+          <div>
+            <Image
+              src={photos.aboutFood}
+              alt="Mesa com pratos da Nacho Man para compartilhar"
+              fill
+              sizes="(min-width: 768px) 60vw, 100vw"
+              className="object-cover"
+            />
           </div>
-
-          <div className="mt-14 grid gap-4 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
-            <div className="relative min-h-[560px] overflow-hidden lg:min-h-[760px]">
-              <Image
-                src={photos.aboutDrink}
-                alt="Cliente brindando na Nacho Man"
-                fill
-                sizes="(min-width: 1024px) 38vw, 100vw"
-                className="object-cover object-center"
-              />
-            </div>
-            <div>
-              <div className="relative min-h-[460px] overflow-hidden lg:min-h-[570px]">
-                <Image
-                  src={photos.aboutNachos}
-                  alt="Cliente aproveitando uma porção de nachos"
-                  fill
-                  sizes="(min-width: 1024px) 54vw, 100vw"
-                  className="object-cover object-center"
-                />
-              </div>
-              <p className="mt-7 max-w-2xl font-heading text-3xl font-extrabold uppercase leading-tight sm:text-5xl">
-                Comida é o começo. <br />
-                <span className="text-accent">O encontro é o que fica.</span>
-              </p>
-            </div>
+          <div>
+            <Image
+              src={photos.aboutDrink}
+              alt="Cliente brindando na Nacho Man"
+              fill
+              sizes="(min-width: 768px) 30vw, 100vw"
+              className="object-cover"
+            />
           </div>
         </div>
-      </section>
-
-      <section className="relative min-h-[720px] overflow-hidden bg-foreground text-background">
-        <Image
-          src={photos.foods}
-          alt="Máscaras de lucha libre no ambiente Nacho Man"
-          fill
-          sizes="100vw"
-          className="object-cover object-center opacity-75"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-foreground via-foreground/70 to-foreground/10" />
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-transparent to-transparent" />
-        <div className="site-container relative flex min-h-[720px] items-end py-16 lg:py-24">
-          <div className="max-w-5xl">
-            <p className="flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.18em] text-primary">
-              <span className="h-1 w-8 bg-primary" /> O próximo capítulo
-            </p>
-            <h2 className="mt-5 font-display text-6xl uppercase leading-[0.84] sm:text-8xl lg:text-[8.5rem]">
-              A história ainda está sendo <span className="text-primary">servida.</span>
-            </h2>
-            <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center">
-              <Link
-                href="/franquia"
-                className="inline-flex w-fit items-center gap-2 text-xs font-extrabold uppercase"
-              >
-                Conhecer a franquia <ArrowRight className="size-4 text-primary" />
-              </Link>
-            </div>
-          </div>
+        <div className="nm-timeline">
+          {[
+            { date: "2014", title: "A primeira mesa", copy: "Nossa história começa em Blumenau." },
+            {
+              date: "Hoje",
+              title: "Mais gente por perto",
+              copy: "Novos sabores, novas mesas e o mesmo cuidado.",
+            },
+            {
+              date: "Amanhã",
+              title: "O próximo encontro",
+              copy: "Seguimos levando nosso jeito a mais cidades.",
+            },
+          ].map((item) => (
+            <article key={item.date}>
+              <span>{item.date}</span>
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+            </article>
+          ))}
         </div>
       </section>
-
+      <ClosingBanner />
       <SiteFooter />
     </main>
   );

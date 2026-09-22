@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { EditorialHero, ClosingBanner } from "@/components/editorial";
 import { useEffect, useState } from "react";
-import { ArrowDownRight, ArrowRight, ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
+
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { ORDER_URL } from "@/lib/links";
+
 import { menuSections, type MenuItem } from "@/lib/menu";
 
 function MenuImage({
@@ -41,7 +41,6 @@ function MenuImage({
         <span className="font-heading text-2xl font-extrabold uppercase sm:text-3xl">
           {item.name}
         </span>
-        <span className="size-2 shrink-0 rounded-full bg-primary" aria-hidden="true" />
       </span>
     </button>
   );
@@ -186,43 +185,23 @@ export default function CardapioPage() {
   const [activeGallery, setActiveGallery] = useState<ActiveGallery | null>(null);
 
   return (
-    <main className="home-grain overflow-x-clip bg-background text-foreground">
+    <main className="nm-page">
       <SiteHeader />
 
-      <section className="relative min-h-[760px] overflow-hidden bg-foreground pt-24 text-background">
-        <Image
-          src={heroImage}
-          alt="Mesa Nacho Man com porções para compartilhar"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center opacity-65"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-foreground via-foreground/70 to-foreground/5" />
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground via-transparent to-foreground/20" />
-        <div className="site-container relative flex min-h-[calc(100svh-6rem)] flex-col justify-end py-12 lg:py-16">
-          <div className="max-w-6xl">
-            <p className="mb-5 flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.22em] text-primary">
-              <span className="h-1 w-10 bg-primary" /> Cardápio Nacho Man
-            </p>
-            <h1 className="hero-enter font-display text-[4.7rem] uppercase leading-[0.82] sm:text-[7.5rem] lg:text-[10rem]">
-              Escolha sua
-              <span className="block text-primary">obsessão.</span>
-            </h1>
-            <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center">
-              <Link
-                href="#burritos"
-                className="inline-flex items-center gap-2 text-xs font-extrabold uppercase"
-              >
-                Explorar categorias <ArrowDownRight className="size-4 text-primary" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <EditorialHero
+        variant="menu"
+        eyebrow="Cardápio / Encontre seu favorito"
+        title="Escolha com os olhos."
+        accent="Volte pelo sabor."
+        copy="Burritos bem recheados, nachos para dividir e muito mais. Explore as categorias e encontre sua próxima vontade."
+        image={heroImage}
+        alt="Porção Nacho Man para compartilhar"
+        href="#burritos"
+        action="Explorar os sabores"
+      />
 
       <nav
-        className="sticky top-[69px] z-40 overflow-x-auto border-b border-foreground/15 bg-background/95 backdrop-blur lg:top-[75px]"
+        className="sticky top-[69px] z-40 overflow-x-auto border-b border-foreground/15 bg-background/95 backdrop-blur xl:top-[78px]"
         aria-label="Categorias do cardápio"
       >
         <div className="site-container flex min-w-max items-center gap-1 py-3 text-xs font-extrabold uppercase">
@@ -256,9 +235,6 @@ export default function CardapioPage() {
                 >
                   <div className="lg:sticky lg:top-36">
                     <div className="flex items-start justify-between gap-5">
-                      <p className="flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.18em] text-accent">
-                        <span className="h-1 w-8 bg-accent" /> {section.eyebrow}
-                      </p>
                       <span className="font-display text-5xl text-foreground/10">
                         {String(sectionIndex + 1).padStart(2, "0")}
                       </span>
@@ -271,7 +247,7 @@ export default function CardapioPage() {
                       {section.statement}
                     </p>
                     <p className="mt-5 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
-                      Fotos oficiais · Nacho Man
+                      Fotos oficiais
                     </p>
                   </div>
                 </div>
@@ -294,26 +270,7 @@ export default function CardapioPage() {
         })}
       </div>
 
-      <section className="relative overflow-hidden bg-accent py-20 text-accent-foreground lg:py-28">
-        <div className="site-container grid items-end gap-8 lg:grid-cols-[1fr_auto]">
-          <div>
-            <p className="text-xs font-extrabold uppercase tracking-[0.18em]">
-              Escolheu o favorito?
-            </p>
-            <h2 className="mt-4 max-w-4xl font-display text-6xl uppercase leading-[0.84] sm:text-9xl">
-              Agora deixa com a gente.
-            </h2>
-            <p className="mt-5 max-w-md text-sm leading-7 opacity-70">
-              O pedido é feito no site oficial de delivery da Nacho Man.
-            </p>
-          </div>
-          <Button variant="ink" size="pill" asChild>
-            <a href={ORDER_URL}>
-              Fazer pedido <ArrowRight />
-            </a>
-          </Button>
-        </div>
-      </section>
+      <ClosingBanner />
 
       <SiteFooter />
 

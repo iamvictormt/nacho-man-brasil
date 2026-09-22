@@ -51,8 +51,8 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-[70] border-b border-background/15 bg-foreground/95 py-4 lg:py-6 text-background backdrop-blur-md">
-        <div className="site-container grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 lg:flex">
+      <header className="fixed inset-x-0 top-0 z-[70] border-b border-background/15 bg-foreground/95 py-4 xl:py-6 text-background backdrop-blur-md">
+        <div className="site-container grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 xl:flex">
           <Link href="/" className="flex min-w-0 items-center">
             <Image
               src={logoWhite}
@@ -63,14 +63,14 @@ export function SiteHeader() {
             />
           </Link>
           <nav
-            className="ml-auto hidden items-center gap-7 lg:flex"
+            className="ml-auto hidden items-center gap-4 xl:gap-6 xl:flex"
             aria-label="Navegação principal"
           >
             {nav.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className={`text-sm font-semibold transition-colors hover:text-primary ${
+                className={`text-xs xl:text-sm font-semibold transition-colors hover:text-primary ${
                   (item.href === "/" && pathname === "/") ||
                   (item.href !== "/" && pathname.startsWith(item.href))
                     ? "text-primary"
@@ -90,19 +90,19 @@ export function SiteHeader() {
             <Link
               href="/encontrar-loja"
               aria-current={pathname === "/encontrar-loja" ? "page" : undefined}
-              className="inline-flex items-center gap-2 rounded-full bg-background px-4 py-2 text-xs font-bold uppercase tracking-wide text-foreground transition-transform hover:scale-[1.04]"
+              className="inline-flex items-center gap-2 rounded-full bg-background px-3 py-2 text-[10px] xl:text-xs font-bold uppercase tracking-wide text-foreground transition-transform hover:scale-[1.04]"
             >
               <MapPin className="size-4" /> Encontrar loja
             </Link>
             <Link
               href="/#unidades"
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-xs font-bold uppercase tracking-wide text-primary-foreground transition-transform hover:scale-[1.04]"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-3 py-2 text-[10px] xl:text-xs font-bold uppercase tracking-wide text-primary-foreground transition-transform hover:scale-[1.04]"
             >
               <Building2 className="size-4" /> Unidades
             </Link>
             <Link
               href="/#franquia"
-              className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-xs font-bold uppercase tracking-wide text-accent-foreground transition-transform hover:scale-[1.04]"
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-3 py-2 text-[10px] xl:text-xs font-bold uppercase tracking-wide text-accent-foreground transition-transform hover:scale-[1.04]"
             >
               <Store className="size-4" /> Tenha sua Franquia
             </Link>
@@ -110,7 +110,7 @@ export function SiteHeader() {
           <Button
             variant="ghost"
             size="icon"
-            className="lg:hidden hover:bg-background/10 hover:text-primary"
+            className="xl:hidden hover:bg-background/10 hover:text-primary"
             aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
             aria-expanded={menuOpen}
             aria-controls="mobile-navigation"
@@ -123,7 +123,7 @@ export function SiteHeader() {
       {menuOpen && (
         <nav
           id="mobile-navigation"
-          className="mobile-menu-panel fixed inset-0 z-[60] overflow-x-hidden overflow-y-auto bg-foreground px-5 pb-6 pt-24 text-background lg:hidden"
+          className="mobile-menu-panel fixed inset-0 z-[60] overflow-x-hidden overflow-y-auto bg-foreground px-5 pb-6 pt-24 text-background xl:hidden"
           aria-label="Menu mobile"
         >
           <div className="pointer-events-none absolute -right-28 top-24 size-[22rem] text-background opacity-[0.035]">
@@ -164,20 +164,20 @@ export function SiteHeader() {
                 >
                   <MapPin className="size-4" /> {navSecondary[0].label}
                 </Link>
-                  <Link
-                    href={navSecondary[1].href}
-                    onClick={() => setMenuOpen(false)}
+                <Link
+                  href={navSecondary[1].href}
+                  onClick={() => setMenuOpen(false)}
                   className="flex min-h-12 items-center justify-center gap-2 rounded-full bg-primary px-5 text-xs font-extrabold uppercase text-primary-foreground"
-                  >
-                    <Building2 className="size-4" /> {navSecondary[1].label}
-                  </Link>
-                  <Link
-                    href={navSecondary[2].href}
-                    onClick={() => setMenuOpen(false)}
+                >
+                  <Building2 className="size-4" /> {navSecondary[1].label}
+                </Link>
+                <Link
+                  href={navSecondary[2].href}
+                  onClick={() => setMenuOpen(false)}
                   className="flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-5 text-xs font-extrabold uppercase text-accent-foreground"
-                  >
-                    <Store className="size-4" /> Franquia
-                  </Link>
+                >
+                  <Store className="size-4" /> Franquia
+                </Link>
               </div>
             </div>
 
