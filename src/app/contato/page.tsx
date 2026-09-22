@@ -66,10 +66,6 @@ export default function ContatoPage() {
               <span className="block text-primary">Fala com a gente.</span>
             </h1>
             <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center">
-              <p className="max-w-md text-sm leading-7 text-background/65">
-                Dúvida, sugestão, parceria ou vontade de contar como foi sua experiência? A equipe
-                está por aqui.
-              </p>
               <Link
                 href="#canais"
                 className="inline-flex items-center gap-2 text-xs font-extrabold uppercase"
@@ -84,18 +80,14 @@ export default function ContatoPage() {
       <section id="canais" className="scroll-mt-24 bg-background py-20 lg:py-28">
         <div className="site-container">
           <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
-            <div className="lg:col-span-8">
-              <p className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-accent">
-                Por onde começamos?
+            <div className="lg:col-span-12">
+              <p className="flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.18em] text-accent">
+            <span className="h-1 w-8 bg-accent" /> Por onde começamos?
               </p>
               <h2 className="mt-5 font-display text-6xl uppercase leading-[0.86] sm:text-8xl lg:text-9xl">
-                Escolha o seu <span className="text-primary">canal.</span>
+                Escolha o seu <span className="text-accent">canal.</span>
               </h2>
             </div>
-            <p className="max-w-sm text-sm leading-7 text-muted-foreground lg:col-span-4">
-              Para respostas rápidas, chama no WhatsApp. Para propostas e assuntos detalhados, manda
-              um e-mail.
-            </p>
           </div>
 
           <div className="mt-14 border-t border-foreground/20">
@@ -117,7 +109,7 @@ export default function ContatoPage() {
                   </span>
                 </div>
                 <span className="break-all text-sm leading-6 text-muted-foreground">{value}</span>
-                <span className="grid size-12 place-content-center rounded-full border border-foreground/20 transition-colors group-hover:border-primary group-hover:bg-primary">
+                <span className="grid size-12 place-content-center rounded-full border border-foreground/20 transition-colors group-hover:border-accent group-hover:bg-accent/5">
                   <Icon className="size-5" />
                 </span>
               </a>
@@ -126,7 +118,7 @@ export default function ContatoPage() {
         </div>
       </section>
 
-      <section id="mensagem" className="scroll-mt-24 bg-foreground py-20 text-background lg:py-32">
+      {/* <section id="mensagem" className="scroll-mt-24 bg-foreground py-20 text-background lg:py-32">
         <div className="site-container">
           <div className="grid gap-8 border-b border-background/15 pb-12 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-8">
@@ -214,7 +206,7 @@ export default function ContatoPage() {
             )}
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="bg-accent py-16 text-accent-foreground lg:py-20">
         <div className="site-container grid gap-7 lg:grid-cols-[1fr_auto] lg:items-center">

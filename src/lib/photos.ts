@@ -47,6 +47,21 @@ export const photos = {
     width: 6000,
     height: 4000,
   },
+  foods: {
+    src: "/images/ambiente/Nacho Man 2025 Ebraim Martini-462.jpg",
+    width: 6000,
+    height: 4000,
+  },
+  balneario: {
+    src: "/images/ambiente/fachada_balneario.jpg",
+    width: 6000,
+    height: 4000,
+  },
+  blumenau: {
+    src: "/images/ambiente/fachada_blumenau.webp",
+    width: 6000,
+    height: 4000,
+  },
   friends: { src: "/images/pessoas/FE NachoMan-65.JPG", width: 3480, height: 5220 },
   homePeople: { src: "/images/pessoas/_DSC7193.jpg", width: 3936, height: 2216 },
   contact: { src: "/images/pessoas/FE NachoMan-55.JPG", width: 4000, height: 6000 },

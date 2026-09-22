@@ -210,10 +210,6 @@ export default function CardapioPage() {
               <span className="block text-primary">obsessão.</span>
             </h1>
             <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center">
-              <p className="max-w-md text-sm leading-7 text-background/65">
-                Do crocante ao cremoso, do clássico ao inesperado. Aqui a gente mostra primeiro e
-                deixa a fome decidir.
-              </p>
               <Link
                 href="#burritos"
                 className="inline-flex items-center gap-2 text-xs font-extrabold uppercase"
@@ -226,7 +222,7 @@ export default function CardapioPage() {
       </section>
 
       <nav
-        className="sticky top-[69px] z-40 overflow-x-auto border-b border-foreground/15 bg-background/95 backdrop-blur lg:top-[65px]"
+        className="sticky top-[69px] z-40 overflow-x-auto border-b border-foreground/15 bg-background/95 backdrop-blur lg:top-[75px]"
         aria-label="Categorias do cardápio"
       >
         <div className="site-container flex min-w-max items-center gap-1 py-3 text-xs font-extrabold uppercase">

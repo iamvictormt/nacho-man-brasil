@@ -31,35 +31,17 @@ const chapters = [
 const originValues = [
   {
     number: "01",
-    title: "México na raiz",
+    title: "Autenticidade na origem",
     copy: "A inspiração vem do México. A forma de fazer é nossa.",
   },
   {
     number: "02",
-    title: "Brasil na atitude",
+    title: "Intensidade no sabor",
     copy: "Pesquisa, teste e cuidado em tudo que chega à mesa.",
   },
   {
     number: "03",
-    title: "Gente no centro",
-    copy: "Uma marca feita para gente chegar, dividir e ficar.",
-  },
-];
-
-const values = [
-  {
-    number: "01",
-    title: "Autêntico",
-    copy: "A inspiração vem do México. A forma de fazer é nossa.",
-  },
-  {
-    number: "02",
-    title: "Intenso",
-    copy: "Pesquisa, teste e cuidado em tudo que chega à mesa.",
-  },
-  {
-    number: "03",
-    title: "Próximo",
+    title: "Proximidade com as pessoas",
     copy: "Uma marca feita para gente chegar, dividir e ficar.",
   },
 ];
@@ -71,7 +53,7 @@ export default function QuemSomosPage() {
 
       <section className="relative min-h-svh overflow-hidden bg-foreground pt-24 text-background">
         <Image
-          src={photos.aboutPerson}
+          src={photos.blumenau}
           alt="Cliente na Nacho Man segurando um burrito"
           fill
           priority
@@ -92,11 +74,7 @@ export default function QuemSomosPage() {
             </h1>
           </div>
 
-            <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center">
-              <p className="max-w-md text-sm leading-7 text-background/65">
-              De Blumenau para outras mesas. Uma marca construída por gente que acredita que comida
-              boa vira encontro, experiência e história.
-            </p>
+          <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center">
             <Link
               href="#origem"
               className="inline-flex w-fit items-center gap-2 text-xs font-extrabold uppercase"
@@ -109,31 +87,19 @@ export default function QuemSomosPage() {
 
       <section id="origem" className="bg-background py-20 lg:py-32">
         <div className="site-container">
-          <p className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-accent">
-            01 / O começo
+          <p className="flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.18em] text-accent">
+            <span className="h-1 w-8 bg-accent" /> O começo
           </p>
-          <div className="mt-5 grid gap-10 lg:grid-cols-12 lg:items-end">
             <h2 className="font-display text-6xl uppercase leading-[0.84] sm:text-8xl lg:col-span-9 lg:text-[8.5rem]">
               A ideia nunca foi copiar.
-              <span className="block text-primary">Foi criar personalidade.</span>
+              <span className="block text-accent">Foi criar personalidade.</span>
             </h2>
-            <p className="max-w-sm text-base leading-7 text-muted-foreground lg:col-span-3 lg:pb-2">
-              A inspiração sempre foi mexicana. O tempero, a energia e o jeito de receber ganharam a
-              nossa voz desde a primeira mesa.
-            </p>
-          </div>
 
           <div className="mt-14 grid gap-3 md:grid-cols-3">
             {originValues.map((value, index) => (
               <div
                 key={value.number}
-                className={`relative min-h-64 overflow-hidden p-7 ${
-                  index === 0
-                    ? "bg-primary text-primary-foreground"
-                    : index === 1
-                      ? "bg-foreground text-background"
-                      : "bg-accent text-accent-foreground"
-                }`}
+                className={`relative min-h-64 overflow-hidden p-7 bg-foreground text-background`}
               >
                 <span className="font-display text-5xl opacity-30">{value.number}</span>
                 <h3 className="mt-16 max-w-xs font-display text-4xl uppercase leading-[0.9] sm:text-5xl">
@@ -149,18 +115,14 @@ export default function QuemSomosPage() {
       <section id="trajetoria" className="bg-foreground py-20 text-background lg:py-32">
         <div className="site-container">
           <div className="grid gap-9 lg:grid-cols-12 lg:items-end">
-            <div className="lg:col-span-8">
-              <p className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-primary">
-                02 / Nossa trajetória
+            <div className="lg:col-span-12">
+              <p className="flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.18em] text-primary">
+                <span className="h-1 w-8 bg-primary" /> Nossa trajetória
               </p>
               <h2 className="mt-5 font-display text-6xl uppercase leading-[0.84] sm:text-8xl lg:text-[8.5rem]">
                 De uma mesa para <span className="text-primary">muitas.</span>
               </h2>
             </div>
-            <p className="max-w-sm text-sm leading-7 text-background/55 lg:col-span-4 lg:pb-2">
-              Crescer nunca foi repetir uma fórmula. Foi aprender com cada pessoa, cada unidade e
-              cada prato servido.
-            </p>
           </div>
 
           <div className="relative mt-14 min-h-[420px] overflow-hidden sm:min-h-[560px]">
@@ -205,18 +167,14 @@ export default function QuemSomosPage() {
       <section id="valores" className="bg-background py-20 lg:py-32">
         <div className="site-container">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
-            <div className="lg:col-span-8">
-              <p className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-accent">
-                03 / O que não muda
+            <div className="lg:col-span-12">
+              <p className="flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.18em] text-accent">
+                <span className="h-1 w-8 bg-accent" /> O que não muda
               </p>
               <h2 className="mt-5 font-display text-6xl uppercase leading-[0.84] sm:text-8xl lg:text-[8.5rem]">
-                Crescer sem perder a <span className="text-primary">essência.</span>
+                Crescer sem perder <br/><span className="text-accent">a essência.</span>
               </h2>
             </div>
-            <p className="max-w-sm text-sm leading-7 text-muted-foreground lg:col-span-4 lg:pb-2">
-              O cardápio evolui e novas cidades chegam. A personalidade, o cuidado e a vontade de
-              aproximar pessoas continuam no centro.
-            </p>
           </div>
 
           <div className="mt-14 grid gap-4 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
@@ -240,7 +198,8 @@ export default function QuemSomosPage() {
                 />
               </div>
               <p className="mt-7 max-w-2xl font-heading text-3xl font-extrabold uppercase leading-tight sm:text-5xl">
-                Comida é o começo. <br/><span className="text-primary">O encontro é o que fica.</span>
+                Comida é o começo. <br />
+                <span className="text-accent">O encontro é o que fica.</span>
               </p>
             </div>
           </div>
@@ -249,7 +208,7 @@ export default function QuemSomosPage() {
 
       <section className="relative min-h-[720px] overflow-hidden bg-foreground text-background">
         <Image
-          src={photos.masks}
+          src={photos.foods}
           alt="Máscaras de lucha libre no ambiente Nacho Man"
           fill
           sizes="100vw"
@@ -259,25 +218,19 @@ export default function QuemSomosPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-transparent to-transparent" />
         <div className="site-container relative flex min-h-[720px] items-end py-16 lg:py-24">
           <div className="max-w-5xl">
-            <p className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-primary">
-              04 / O próximo capítulo
+            <p className="flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.18em] text-primary">
+              <span className="h-1 w-8 bg-primary" /> O próximo capítulo
             </p>
             <h2 className="mt-5 font-display text-6xl uppercase leading-[0.84] sm:text-8xl lg:text-[8.5rem]">
               A história ainda está sendo <span className="text-primary">servida.</span>
             </h2>
             <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center">
-              <p className="max-w-md text-sm leading-7 text-background/65">
-                Mais cidades, novas mesas e a mesma vontade de criar experiências que aproximam.
-              </p>
-              <Button
-                size="pill"
-                asChild
-                className="w-fit bg-accent text-accent-foreground hover:bg-accent/85"
+              <Link
+                href="/franquia"
+                className="inline-flex w-fit items-center gap-2 text-xs font-extrabold uppercase"
               >
-                <Link href="/contato">
-                  Fale com a gente <ArrowRight />
-                </Link>
-              </Button>
+                Conhecer a franquia <ArrowRight className="size-4 text-primary" />
+              </Link>
             </div>
           </div>
         </div>
