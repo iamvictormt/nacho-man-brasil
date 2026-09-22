@@ -353,17 +353,22 @@
   }
 
   .home-grain section {
+    scroll-margin-top: 5rem;
+  }
+
+  .home-grain section + section {
     position: relative;
   }
 
-  .home-grain section:not(:first-of-type)::before {
+  .home-grain section + section::before {
     position: absolute;
     top: 0;
     left: 50%;
-    width: min(100% - 2.5rem, 88rem);
+    z-index: 2;
+    width: min(92%, 76rem);
     height: 1px;
     content: "";
-    background: linear-gradient(90deg, transparent, color-mix(in oklch, var(--foreground) 14%, transparent), transparent);
+    background: color-mix(in oklch, var(--foreground) 12%, transparent);
     transform: translateX(-50%);
   }
 }

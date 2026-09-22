@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Anton, Barlow_Condensed, Manrope } from "next/font/google";
+import { HashScrollManager } from "@/components/hash-scroll-manager";
 import "./globals.css";
 const anton = Anton({ weight: "400", subsets: ["latin"], variable: "--font-anton" });
 const barlow = Barlow_Condensed({
@@ -25,17 +26,17 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image" },
   icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/icon0.svg", type: "image/svg+xml" },
-    ],
+    icon: [{ url: "/favicon.ico" }, { url: "/icon0.svg", type: "image/svg+xml" }],
     apple: "/apple-icon.png",
   },
 };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR" className={[anton.variable, barlow.variable, manrope.variable].join(" ")}>
-      <body>{children}</body>
+      <body>
+        <HashScrollManager />
+        {children}
+      </body>
     </html>
   );
 }

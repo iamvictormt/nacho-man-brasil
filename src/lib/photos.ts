@@ -48,8 +48,11 @@ export const photos = {
     height: 4000,
   },
   friends: { src: "/images/pessoas/FE NachoMan-65.JPG", width: 3480, height: 5220 },
+  homePeople: { src: "/images/pessoas/_DSC7193.jpg", width: 3936, height: 2216 },
   contact: { src: "/images/pessoas/FE NachoMan-55.JPG", width: 4000, height: 6000 },
   aboutPerson: { src: "/images/pessoas/FE NachoMan-19.JPG", width: 3909, height: 5863 },
+  aboutDrink: { src: "/images/pessoas/FE NachoMan-31.JPG", width: 4000, height: 6000 },
+  aboutNachos: { src: "/images/pessoas/FE NachoMan-112.JPG", width: 4000, height: 6000 },
   aboutFood: {
     src: "/images/ambiente/Nacho Man 2025 Ebraim Martini-107.jpg",
     width: 5731,

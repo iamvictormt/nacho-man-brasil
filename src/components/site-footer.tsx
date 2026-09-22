@@ -16,11 +16,6 @@ const navItems = [
   { label: "Encontrar loja", href: "/encontrar-loja" },
 ];
 
-const stores = [
-  { name: "Goiânia", phone: "(62) 99365-3223" },
-  { name: "Cristalina", phone: "(61) 99827-0888" },
-];
-
 export function SiteFooter() {
   const [newsletter, setNewsletter] = useState("");
   const [status, setStatus] = useState<"success" | "error" | "unconfigured" | null>(null);
