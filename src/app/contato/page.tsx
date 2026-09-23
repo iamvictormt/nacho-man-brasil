@@ -9,7 +9,6 @@ import {
 import {
   ActionLink,
   BodyCopy,
-  ClosingBanner,
   DisplayTitle,
   EditorialHero,
   Eyebrow,
@@ -172,7 +171,6 @@ export default function ContatoPage() {
         </Accordion>
       </PageSection>
 
-      <ClosingBanner />
       <SiteFooter />
     </main>
   );

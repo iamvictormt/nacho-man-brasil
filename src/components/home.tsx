@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Star } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
-import { IconAbacate, IconCoracao, IconMaracas, IconViolao } from "@/components/brand-icons";
+import { IconCoracao } from "@/components/brand-icons";
 import {
   ActionLink,
   BodyCopy,
@@ -13,6 +13,7 @@ import {
 } from "@/components/editorial";
 import { FlavorFinder } from "@/components/flavor-finder";
 import { HeroVideo } from "@/components/hero-video";
+import { ReviewShowcase } from "@/components/review-showcase";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { StreetTicker } from "@/components/street-ticker";
@@ -29,24 +30,8 @@ const favorites = [
   },
 ];
 
-const reviews = [
-  {
-    name: "Maria. M B",
-    quote:
-      "Melhor comida mexicana da cidade, da cidade não, do país! Hehehe. Já comi em Blumenau e sempre que vou em Balneário como lá também. Os tacos de camarão são a melhor pedida.",
-  },
-  {
-    name: "Karine S",
-    quote:
-      "A comida é muito boa. O ambiente é muito divertido, cheio de referência e detalhes que remetem a cultura mexicana. Os pratos chegaram bem rápido. Foi uma ótima experiência.",
-  },
-  {
-    name: "B. Lum",
-    quote:
-      "Tudo extremamente saboroso, a guacamole é sensacional! Atendimento excelente, ambiente ótimo. Super recomendo.",
-  },
-];
-
+// Mantido junto da seção de unidades temporariamente desativada no fim deste arquivo.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const featuredLocations = [
   { city: "Blumenau", image: photos.blumenau, position: "object-center" },
   { city: "Balneário", image: photos.balneario, position: "object-center" },
@@ -170,58 +155,11 @@ export default function Home() {
         </div>
       </PageSection>
 
-      <PageSection tone="ink" className="isolate">
-        <IconMaracas
-          aria-hidden="true"
-          className="absolute -right-12 -top-16 -z-10 size-72 rotate-12 text-primary/10 sm:size-96"
-        />
-        <SectionHeading
-          aside={
-            <BodyCopy className="max-w-xs text-background/65">
-              Algumas avaliações reais de quem já puxou a cadeira, provou e quis contar para todo
-              mundo.
-            </BodyCopy>
-          }
-        >
-          <Eyebrow className="text-primary">Quem prova, conta</Eyebrow>
-          <DisplayTitle className="max-w-[12ch] text-background">
-            Não é a gente que está <span className="text-primary">dizendo.</span>
-          </DisplayTitle>
-        </SectionHeading>
-
-        <div className="grid gap-5 lg:grid-cols-12 lg:items-start lg:gap-6">
-          {reviews.map((review, index) => (
-            <article
-              key={review.name}
-              className={`relative flex min-h-80 flex-col justify-between overflow-hidden border-2 border-background/20 bg-foreground p-7 text-background shadow-[8px_8px_0_var(--primary)] sm:p-9 ${
-                index === 0
-                  ? "lg:col-span-5 lg:-rotate-1"
-                  : index === 1
-                    ? "lg:col-span-4 lg:translate-y-10 lg:rotate-1"
-                    : "lg:col-span-3 lg:-rotate-1"
-              }`}
-            >
-              <div>
-                <div className="flex gap-1 text-primary" aria-label="5 de 5 estrelas">
-                  {Array.from({ length: 5 }).map((_, star) => (
-                    <Star key={star} className="size-4 fill-current" aria-hidden="true" />
-                  ))}
-                </div>
-                <blockquote className="mt-8 font-heading text-2xl font-bold leading-snug sm:text-3xl">
-                  “{review.quote}”
-                </blockquote>
-              </div>
-              <footer className="mt-8 flex items-center justify-between border-t border-background/20 pt-5">
-                <cite className="not-italic text-xs font-extrabold uppercase tracking-[0.12em]">
-                  {review.name}
-                </cite>
-              </footer>
-            </article>
-          ))}
-        </div>
+      <PageSection tone="ink">
+        <ReviewShowcase />
       </PageSection>
 
-      <PageSection className="pt-4 sm:pt-8">
+      <PageSection>
         <SectionHeading
           aside={
             <BodyCopy className="max-w-sm">

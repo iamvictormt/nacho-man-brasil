@@ -18,7 +18,7 @@ export function FranchiseWhatsapp() {
 
   return (
     <aside
-      className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 z-60 font-sans sm:bottom-[max(1.5rem,env(safe-area-inset-bottom))] sm:right-6"
+      className="franchise-whatsapp fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 z-60 font-sans sm:bottom-[max(1.5rem,env(safe-area-inset-bottom))] sm:right-6"
       aria-label="Atendimento sobre filiais"
     >
       {isOpen ? (

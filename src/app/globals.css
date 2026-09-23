@@ -150,6 +150,10 @@
     overflow: hidden;
   }
 
+  html.mobile-menu-open .franchise-whatsapp {
+    display: none;
+  }
+
   ::selection {
     background: var(--color-primary);
     color: var(--color-primary-foreground);

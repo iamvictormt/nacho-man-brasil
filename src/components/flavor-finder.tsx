@@ -64,7 +64,7 @@ export function FlavorFinder() {
           mesa.
         </BodyCopy>
 
-        <div className="mt-8 grid gap-2" role="tablist" aria-label="Escolha seu tipo de fome">
+        <div className="mt-8 grid gap-4 lg:gap-2" role="tablist" aria-label="Escolha seu tipo de fome">
           {moods.map((item, index) => (
             <button
               key={item.id}

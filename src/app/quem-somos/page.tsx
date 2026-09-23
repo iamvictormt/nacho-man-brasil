@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { IconCacto, IconCoracao, IconFogo, IconNachos, IconRaio } from "@/components/brand-icons";
+import { IconCacto, IconCoracao, IconFogo, IconNachos, IconRaio, IconSombrero } from "@/components/brand-icons";
 import {
   ActionLink,
   BodyCopy,
@@ -31,10 +31,26 @@ const timeline = [
 ];
 
 const houseCode = [
-  { Icon: IconFogo, label: "Sabor antes de tendência" },
-  { Icon: IconCoracao, label: "Gente antes de pose" },
-  { Icon: IconRaio, label: "Personalidade em tudo" },
-  { Icon: IconCacto, label: "México como inspiração" },
+  {
+    Icon: IconFogo,
+    label: "Sabor antes de tendência",
+    copy: "O prato precisa ser marcante antes de ser novidade.",
+  },
+  {
+    Icon: IconCoracao,
+    label: "Gente antes de pose",
+    copy: "Mesa cheia e conversa solta valem mais do que qualquer cerimônia.",
+  },
+  {
+    Icon: IconRaio,
+    label: "Personalidade em tudo",
+    copy: "Da parede ao molho, cada escolha precisa ter a nossa cara.",
+  },
+  {
+    Icon: IconSombrero,
+    label: "México como inspiração",
+    copy: "A referência acende a ideia. O nosso jeito conduz o resultado.",
+  },
 ];
 
 export default function QuemSomosPage() {
@@ -55,28 +71,75 @@ export default function QuemSomosPage() {
 
       <PageSection
         id="origem"
-        containerClassName="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16"
+        className="relative overflow-hidden"
+        containerClassName="relative"
       >
-        <div className="lg:col-span-5">
-          <Eyebrow>01 / Onde tudo começou</Eyebrow>
-          <DisplayTitle className="max-w-[10ch]">
-            De Blumenau. <span className="text-accent">Pra dividir com o mundo.</span>
-          </DisplayTitle>
-        </div>
-        <div className="lg:col-span-7 lg:pl-8">
-          <p className="max-w-2xl font-heading text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
-            A ideia nunca foi só servir comida. Foi criar um lugar que desse vontade de voltar.
-          </p>
-          <div className="mt-8 grid gap-6 border-t border-foreground/15 pt-8 sm:grid-cols-2">
-            <BodyCopy>
-              Em 2014, em Blumenau, a Nacho Man nasceu de pesquisa, testes e uma boa dose de
-              personalidade. A inspiração veio do México. O jeito de preparar, combinar e receber
-              ganhou o nosso sotaque.
-            </BodyCopy>
-            <BodyCopy>
-              Da primeira mesa aos novos encontros, seguimos com a mesma vontade: comida marcante,
-              gente por perto e uma experiência sem cerimônia.
-            </BodyCopy>
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-10 -top-24 font-display text-[18rem] leading-none text-foreground/[0.025] sm:text-[28rem]"
+        >
+          2014
+        </span>
+
+        <Eyebrow>01 / Onde tudo começou</Eyebrow>
+
+        <div className="relative mt-8 grid gap-8 lg:grid-cols-12 lg:items-stretch lg:gap-6">
+          <figure className="group relative min-h-[510px] overflow-hidden rounded-[2rem] bg-foreground lg:col-span-7 lg:min-h-[680px]">
+            <Image
+              src={photos.blumenau}
+              alt="Primeira casa da Nacho Man em Blumenau"
+              fill
+              sizes="(min-width: 1024px) 58vw, 100vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/10 to-transparent" />
+
+            <div className="absolute left-5 top-5 flex items-center gap-3 rounded-full bg-background px-4 py-2 text-[0.62rem] font-extrabold uppercase tracking-[0.14em] text-foreground sm:left-8 sm:top-8">
+              <span className="size-2 rounded-full bg-accent" />
+              Blumenau · SC
+            </div>
+
+            <div className="absolute inset-x-5 bottom-5 sm:inset-x-8 sm:bottom-8">
+              <p className="max-w-[9ch] font-display text-[clamp(3.4rem,7vw,7rem)] uppercase leading-[0.86] tracking-[-0.025em] text-background">
+                De Blumenau.
+                <span className="block text-accent">Pro mundo.</span>
+              </p>
+            </div>
+
+            <IconCoracao
+              aria-hidden="true"
+              className="absolute -right-8 top-14 size-36 -rotate-12 text-background/15 sm:size-48"
+            />
+          </figure>
+
+          <div className="relative flex flex-col justify-between overflow-hidden rounded-[2rem] bg-foreground p-7 text-background sm:p-10 lg:col-span-5 lg:p-12">
+            <div>
+              <div className="mb-9 flex items-end justify-between border-b border-background/15 pb-6">
+                <span className="font-display text-[5.5rem] leading-[0.75] text-accent sm:text-[7rem]">
+                  2014
+                </span>
+                <span className="max-w-[8rem] text-right text-[0.6rem] font-extrabold uppercase leading-4 tracking-[0.14em] text-background/45">
+                  A primeira mesa
+                </span>
+              </div>
+
+              <p className="max-w-[17ch] font-heading text-[clamp(2rem,3.4vw,3.75rem)] font-bold leading-[1.04]">
+                A ideia nunca foi só servir comida.
+                <span className="mt-2 block text-primary">Foi dar vontade de voltar.</span>
+              </p>
+            </div>
+
+            <div className="mt-14 grid gap-6 border-t border-primary/45 pt-7 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+              <BodyCopy className="text-background/62">
+                Em Blumenau, a Nacho Man nasceu de pesquisa, testes e uma boa dose de
+                personalidade. A inspiração veio do México; o preparo e o jeito de receber ganharam
+                nosso sotaque.
+              </BodyCopy>
+              <BodyCopy className="text-background/62">
+                Da primeira mesa aos novos encontros, seguimos com a mesma vontade: comida
+                marcante, gente por perto e uma experiência sem cerimônia.
+              </BodyCopy>
+            </div>
           </div>
         </div>
       </PageSection>
@@ -97,7 +160,11 @@ export default function QuemSomosPage() {
           <div className="lg:col-span-5">
             <Eyebrow className="text-primary">02 / A nossa assinatura</Eyebrow>
             <DisplayTitle className="max-w-[10ch]">
-              México acende. <span className="text-primary"> <br/> A gente põe o sotaque.</span>
+              México acende.{" "}
+              <span className="text-primary">
+                {" "}
+                <br /> A gente põe o sotaque.
+              </span>
             </DisplayTitle>
             <BodyCopy className="my-7 text-background/65">
               A referência está nas cores, nos ingredientes e na vontade de reunir gente. O resto
@@ -117,7 +184,7 @@ export default function QuemSomosPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/10 to-transparent" />
             <figcaption className="absolute inset-x-5 bottom-5 sm:inset-x-8 sm:bottom-8">
               <p className="mt-5 max-w-[15ch] font-display text-4xl uppercase leading-[0.95] text-background sm:text-6xl">
-                Origem mexicana. <br/> Jeito brasileiro.
+                Origem mexicana. <br /> Jeito brasileiro.
               </p>
             </figcaption>
           </figure>
@@ -188,29 +255,43 @@ export default function QuemSomosPage() {
       </PageSection>
 
       <PageSection tone="ink">
-        <SectionHeading>
-          <Eyebrow className="text-primary">04 / Código da casa</Eyebrow>
-          <DisplayTitle className="max-w-[13ch]">
-            O que a gente <span className="text-primary">não abre mão.</span>
-          </DisplayTitle>
-        </SectionHeading>
-        <div className="grid gap-px overflow-hidden rounded-[2rem] border-2 border-background/25 bg-background/25 sm:grid-cols-2 lg:grid-cols-4">
-          {houseCode.map(({ Icon, label }, index) => (
-            <article
-              key={label}
-              className="group min-h-64 bg-foreground p-6 transition-colors hover:bg-primary hover:text-foreground"
-            >
-              <div className="flex items-start justify-between">
-                <Icon className="size-14 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110" />
-                <span className="font-display text-4xl text-background/15 transition-colors group-hover:text-foreground/15">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-20">
+          <div className="relative lg:col-span-5">
+            <Eyebrow className="text-primary">04 / Código da casa</Eyebrow>
+            <DisplayTitle className="max-w-[10ch]">
+              Tem coisa que a gente <span className="text-primary">não negocia.</span>
+            </DisplayTitle>
+            <BodyCopy className="mt-7 text-background/60">
+              Não é manual de etiqueta. É o que mantém a Nacho Man reconhecível em cada prato,
+              parede e encontro.
+            </BodyCopy>
+            <IconCacto
+              aria-hidden="true"
+              className="pointer-events-none absolute -bottom-24 right-0 hidden size-64 rotate-6 text-primary/[0.08] lg:block"
+            />
+          </div>
+
+          <div className="border-t border-primary/45 lg:col-span-7">
+            {houseCode.map(({ Icon, label, copy }, index) => (
+              <article
+                key={label}
+                className="group grid gap-5 border-b border-background/15 py-7 transition-colors hover:bg-primary hover:px-5 hover:text-foreground sm:grid-cols-[3rem_4rem_1fr] sm:items-center sm:py-8"
+              >
+                <span className="font-display text-3xl text-primary transition-colors group-hover:text-foreground/35">
                   0{index + 1}
                 </span>
-              </div>
-              <h3 className="mt-12 max-w-[11ch] font-heading text-2xl font-extrabold uppercase leading-none sm:text-3xl">
-                {label}
-              </h3>
-            </article>
-          ))}
+                <Icon className="size-12 text-primary transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110 group-hover:text-foreground" />
+                <div>
+                  <h3 className="font-heading text-2xl font-extrabold uppercase leading-none sm:text-3xl">
+                    {label}
+                  </h3>
+                  <p className="mt-2 max-w-xl text-sm leading-6 text-background/55 transition-colors group-hover:text-foreground/70">
+                    {copy}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </PageSection>
 
