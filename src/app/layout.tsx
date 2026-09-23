@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Anton, Barlow_Condensed, Manrope } from "next/font/google";
 import { HashScrollManager } from "@/components/hash-scroll-manager";
+import { FranchiseWhatsapp } from "@/components/franchise-whatsapp";
 import "./globals.css";
 const anton = Anton({ weight: "400", subsets: ["latin"], variable: "--font-anton" });
 const barlow = Barlow_Condensed({
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <HashScrollManager />
         {children}
+        <FranchiseWhatsapp />
       </body>
     </html>
   );

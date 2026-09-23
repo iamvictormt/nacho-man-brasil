@@ -47,9 +47,9 @@ export default function QuemSomosPage() {
           </p>
         </div>
       </section>
-      <section className="nm-dark nm-section">
+      <section className="nm-dark nm-section nm-values-section">
         <div className="site-container">
-          <div className="nm-section-heading">
+          <div className="nm-section-heading nm-values-heading">
             <div>
               <Eyebrow>02 / Nosso ingrediente principal</Eyebrow>
               <h2 className="nm-title">
@@ -58,7 +58,7 @@ export default function QuemSomosPage() {
                 <span className="text-primary">Em cada detalhe.</span>
               </h2>
             </div>
-            <p className="max-w-xs text-sm leading-7 text-background/70">
+            <p className="nm-values-lede max-w-xs text-sm leading-7 text-background/70">
               Do primeiro preparo ao último nacho da mesa, é isso que faz a gente ser quem é.
             </p>
           </div>
@@ -89,7 +89,7 @@ export default function QuemSomosPage() {
           </div>
         </div>
       </section>
-      <section className="site-container nm-section">
+      <section className="site-container nm-section nm-timeline-section">
         <Eyebrow>03 / A vida acontece à mesa</Eyebrow>
         <div className="nm-section-heading">
           <h2 className="nm-title">
