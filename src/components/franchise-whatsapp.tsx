@@ -37,7 +37,7 @@ export function FranchiseWhatsapp() {
               <i className="absolute bottom-0 right-0 size-3 rounded-full border-2 border-white bg-[#25d366]" />
             </span>
             <div>
-              <strong className="block text-[0.82rem] font-extrabold">Nacho Man · Expansão</strong>
+              <strong className="block text-[0.82rem] font-extrabold">Equipe Nacho Man</strong>
               <span className="mt-0.5 block text-[0.67rem] text-white/75">online</span>
             </div>
             <button
@@ -72,7 +72,7 @@ export function FranchiseWhatsapp() {
               href={FRANCHISE_WHATSAPP_URL}
               target="_blank"
               rel="noreferrer"
-              className="mt-4 grid min-h-12 grid-cols-[auto_1fr_auto] items-center rounded-xl bg-[#25d366] px-4 py-3 text-center text-[0.68rem] font-extrabold uppercase text-[#173d2a] shadow-md transition hover:-translate-y-0.5 hover:bg-[#20bd5b] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="mt-4 grid min-h-12 grid-cols-[auto_1fr_auto] items-center rounded-xl bg-[#25d366] px-4 py-3 text-center text-[0.68rem] font-extrabold uppercase text-[#173d2a] shadow-md transition hover:-translate-y-0.5 hover:bg-[#20bd5b] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-primary text-background"
             >
               <WhatsappMark className="size-5" />
               Conversar no WhatsApp
@@ -94,7 +94,7 @@ export function FranchiseWhatsapp() {
         >
           <WhatsappMark className="size-8" />
           <span
-            className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full border-2 border-white bg-accent text-[0.62rem] font-extrabold text-accent-foreground motion-safe:animate-pulse"
+            className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full border-2 border-white bg-accent text-[0.62rem] font-extrabold text-accent-foreground motion-safe:animate-[ping_1.5s_linear_infinite]"
             aria-hidden="true"
           >
             1
