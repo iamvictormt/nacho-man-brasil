@@ -239,7 +239,7 @@ export default function Home() {
         <div className="grid auto-rows-[190px] gap-3 sm:auto-rows-[260px] sm:grid-cols-2 lg:grid-cols-4">
           <div className="relative overflow-hidden rounded-[1.5rem] sm:row-span-2 lg:col-span-2">
             <Image
-              src={photos.aboutAtmosphere}
+              src={photos.aboutPerson}
               alt="Cliente se divertindo na Nacho Man"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
@@ -273,7 +273,7 @@ export default function Home() {
         </div>
       </PageSection>
 
-      <PageSection
+      {/* <PageSection
         id="unidades"
         tone="ink"
         containerClassName="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-10"
@@ -324,7 +324,7 @@ export default function Home() {
           ))}
 
         </div>
-      </PageSection>
+      </PageSection> */}
 
       <PageSection id="franquia" tone="red" className="py-16 sm:py-20">
         <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 text-center">

@@ -104,16 +104,11 @@ export default function QuemSomosPage() {
               nasce aqui: pesquisa, liberdade e um jeito brasileiro de fazer cada prato ganhar
               personalidade.
             </BodyCopy>
-            <div className="border-l-4 border-primary pl-5">
-              <p className="font-heading text-2xl font-bold uppercase leading-tight sm:text-3xl">
-                A gente respeita a origem sem copiar a receita.
-              </p>
-            </div>
           </div>
 
           <figure className="group relative min-h-[520px] overflow-hidden rounded-[2rem] lg:col-span-7 lg:min-h-[680px]">
             <Image
-              src={photos.aboutNachos}
+              src={photos.aboutAtmosphere}
               alt="Experiência Nacho Man compartilhada à mesa"
               fill
               sizes="(min-width: 1024px) 58vw, 100vw"
@@ -122,7 +117,7 @@ export default function QuemSomosPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/10 to-transparent" />
             <figcaption className="absolute inset-x-5 bottom-5 sm:inset-x-8 sm:bottom-8">
               <p className="mt-5 max-w-[15ch] font-display text-4xl uppercase leading-[0.95] text-background sm:text-6xl">
-                Referência mexicana. Assinatura Nacho Man.
+                Origem mexicana. <br/> Jeito brasileiro.
               </p>
             </figcaption>
           </figure>
@@ -147,7 +142,7 @@ export default function QuemSomosPage() {
         <div className="grid gap-3 lg:grid-cols-12 lg:grid-rows-[270px_270px]">
           <figure className="group relative min-h-[420px] overflow-hidden rounded-[2rem] lg:col-span-5 lg:row-span-2 lg:min-h-0">
             <Image
-              src={photos.aboutPerson}
+              src={photos.aboutDrink}
               alt="Cliente vivendo a experiência Nacho Man"
               fill
               sizes="(min-width: 1024px) 42vw, 100vw"
@@ -247,8 +242,8 @@ export default function QuemSomosPage() {
           </div>
           <div className="relative h-[300px] overflow-hidden rounded-[1.5rem] sm:h-[480px]">
             <Image
-              src={photos.aboutDrink}
-              alt="Cliente brindando na Nacho Man"
+              src={photos.chips}
+              alt="Porção de nachos Nacho Man com guacamole e molho picante"
               fill
               sizes="(min-width: 768px) 40vw, 100vw"
               className="object-cover"
