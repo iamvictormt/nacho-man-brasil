@@ -94,9 +94,10 @@ export function FranchiseWhatsapp() {
         >
           <WhatsappMark className="size-8" />
           <span
-            className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full border-2 border-white bg-accent text-[0.62rem] font-extrabold text-accent-foreground motion-safe:animate-[ping_1.5s_linear_infinite]"
+            className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full border-2 border-white bg-accent text-[0.62rem] font-extrabold text-accent-foreground"
             aria-hidden="true"
           >
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-55"></span>
             1
           </span>
         </button>
