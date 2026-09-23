@@ -90,7 +90,7 @@ function MenuCarousel({
     >
       <div className="flex shrink-0 items-center justify-between gap-5 border-b border-background/15 px-5 py-4 sm:px-8">
         <div className="flex min-w-0 items-center gap-4">
-          <span className="hidden text-[10px] font-extrabold uppercase tracking-[0.2em] text-primary sm:block">
+          <span className="hidden text-[10px] font-extrabold uppercase tracking-[0.2em] text-accent sm:block">
             Cardápio / Galeria
           </span>
           <span className="hidden h-5 w-px bg-background/20 sm:block" />
@@ -122,7 +122,7 @@ function MenuCarousel({
           type="button"
           onClick={() => go(-1)}
           aria-label="Foto anterior"
-          className="absolute left-3 z-10 grid size-12 place-content-center rounded-full border border-background/20 bg-foreground/75 transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground sm:left-7"
+          className="absolute left-3 z-10 grid size-12 place-content-center rounded-full border border-background/20 bg-foreground/75 transition-colors hover:border-accent hover:bg-accent hover:text-background sm:left-7"
         >
           <ChevronLeft className="size-6" />
         </button>
@@ -139,13 +139,10 @@ function MenuCarousel({
               className="object-contain"
             />
           </div>
-          <figcaption className="flex items-center justify-between gap-5 pt-4">
+          <figcaption className="flex items-center justify-center gap-5 pt-4">
             <h3 className="font-heading text-2xl font-extrabold uppercase sm:text-3xl">
               {item.name}
             </h3>
-            <span className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-primary">
-              Foto oficial Nacho Man
-            </span>
           </figcaption>
         </figure>
 
@@ -153,7 +150,7 @@ function MenuCarousel({
           type="button"
           onClick={() => go(1)}
           aria-label="Próxima foto"
-          className="absolute right-3 z-10 grid size-12 place-content-center rounded-full border border-background/20 bg-foreground/75 transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground sm:right-7"
+          className="absolute right-3 z-10 grid size-12 place-content-center rounded-full border border-background/20 bg-foreground/75 transition-colors hover:border-accent hover:bg-accent hover:text-background sm:right-7"
         >
           <ChevronRight className="size-6" />
         </button>
@@ -170,7 +167,7 @@ function MenuCarousel({
             onClick={() => onChange({ ...active, itemIndex: index })}
             aria-label={`Ver ${thumb.name}`}
             aria-current={index === active.itemIndex ? "true" : undefined}
-            className={`relative h-14 w-20 shrink-0 overflow-hidden rounded-lg border-2 transition-opacity ${index === active.itemIndex ? "border-primary opacity-100" : "border-transparent opacity-45 hover:opacity-80"}`}
+            className={`relative h-14 w-20 shrink-0 overflow-hidden rounded-lg border-2 transition-opacity ${index === active.itemIndex ? "border-accent opacity-100" : "border-transparent opacity-45 hover:opacity-80"}`}
           >
             <Image src={thumb.image} alt="" fill sizes="80px" className="object-cover" />
           </button>
@@ -185,7 +182,7 @@ export default function CardapioPage() {
   const [activeGallery, setActiveGallery] = useState<ActiveGallery | null>(null);
 
   return (
-    <main className="nm-page">
+    <main className="min-h-screen overflow-x-clip bg-background text-foreground">
       <SiteHeader />
 
       <EditorialHero
@@ -211,7 +208,7 @@ export default function CardapioPage() {
               href={`#${category.id}`}
               className="group flex items-center gap-2 rounded-full px-4 py-3 transition-colors hover:bg-foreground hover:text-background focus-visible:bg-foreground focus-visible:text-background"
             >
-              <span className="text-[9px] text-foreground/35 group-hover:text-primary">
+              <span className="text-[9px] text-foreground/35 group-hover:text-accent">
                 {String(index + 1).padStart(2, "0")}
               </span>
               {category.name}
@@ -239,9 +236,9 @@ export default function CardapioPage() {
                         {String(sectionIndex + 1).padStart(2, "0")}
                       </span>
                     </div>
-                    <h2 className="mt-7 font-display text-6xl uppercase leading-[0.86] sm:text-8xl">
+                    <h2 className="mt-7 font-display text-[clamp(3.25rem,5.2vw,4.5rem)] uppercase leading-[0.88]">
                       {section.name}
-                      <span className="text-primary">.</span>
+                      <span className="text-accent">.</span>
                     </h2>
                     <p className="mt-6 max-w-sm font-heading text-2xl font-extrabold uppercase leading-tight">
                       {section.statement}

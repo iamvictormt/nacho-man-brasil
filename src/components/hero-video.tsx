@@ -47,7 +47,7 @@ export function HeroVideo() {
           if (video.paused) void video.play().catch(() => setPlaying(false));
           else video.pause();
         }}
-        className="nm-video-control"
+        className="absolute bottom-5 right-5 z-20 flex min-h-11 items-center gap-2.5 rounded-full border border-background/40 bg-foreground/65 px-4 py-2.5 text-[0.65rem] font-bold text-background backdrop-blur transition hover:bg-foreground focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-accent md:bottom-8 md:right-16"
       >
         {playing ? <Pause size={16} aria-hidden="true" /> : <Play size={16} aria-hidden="true" />}
         {playing ? "Pausar vídeo" : "Reproduzir vídeo"}

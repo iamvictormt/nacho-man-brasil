@@ -59,6 +59,7 @@ export function SiteHeader() {
               alt="Nacho Man"
               width={220}
               height={40}
+              priority
               className="h-6 w-auto sm:h-7"
             />
           </Link>
