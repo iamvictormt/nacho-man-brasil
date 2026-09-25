@@ -73,7 +73,7 @@ export default function ContatoPage() {
           }
         >
           <DisplayTitle>
-            Seu oi. <span className="text-accent">Nosso próximo papo.</span>
+            CONTATO<span className="text-accent">.</span>
           </DisplayTitle>
         </SectionHeading>
 
