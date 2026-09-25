@@ -51,7 +51,7 @@ export function StoreLocator() {
             src={photos.storeLocator.background}
             alt=""
             fill
-            priority
+            preload
             sizes="(min-width: 1024px) 35vw, 100vw"
             className="-z-20 object-cover"
           />

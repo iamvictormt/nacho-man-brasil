@@ -9,7 +9,11 @@ export type MenuItem = {
   image: MenuPhoto;
 };
 
-const photo = (src: string): MenuPhoto => ({ src, width: 6000, height: 4000 });
+const photo = (src: string, width = 2000, height = 1333): MenuPhoto => ({
+  src,
+  width,
+  height,
+});
 
 export const menuSections = [
   {
@@ -19,23 +23,23 @@ export const menuSections = [
     items: [
       {
         name: "Burrito Big Man",
-        image: photo("/images/burrito/big_man.jpg"),
+        image: photo("/images/burrito/burrito-big-man.webp"),
       },
       {
         name: "Combos",
-        image: photo("/images/burrito/combo.jpg"),
+        image: photo("/images/burrito/combo-burritos.webp"),
       },
       {
         name: "Burrito Hot Chicken",
-        image: photo("/images/burrito/hot_chicken.jpg"),
+        image: photo("/images/burrito/burrito-hot-chicken.webp"),
       },
       {
         name: "Burrito California",
-        image: photo("/images/burrito/california.jpg"),
+        image: photo("/images/burrito/burrito-california.webp"),
       },
       {
         name: "Burrito Blumenau",
-        image: photo("/images/burrito/blumenau.jpg"),
+        image: photo("/images/burrito/burrito-blumenau.webp"),
       },
     ],
   },
@@ -45,15 +49,15 @@ export const menuSections = [
     items: [
       {
         name: "Taco de Camarón",
-        image: photo("/images/tacos/camaron.jpg"),
+        image: photo("/images/tacos/taco-camaron.webp"),
       },
       {
         name: "Taco Barbacoa",
-        image: photo("/images/tacos/barbacoa.jpg"),
+        image: photo("/images/tacos/taco-barbacoa.webp"),
       },
       {
         name: "Taco vegetariano",
-        image: photo("/images/tacos/vegetariano.jpg"),
+        image: photo("/images/tacos/taco-vegetariano.webp"),
       },
     ],
   },
@@ -65,11 +69,11 @@ export const menuSections = [
     items: [
       {
         name: "Nacho Chili Beans",
-        image: photo("/images/nachos/chili_beans.jpg"),
+        image: photo("/images/nachos/nachos-chili-beans.webp"),
       },
       {
         name: "Nacho Man",
-        image: photo("/images/FALTA IMAGEM.jpg"),
+        image: photo("/images/placeholder/produto-sem-foto.webp", 665, 362),
       },
     ],
   },
@@ -79,15 +83,15 @@ export const menuSections = [
     items: [
       {
         name: "Surf & Fries",
-        image: photo("/images/porcoes/surf&fries.jpg"),
+        image: photo("/images/porcoes/surf-fries.webp"),
       },
       {
         name: "Chips & Guaca",
-        image: photo("/images/porcoes/chips&guaca.jpg"),
+        image: photo("/images/porcoes/chips-guacamole.webp"),
       },
       {
         name: "Chips & Salsas",
-        image: photo("/images/porcoes/chips&salsas.jpg"),
+        image: photo("/images/porcoes/chips-salsas.webp"),
       },
     ],
   },
@@ -98,11 +102,11 @@ export const menuSections = [
     items: [
       {
         name: "Churros Palito",
-        image: photo("/images/doces/palito.jpg"),
+        image: photo("/images/doces/churros-palito.webp"),
       },
       {
         name: "Quesadilha doce",
-        image: photo("/images/FALTA IMAGEM.jpg"),
+        image: photo("/images/placeholder/produto-sem-foto.webp", 665, 362),
       },
     ],
   },
@@ -112,11 +116,11 @@ export const menuSections = [
     items: [
       {
         name: "Quesadilla La Gordita",
-        image: photo("/images/quesadilhas/la_gordita.jpg"),
+        image: photo("/images/quesadilhas/quesadilla-la-gordita.webp"),
       },
       {
         name: "Quesadilla Barbacoa",
-        image: photo("/images/FALTA IMAGEM.jpg"),
+        image: photo("/images/placeholder/produto-sem-foto.webp", 665, 362),
       },
     ],
   },
@@ -127,19 +131,19 @@ export const menuSections = [
     items: [
       {
         name: "Guacamole",
-        image: photo("/images/salsa_molhos/guacamole.jpg"),
+        image: photo("/images/molhos/guacamole.webp", 2000, 1500),
       },
       {
         name: "Salsa Pêssego",
-        image: photo("/images/salsa_molhos/pessego.jpg"),
+        image: photo("/images/molhos/salsa-pessego.webp"),
       },
       {
         name: "Pico de Gallo",
-        image: photo("/images/salsa_molhos/pico_de_gallo.jpg"),
+        image: photo("/images/molhos/pico-de-gallo.webp"),
       },
       {
         name: "Salsa Verde",
-        image: photo("/images/salsa_molhos/salsa_verde.jpg"),
+        image: photo("/images/molhos/salsa-verde.webp", 2000, 1500),
       },
     ],
   },
@@ -149,11 +153,11 @@ export const menuSections = [
     items: [
       {
         name: "Bowl El Classico",
-        image: photo("/images/bowl/el_classico.jpg"),
+        image: photo("/images/bowl/bowl-el-classico.webp"),
       },
       {
         name: "Bowl El Caliente",
-        image: photo("/images/bowl/el_caliente.jpg"),
+        image: photo("/images/bowl/bowl-el-caliente.webp"),
       },
     ],
   },
@@ -163,15 +167,15 @@ export const menuSections = [
     items: [
       {
         name: "Pink Limonade",
-        image: photo("/images/FALTA IMAGEM.jpg"),
+        image: photo("/images/placeholder/produto-sem-foto.webp", 665, 362),
       },
       {
         name: "Lollipop",
-        image: photo("/images/bebidas/lollipop.jpg"),
+        image: photo("/images/bebidas/bebida-lollipop.webp"),
       },
       {
         name: "Sodas Mexicanas",
-        image: photo("/images/bebidas/sodas_mexicanas.jpg"),
+        image: photo("/images/bebidas/sodas-mexicanas.webp"),
       },
     ],
   },
@@ -181,19 +185,19 @@ export const menuSections = [
     items: [
       {
         name: "Avatar",
-        image: photo("/images/drinks/avatar.jpg"),
+        image: photo("/images/drinks/drink-avatar.webp"),
       },
       {
         name: "Palomita",
-        image: photo("/images/drinks/palomita.jpg"),
+        image: photo("/images/drinks/drink-palomita.webp"),
       },
       {
         name: "Moranguita",
-        image: photo("/images/drinks/moranguita.jpg"),
+        image: photo("/images/drinks/drink-moranguita.webp"),
       },
       {
         name: "Mucho Loco",
-        image: photo("/images/FALTA IMAGEM.jpg"),
+        image: photo("/images/placeholder/produto-sem-foto.webp", 665, 362),
       },
     ],
   },

@@ -28,7 +28,7 @@ export function SiteFooter() {
         <div className="grid gap-10 border-b border-background/15 pb-12 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1.3fr]">
           <div>
             <Image
-              src="/images/brand/logo-white.png"
+              src="/images/brand/logo-nacho-man-branco.png"
               alt="Nacho Man"
               width={220}
               height={40}

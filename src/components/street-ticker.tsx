@@ -32,9 +32,9 @@ export function StreetTicker({
                   className="flex shrink-0 items-center gap-2 whitespace-nowrap px-8"
                 >
                   <IconCoracao className="mr-2 size-7" />
-                  <span className="text-primary">Paixão</span>
-                  <span>pela comida</span>
-                  <span className="text-accent">mexicana</span>
+                  <span className="text-primary">NACHO MAN </span>
+                  <span>MEXICAN </span>
+                  <span className="text-accent">FOOD</span>
                   <IconCoracao className="ml-2 size-7" />
                 </span>
               ))}

@@ -193,7 +193,7 @@ export function EditorialHero({
         src={image}
         alt={alt}
         fill
-        priority
+        preload
         sizes="100vw"
         className={cn("-z-20 object-cover", position)}
       />

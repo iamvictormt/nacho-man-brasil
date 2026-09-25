@@ -188,7 +188,7 @@ function MenuCarousel({
               src={item.image}
               alt={item.name}
               fill
-              priority
+              loading="eager"
               sizes="100vw"
               className="object-contain"
             />

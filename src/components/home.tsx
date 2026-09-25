@@ -34,7 +34,7 @@ const favorites = [
   },
   {
     name: "Quesadilhas",
-    caption: "Gostosas e queijadas.",
+    caption: "Gostosas e Queijudas.",
     image: photos.home.quesadilla,
     id: "quesadilhas",
   },
@@ -82,7 +82,7 @@ export default function Home() {
         </div>
       </section>
 
-      <StreetTicker label="Paixão pela comida mexicana" />
+      <StreetTicker label="NACHO MAN MEXICAN FOOD" />
 
       <PageSection>
         <SectionHeading aside={<ActionLink href="/cardapio">Ver cardápio completo</ActionLink>}>
@@ -130,15 +130,15 @@ export default function Home() {
       <PageSection containerClassName="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-20">
         <div className="relative min-h-[440px] overflow-hidden rounded-[2rem] sm:min-h-[560px]">
           <Image
-            src={photos.home.balnearioFacade}
-            alt="Fachada da unidade Nacho Man em Balneário Camboriú"
+            src={photos.home.blumenauInterior}
+            alt="Interior da unidade Nacho Man em Blumenau SC"
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/50 to-transparent" />
           <figcaption className="absolute bottom-5 left-5 rotate-[-2deg] bg-foreground px-4 py-2 font-heading text-lg font-extrabold uppercase shadow-[4px_4px_0_var(--accent)] text-background sm:text-xl flex items-center gap-2">
-            <IconCoracao className="size-5" /> Balneário Camboriú
+            Blumenau SC
           </figcaption>
         </div>
 
@@ -147,8 +147,10 @@ export default function Home() {
             De uma garagem <span className="text-accent">para o mundo.</span>
           </DisplayTitle>
           <BodyCopy className="my-7">
-            A paixão pela comida mexicana fez ele sair de uma garagem para uma rede de franquias com
-            + de 30 lojas.
+            O Nacho Man surgiu em 2018 como delivery de comida mexicana em Blumenau SC. Naquela
+            época, Will (o criador da marca) só tinha um sonho, oferecer a melhor e mais autêntica
+            comida mexicana da cidade. O sonho deu tão certo que virou uma Rede de Franquias com
+            mais de 30 Unidades espalhadas pelo Brasil.
           </BodyCopy>
           <ActionLink href="/quem-somos">Conheça nossa história</ActionLink>
         </div>

@@ -54,11 +54,11 @@ export function SiteHeader() {
         <div className="site-container grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 xl:flex">
           <Link href="/" className="flex min-w-0 items-center">
             <Image
-              src="/images/brand/logo-white.png"
+              src="/images/brand/logo-nacho-man-branco.png"
               alt="Nacho Man"
               width={220}
               height={40}
-              priority
+              loading="eager"
               className="h-6 w-auto sm:h-7"
             />
           </Link>

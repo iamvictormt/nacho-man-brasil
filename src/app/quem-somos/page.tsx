@@ -110,16 +110,24 @@ export default function QuemSomosPage() {
               </div>
 
               <p className="max-w-[17ch] font-heading text-[clamp(2rem,3.4vw,3.75rem)] font-bold leading-[1.04]">
-                Em uma garagem, sem um tostão no bolso, apenas o sonho e a vontade de vencer.
+                Tudo começou em uma garagem. <br /> O resto a gente foi construindo.
               </p>
             </div>
 
             <div className="mt-14 grid gap-6 pt-4">
               <BodyCopy className="text-background/62">
-                Ele passou sete anos criando coragem para empreender. Juntou tudo o que tinha e foi
-                com a cara e a coragem. No dia 5 de abril de 2018, saíram os primeiros burritos.
-                Oito anos depois, a vontade continua a mesma: servir a melhor comida mexicana da
-                cidade.
+                Em 5 de abril de 2018, Will, o Nacho Man colocou os primeiros burritos na rua. Não
+                tinha grande estrutura. Não tinha fórmula pronta. Tinha uma ideia, muita vontade e a
+                coragem de começar.
+              </BodyCopy>
+              <BodyCopy className="text-background/62">
+                A garagem virou cozinha. A cozinha virou restaurante. O restaurante virou uma marca.
+                E a marca ganhou o Brasil.
+              </BodyCopy>
+              <BodyCopy className="text-background/62">
+                Oito anos depois, seguimos com a mesma inquietação de quem está começando: criar uma
+                experiência mexicana diferente, com comida de verdade, personalidade e um jeito
+                próprio de fazer as coisas.
               </BodyCopy>
             </div>
           </div>
@@ -144,13 +152,14 @@ export default function QuemSomosPage() {
             </DisplayTitle>
           </div>
 
-          <figure className="group relative min-h-[520px] overflow-hidden rounded-[2rem] lg:col-span-7 lg:min-h-[680px]">
+          <figure className="group relative min-h-[560px] overflow-hidden rounded-[2rem] lg:col-span-7 lg:min-h-[840px]">
             <Image
               src={photos.about.customerExperience}
               alt="Cliente aproveitando burritos na Nacho Man"
               fill
               sizes="(min-width: 1024px) 58vw, 100vw"
-              className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              style={{ objectPosition: "50% 12%", transformOrigin: "50% 12%" }}
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/10 to-transparent" />
             <figcaption className="absolute inset-x-5 bottom-5 sm:inset-x-8 sm:bottom-8">
