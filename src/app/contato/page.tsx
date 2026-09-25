@@ -25,8 +25,8 @@ const channels = [
     Icon: MessageCircle,
     title: "Bora conversar?",
     label: "WhatsApp",
-    value: "(35) 9 9740-5132",
-    href: "https://wa.me/5535997405132",
+    value: "(47) 9 9161-0728",
+    href: "https://wa.me/5547991610728",
     action: "Abrir WhatsApp",
   },
   {
@@ -41,9 +41,7 @@ const channels = [
     Icon: MapPin,
     title: "Nossa origem tem endereço.",
     label: "Blumenau · SC",
-    value: "R. Joinville, 861 · Vila Nova",
-    href: "https://www.google.com/maps/search/?api=1&query=R.+Joinville+861+Blumenau",
-    action: "Ver no mapa",
+    value: "Rua Wilhelm Schellworth , 200 - Blumenau, SC",
   },
 ];
 
@@ -56,11 +54,11 @@ export default function ContatoPage() {
       <SiteHeader />
       <EditorialHero
         variant="contact"
-        eyebrow="Contato / Pode chegar"
+        eyebrow=""
         title="A gente gosta"
         accent="de um bom papo."
         copy="Uma dúvida, uma ideia ou o próximo grande encontro. Escolha um canal e fale com a nossa equipe."
-        image={photos.contact}
+        image={photos.contact.heroGroup}
         alt="Pessoas reunidas na Nacho Man"
         href="#canais"
         action="Vamos conversar"
@@ -74,7 +72,6 @@ export default function ContatoPage() {
             </BodyCopy>
           }
         >
-          <Eyebrow>Conexões de verdade</Eyebrow>
           <DisplayTitle>
             Seu oi. <span className="text-accent">Nosso próximo papo.</span>
           </DisplayTitle>
@@ -108,17 +105,16 @@ export default function ContatoPage() {
 
       <PageSection tone="ink" containerClassName="grid gap-12 lg:grid-cols-2 lg:gap-20">
         <div>
-          <Eyebrow className="text-primary">Um atalho para ajudar</Eyebrow>
           <DisplayTitle className="max-w-[11ch]">
             Antes do oi, <span className="text-primary">talvez esteja aqui.</span>
           </DisplayTitle>
           <a
-            href="https://www.instagram.com/nachomanbrasil/"
+            href="https://www.instagram.com/nachoman/"
             target="_blank"
             rel="noreferrer"
             className="mt-8 inline-flex items-center gap-3 text-sm transition hover:text-primary"
           >
-            <Instagram size={20} /> @nachomanbrasil <ArrowUpRight size={16} />
+            <Instagram size={20} /> @nachoman <ArrowUpRight size={16} />
           </a>
         </div>
 

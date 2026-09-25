@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
-import { IconCoracao } from "@/components/brand-icons";
+import { IconCoracao, IconSombrero } from "@/components/brand-icons";
 import {
   ActionLink,
   BodyCopy,
@@ -20,21 +20,24 @@ import { StreetTicker } from "@/components/street-ticker";
 import { photos } from "@/lib/photos";
 
 const favorites = [
-  { name: "Burritos", caption: "Recheio de ponta a ponta.", image: photos.burrito, id: "burritos" },
-  { name: "Tacos", caption: "Uma mordida. Muitos motivos.", image: photos.tacos, id: "tacos" },
+  {
+    name: "Burritos",
+    caption: "400g de puro sabor.",
+    image: photos.home.burrito,
+    id: "burritos",
+  },
+  {
+    name: "Tacos",
+    caption: "Tortilla macia, igual se come no México.",
+    image: photos.home.tacos,
+    id: "tacos",
+  },
   {
     name: "Quesadilhas",
-    caption: "O queijo faz as honras.",
-    image: photos.quesadilla,
+    caption: "Gostosas e queijadas.",
+    image: photos.home.quesadilla,
     id: "quesadilhas",
   },
-];
-
-// Mantido junto da seção de unidades temporariamente desativada no fim deste arquivo.
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const featuredLocations = [
-  { city: "Blumenau", image: photos.blumenau, position: "object-center" },
-  { city: "Balneário", image: photos.balneario, position: "object-center" },
 ];
 
 export default function Home() {
@@ -53,18 +56,16 @@ export default function Home() {
         />
         <div className="site-container pointer-events-none relative pb-28 pt-36 sm:pt-44">
           <div className="max-w-5xl motion-safe:animate-[rise-in_700ms_cubic-bezier(0.16,1,0.3,1)_both]">
-            <Eyebrow className="text-primary">México no prato. Brasil no jeito.</Eyebrow>
-            <h1 className="mt-6 max-w-[11ch] font-display text-[clamp(3.8rem,10vw,9.5rem)] leading-[0.86] tracking-[-0.035em] uppercase">
-              Mucho sabor.
-              <span className="block text-primary">Sem cerimônia.</span>
+            <h1 className="mt-6 max-w-[14ch] font-display text-[clamp(3.8rem,10vw,9.5rem)] leading-[0.86] tracking-[-0.035em] uppercase">
+              Comida mexicana
+              <span className="block text-primary">Sem frescura</span>
             </h1>
             <BodyCopy className="my-7 max-w-[28rem] text-background/80">
-              Puxa uma cadeira, chama a turma e deixa o resto com a gente. Seu próximo favorito está
-              aqui.
+              Franquia de comida mexicana autêntica no Brasil.
             </BodyCopy>
             <div className="pointer-events-auto flex flex-wrap items-center gap-5">
               <ActionLink href="/cardapio" light>
-                Explorar o cardápio
+                Ver cardápio
               </ActionLink>
               <Link
                 href="/encontrar-loja"
@@ -75,7 +76,7 @@ export default function Home() {
               </Link>
             </div>
             <span className="mt-10 block text-[0.6rem] font-bold uppercase tracking-[0.16em] text-background/65">
-              Desde 2014 · Feito para comer junto
+              Desde 2018 · Comida de verdade
             </span>
           </div>
         </div>
@@ -85,9 +86,8 @@ export default function Home() {
 
       <PageSection>
         <SectionHeading aside={<ActionLink href="/cardapio">Ver cardápio completo</ActionLink>}>
-          <Eyebrow>Pra começar bem</Eyebrow>
           <DisplayTitle>
-            Qual é a sua <span className="text-accent">vontade de hoje?</span>
+            Conheça <span className="text-accent">nossos pratos.</span>
           </DisplayTitle>
         </SectionHeading>
 
@@ -130,26 +130,25 @@ export default function Home() {
       <PageSection containerClassName="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-20">
         <div className="relative min-h-[440px] overflow-hidden rounded-[2rem] sm:min-h-[560px]">
           <Image
-            src={photos.friends}
-            alt="Amigos compartilhando uma mesa na Nacho Man"
+            src={photos.home.balnearioFacade}
+            alt="Fachada da unidade Nacho Man em Balneário Camboriú"
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/50 to-transparent" />
-          <figcaption className="absolute bottom-5 left-5 rotate-[-2deg] bg-foreground px-4 py-2 font-heading text-lg font-extrabold uppercase shadow-[4px_4px_0_var(--accent)] text-background sm:text-xl">
-            A mesa é de todo mundo
+          <figcaption className="absolute bottom-5 left-5 rotate-[-2deg] bg-foreground px-4 py-2 font-heading text-lg font-extrabold uppercase shadow-[4px_4px_0_var(--accent)] text-background sm:text-xl flex items-center gap-2">
+            <IconCoracao className="size-5" /> Balneário Camboriú
           </figcaption>
         </div>
 
         <div>
-          <Eyebrow>Mais que comida mexicana</Eyebrow>
-          <DisplayTitle className="max-w-[11ch]">
-            O melhor da mesa é <span className="text-accent">quem senta nela.</span>
+          <DisplayTitle className="max-w-[13ch]">
+            De uma garagem <span className="text-accent">para o mundo.</span>
           </DisplayTitle>
           <BodyCopy className="my-7">
-            A gente acredita em comida com personalidade, molho sem economia e encontros sem hora
-            pra acabar. Desde 2014, esse é o nosso jeito de receber.
+            A paixão pela comida mexicana fez ele sair de uma garagem para uma rede de franquias com
+            + de 30 lojas.
           </BodyCopy>
           <ActionLink href="/quem-somos">Conheça nossa história</ActionLink>
         </div>
@@ -160,24 +159,16 @@ export default function Home() {
       </PageSection>
 
       <PageSection>
-        <SectionHeading
-          aside={
-            <BodyCopy className="max-w-sm">
-              Cor na parede, som na caixa e comida chegando. A experiência começa antes da primeira
-              mordida.
-            </BodyCopy>
-          }
-        >
-          <Eyebrow>É pra ficar à vontade</Eyebrow>
-          <DisplayTitle className="max-w-[10ch]">
-            Nosso clima também <span className="text-accent">tem tempero.</span>
+        <SectionHeading>
+          <DisplayTitle className="max-w-[14ch]">
+            Lojas temáticas com <span className="text-accent">cor e sabor.</span>
           </DisplayTitle>
         </SectionHeading>
 
         <div className="grid auto-rows-[190px] gap-3 sm:auto-rows-[260px] sm:grid-cols-2 lg:grid-cols-4">
           <div className="relative overflow-hidden rounded-[1.5rem] sm:row-span-2 lg:col-span-2">
             <Image
-              src={photos.aboutPerson}
+              src={photos.home.galleryCustomer}
               alt="Cliente se divertindo na Nacho Man"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
@@ -186,7 +177,7 @@ export default function Home() {
           </div>
           <div className="relative overflow-hidden rounded-[1.5rem] lg:col-span-2">
             <Image
-              src={photos.foods}
+              src={photos.home.galleryFood}
               alt="Mesa com pratos da Nacho Man"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
@@ -195,13 +186,13 @@ export default function Home() {
           </div>
           <div className="relative overflow-hidden rounded-[1.5rem] bg-accent p-7 lg:col-span-1">
             <p className="font-display text-4xl uppercase leading-[0.92] text-background sm:text-5xl">
-              Chegue com fome. Saia com história.
+              Experiência mexicana completa
             </p>
-            <IconCoracao className="absolute -bottom-5 -right-4 size-24 rotate-[-12deg] opacity-20 text-background" />
+            <IconSombrero className="absolute -bottom-1 -right-2 size-28 rotate-[-12deg] opacity-20 text-background" />
           </div>
           <div className="relative overflow-hidden rounded-[1.5rem] lg:col-span-1">
             <Image
-              src={photos.masks}
+              src={photos.home.galleryDecor}
               alt="Detalhes da decoração Nacho Man"
               fill
               sizes="(min-width: 1024px) 25vw, 50vw"
@@ -268,11 +259,11 @@ export default function Home() {
         <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 text-center">
           <div>
             <DisplayTitle className="max-w-none text-[clamp(3rem,6vw,6rem)] text-background">
-              Sua cidade. <br /> Nosso tempero.
+              Sua cidade <br /> merece um mexicano.
             </DisplayTitle>
             <p className="mx-auto mt-5 max-w-lg text-sm leading-7 text-background/75">
-              Leve a experiência Nacho Man para mais mesas. Converse com a nossa equipe sobre
-              franquias.
+              Leve a experiência Nacho Man para sua cidade. Converse com a nossa equipe e abra sua
+              franquia.
             </p>
           </div>
           <ActionLink href="/contato#canais">Quero ser franqueado</ActionLink>

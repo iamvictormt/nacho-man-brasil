@@ -15,193 +15,185 @@ export const menuSections = [
   {
     name: "Burritos",
     id: "burritos",
-    statement: "Recheio de ponta a ponta. Sem espaço para fome.",
+    statement: "Os mais pedidos, todo mundo ama.",
     items: [
       {
-        name: "Burrito Nacho Man",
-        image: photo("/images/burrito/Nacho Man 2025 Ebraim Martini-229.jpg"),
+        name: "Burrito Big Man",
+        image: photo("/images/burrito/big_man.jpg"),
       },
       {
-        name: "Burrito da casa",
-        image: photo("/images/burrito/Nacho Man 2025 Ebraim Martini-234.jpg"),
-      },
-    ],
-  },
-  {
-    name: "Porções",
-    id: "porcoes",
-    statement: "Começa compartilhando. Termina disputando o último pedaço.",
-    items: [
-      {
-        name: "Porção Nacho Man",
-        image: photo("/images/porcoes/Nacho Man 2025 Ebraim Martini-549.jpg"),
+        name: "Combos",
+        image: photo("/images/burrito/combo.jpg"),
       },
       {
-        name: "Porção para dividir",
-        image: photo("/images/porcoes/Nacho Man 2025 Ebraim Martini-581.jpg"),
+        name: "Burrito Hot Chicken",
+        image: photo("/images/burrito/hot_chicken.jpg"),
       },
       {
-        name: "Favorito da mesa",
-        image: photo("/images/porcoes/Nacho Man 2025 Ebraim Martini-586.jpg"),
-      },
-    ],
-  },
-  {
-    name: "Nacho",
-    id: "nacho",
-    statement: "Camadas de sabor, molho e crocância em cada garfada.",
-    items: [
-      {
-        name: "Nacho da casa",
-        image: photo("/images/porcoes/Nacho Man 2025 Ebraim Martini-551.jpg"),
+        name: "Burrito California",
+        image: photo("/images/burrito/california.jpg"),
       },
       {
-        name: "Nacho carregado",
-        image: photo("/images/porcoes/Nacho Man 2025 Ebraim Martini-557.jpg"),
-      },
-    ],
-  },
-  {
-    name: "Doce",
-    id: "doce",
-    statement: "O final crocante, doce e exagerado que a mesa merece.",
-    items: [
-      {
-        name: "Churros Nacho Man",
-        image: photo("/images/churros/Nacho Man 2025 Ebraim Martini-464.jpg"),
-      },
-      {
-        name: "Churros com molho",
-        image: photo("/images/churros/Nacho Man 2025 Ebraim Martini-470.jpg"),
-      },
-      {
-        name: "Doce da casa",
-        image: photo("/images/churros/Nacho Man 2025 Ebraim Martini-201.jpg"),
-      },
-    ],
-  },
-  {
-    name: "Quesadilhas",
-    id: "quesadilhas",
-    statement: "Tortilla dourada por fora. Recheio generoso por dentro.",
-    items: [
-      {
-        name: "Quesadilla Nacho Man",
-        image: photo("/images/quesadilhas/Nacho Man 2025 Ebraim Martini-286.jpg"),
-      },
-      {
-        name: "Quesadilla da casa",
-        image: photo("/images/quesadilhas/Nacho Man 2025 Ebraim Martini-304.jpg"),
-      },
-      {
-        name: "Quesadilla especial",
-        image: photo("/images/quesadilhas/Nacho Man 2025 Ebraim Martini-643.jpg"),
+        name: "Burrito Blumenau",
+        image: photo("/images/burrito/blumenau.jpg"),
       },
     ],
   },
   {
     name: "Tacos",
     id: "tacos",
-    statement: "Feitos para comer com a mão, molho escorrendo e zero cerimônia.",
     items: [
       {
-        name: "Tacos Nacho Man",
-        image: photo("/images/tacos/Nacho Man 2025 Ebraim Martini-042.jpg"),
+        name: "Taco de Camarón",
+        image: photo("/images/tacos/camaron.jpg"),
       },
       {
-        name: "Tacos da casa",
-        image: photo("/images/tacos/Nacho Man 2025 Ebraim Martini-085.jpg"),
+        name: "Taco Barbacoa",
+        image: photo("/images/tacos/barbacoa.jpg"),
       },
       {
-        name: "Tacos especiais",
-        image: photo("/images/tacos/Nacho Man 2025 Ebraim Martini-657.jpg"),
+        name: "Taco vegetariano",
+        image: photo("/images/tacos/vegetariano.jpg"),
+      },
+    ],
+  },
+
+  {
+    name: "Nachos",
+    id: "nacho",
+    statement: "Perfeito para dividir.",
+    items: [
+      {
+        name: "Nacho Chili Beans",
+        image: photo("/images/nachos/chili_beans.jpg"),
+      },
+      {
+        name: "Nacho Man",
+        image: photo("/images/FALTA IMAGEM.jpg"),
       },
     ],
   },
   {
-    name: "Chips",
-    id: "chips",
-    statement: "O começo perfeito para mergulhar nos molhos da casa.",
+    name: "Porções",
+    id: "porcoes",
     items: [
       {
-        name: "Chips Nacho Man",
-        image: photo("/images/porcoes/Nacho Man 2025 Ebraim Martini-587.jpg"),
+        name: "Surf & Fries",
+        image: photo("/images/porcoes/surf&fries.jpg"),
       },
       {
-        name: "Chips para dividir",
-        image: photo("/images/porcoes/Nacho Man 2025 Ebraim Martini-549.jpg"),
+        name: "Chips & Guaca",
+        image: photo("/images/porcoes/chips&guaca.jpg"),
+      },
+      {
+        name: "Chips & Salsas",
+        image: photo("/images/porcoes/chips&salsas.jpg"),
+      },
+    ],
+  },
+
+  {
+    name: "Doces",
+    id: "doce",
+    items: [
+      {
+        name: "Churros Palito",
+        image: photo("/images/doces/palito.jpg"),
+      },
+      {
+        name: "Quesadilha doce",
+        image: photo("/images/FALTA IMAGEM.jpg"),
       },
     ],
   },
   {
-    name: "Molhos",
-    id: "molhos",
-    statement: "Frescos, cremosos e feitos para mudar cada mordida.",
+    name: "Quesadilhas",
+    id: "quesadilhas",
+    items: [
+      {
+        name: "Quesadilla La Gordita",
+        image: photo("/images/quesadilhas/la_gordita.jpg"),
+      },
+      {
+        name: "Quesadilla Barbacoa",
+        image: photo("/images/FALTA IMAGEM.jpg"),
+      },
+    ],
+  },
+
+  {
+    name: "Salsas (molhos)",
+    id: "salsas",
     items: [
       {
         name: "Guacamole",
-        image: photo("/images/molhos_adicionais/Nacho Man 2025 Ebraim Martini-119.jpg"),
+        image: photo("/images/salsa_molhos/guacamole.jpg"),
       },
       {
-        name: "Pico de gallo",
-        image: photo("/images/molhos_adicionais/Nacho Man 2025 Ebraim Martini-126.jpg"),
+        name: "Salsa Pêssego",
+        image: photo("/images/salsa_molhos/pessego.jpg"),
       },
       {
-        name: "Sour cream",
-        image: photo("/images/molhos_adicionais/Nacho Man 2025 Ebraim Martini-130.jpg"),
+        name: "Pico de Gallo",
+        image: photo("/images/salsa_molhos/pico_de_gallo.jpg"),
+      },
+      {
+        name: "Salsa Verde",
+        image: photo("/images/salsa_molhos/salsa_verde.jpg"),
       },
     ],
   },
   {
-    name: "Bowls",
+    name: "Bowls Mexicanos",
     id: "bowls",
-    statement: "Uma refeição completa, colorida e montada do nosso jeito.",
     items: [
       {
-        name: "Bowl Nacho Man",
-        image: photo("/images/bowl/Nacho Man 2025 Ebraim Martini-631.jpg"),
+        name: "Bowl El Classico",
+        image: photo("/images/bowl/el_classico.jpg"),
       },
       {
-        name: "Bowl da casa",
-        image: photo("/images/bowl/Nacho Man 2025 Ebraim Martini-650.jpg"),
+        name: "Bowl El Caliente",
+        image: photo("/images/bowl/el_caliente.jpg"),
       },
     ],
   },
   {
-    name: "Sodas",
-    id: "sodas",
-    statement: "Sabores gelados para equilibrar a pimenta e continuar a conversa.",
+    name: "Bebidas",
+    id: "bebidas",
     items: [
       {
-        name: "Soda Nacho Man",
-        image: photo("/images/sodas/Nacho Man 2025 Ebraim Martini-523.jpg"),
+        name: "Pink Limonade",
+        image: photo("/images/FALTA IMAGEM.jpg"),
       },
       {
-        name: "Soda da casa",
-        image: photo("/images/sodas/Nacho Man 2025 Ebraim Martini-529.jpg"),
+        name: "Lollipop",
+        image: photo("/images/bebidas/lollipop.jpg"),
       },
       {
-        name: "Soda especial",
-        image: photo("/images/sodas/Nacho Man 2025 Ebraim Martini-539.jpg"),
+        name: "Sodas Mexicanas",
+        image: photo("/images/bebidas/sodas_mexicanas.jpg"),
       },
     ],
   },
   {
     name: "Drinks",
     id: "drinks",
-    statement: "Misturas autorais, cores intensas e uma mesa que pede mais uma rodada.",
     items: [
       {
-        name: "Drink Nacho Man",
-        image: photo("/images/drinks/Nacho Man 2025 Ebraim Martini-561.jpg"),
+        name: "Avatar",
+        image: photo("/images/drinks/avatar.jpg"),
       },
       {
-        name: "Drink da casa",
-        image: photo("/images/drinks/Nacho Man 2025 Ebraim Martini-609.jpg"),
+        name: "Palomita",
+        image: photo("/images/drinks/palomita.jpg"),
       },
       {
-        name: "Drink especial",
-        image: photo("/images/drinks/Nacho Man 2025 Ebraim Martini-668.jpg"),
+        name: "Moranguita",
+        image: photo("/images/drinks/moranguita.jpg"),
+      },
+      {
+        name: "Mucho Loco",
+        image: photo("/images/FALTA IMAGEM.jpg"),
       },
     ],
   },

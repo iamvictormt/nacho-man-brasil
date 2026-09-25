@@ -7,7 +7,6 @@ import { usePathname } from "next/navigation";
 import { ArrowUpRight, Building2, MapPin, Menu, Store, X } from "lucide-react";
 import { IconMascara } from "@/components/brand-icons";
 import { Button } from "@/components/ui/button";
-import logoWhite from "@/assets/logo-white.png";
 
 const nav = [
   { label: "Home", href: "/" },
@@ -55,7 +54,7 @@ export function SiteHeader() {
         <div className="site-container grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 xl:flex">
           <Link href="/" className="flex min-w-0 items-center">
             <Image
-              src={logoWhite}
+              src="/images/brand/logo-white.png"
               alt="Nacho Man"
               width={220}
               height={40}
@@ -134,13 +133,13 @@ export function SiteHeader() {
             aria-hidden="true"
             className="pointer-events-none absolute -bottom-4 -left-4 font-display text-[12rem] leading-none text-background/[0.025] sm:text-[18rem]"
           >
-            2014
+            2018
           </span>
 
           <div className="relative z-10 mx-auto flex min-h-full max-w-6xl flex-col">
             <div className="mb-5 flex items-center justify-between text-[0.6rem] font-extrabold uppercase tracking-[0.18em]">
               <span className="text-primary">Escolha seu caminho</span>
-              <span className="text-background/40">Blumenau · desde 2014</span>
+              <span className="text-background/40">Blumenau · desde 2018</span>
             </div>
 
             <div className="grid flex-1 gap-8 md:grid-cols-[1.35fr_0.65fr] md:items-start md:gap-10">

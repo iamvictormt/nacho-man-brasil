@@ -6,7 +6,6 @@ import { useState } from "react";
 import { ChevronRight, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import logoWhite from "@/assets/logo-white.png";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -28,9 +27,15 @@ export function SiteFooter() {
       <div className="site-container">
         <div className="grid gap-10 border-b border-background/15 pb-12 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1.3fr]">
           <div>
-            <Image src={logoWhite} alt="Nacho Man" width={220} height={40} className="h-9 w-auto" />
+            <Image
+              src="/images/brand/logo-white.png"
+              alt="Nacho Man"
+              width={220}
+              height={40}
+              className="h-9 w-auto"
+            />
             <p className="mt-3 max-w-[14rem] text-sm leading-6 text-background/60">
-              Mexicano do nosso jeito. Feito para comer junto e lembrar depois.
+              Autêntica comida mexicana agora no Brasil.
             </p>
           </div>
           <div>

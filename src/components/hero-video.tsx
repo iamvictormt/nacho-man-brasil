@@ -30,7 +30,7 @@ export function HeroVideo() {
         loop
         playsInline
         preload="metadata"
-        poster={photos.heroBurrito.src}
+        poster={photos.home.heroVideoPoster.src}
         aria-hidden="true"
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}

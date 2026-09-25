@@ -1,7 +1,7 @@
-import { IconCacto, IconCoracao, IconFogo } from "@/components/brand-icons";
+import { IconBurrito, IconCacto, IconCoracao, IconEstrela, IconFogo, IconPimenta } from "@/components/brand-icons";
 import { cn } from "@/lib/utils";
 
-const tickerIcons = [IconCoracao, IconFogo, IconCacto];
+const tickerIcons = [IconCoracao, IconFogo, IconCacto, IconEstrela, IconPimenta];
 
 export function StreetTicker({
   items,

@@ -48,7 +48,7 @@ export function StoreLocator() {
       <section className="grid lg:min-h-[760px] lg:grid-cols-[.85fr_1.6fr]">
         <div className="relative isolate overflow-hidden bg-foreground px-6 py-12 text-background sm:px-10 lg:px-12 lg:py-16 xl:pl-16">
           <Image
-            src={photos.table}
+            src={photos.storeLocator.background}
             alt=""
             fill
             priority

@@ -12,33 +12,33 @@ import { cn } from "@/lib/utils";
 const moods = [
   {
     id: "bagunca",
-    tab: "Quero bagunça",
+    tab: "Porções suculentas",
     note: "Modo: dividir (ou não)",
     title: "Nachos carregados",
     copy: "Crocante, molho por cima e aquela disputa educada pelo último pedaço.",
-    image: photos.portions,
+    image: photos.home.loadedNachos,
     href: "/cardapio#nacho",
     tags: ["Crocante", "Muito molho", "Pra mesa"],
     color: "bg-background text-foreground",
   },
   {
     id: "brabo",
-    tab: "Tô com fome",
+    tab: "Burritos deliciosos",
     note: "Modo: duas mãos",
     title: "Burrito sem miséria",
     copy: "Recheio de ponta a ponta, tortilla macia e zero espaço para fome.",
-    image: photos.burrito,
+    image: photos.home.burrito,
     href: "/cardapio#burritos",
     tags: ["Recheado", "Sem talher", "Favorito"],
     color: "bg-background text-foreground",
   },
   {
     id: "doce",
-    tab: "Mereço um doce",
+    tab: "Sobremesas",
     note: "Modo: só mais um",
     title: "Churros de respeito",
     copy: "Dourado, crocante e pronto para encerrar a mesa do jeito certo.",
-    image: photos.churrosSocial,
+    image: photos.home.churros,
     href: "/cardapio#doce",
     tags: ["Crocante", "Docinho", "Sem arrependimento"],
     color: "bg-background text-foreground",
@@ -55,13 +55,11 @@ export function FlavorFinder() {
       containerClassName="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-16"
     >
       <div>
-        <Eyebrow className="text-primary">Escolha sua aventura</Eyebrow>
-        <DisplayTitle className="max-w-[10ch]">
-          Qual é a sua <span className="text-primary">fome?</span>
+        <DisplayTitle className="max-w-[11ch]">
+          Mexicano combina com <span className="text-primary">sua fome!</span>
         </DisplayTitle>
         <BodyCopy className="mt-6 text-background/65">
-          Sem teste de personalidade. Só três perguntas muito sérias sobre o que vai chegar na sua
-          mesa.
+          Quem disse que comida mexicana só tem pimenta?
         </BodyCopy>
 
         <div className="mt-8 grid gap-4 lg:gap-2" role="tablist" aria-label="Escolha seu tipo de fome">

@@ -170,7 +170,7 @@ export function EditorialHero({
   action,
   variant,
 }: {
-  eyebrow: string;
+  eyebrow: string | undefined;
   title: string;
   accent: string;
   copy: string;
@@ -188,7 +188,7 @@ export function EditorialHero({
         : "object-center";
 
   return (
-    <section className="relative isolate flex min-h-[650px] items-center overflow-hidden bg-foreground text-background md:min-h-[740px]">
+    <section className="relative isolate flex min-h-[650px] items-center overflow-hidden bg-foreground text-background md:min-h-[900px]">
       <Image
         src={image}
         alt={alt}
@@ -203,8 +203,8 @@ export function EditorialHero({
       />
       <div className="site-container pb-14 pt-32 md:pb-20 md:pt-40">
         <div className="max-w-4xl motion-safe:animate-[rise-in_700ms_cubic-bezier(0.16,1,0.3,1)_both]">
-          <Eyebrow className="text-primary">{eyebrow}</Eyebrow>
-          <h1 className="mt-6 max-w-[13ch] font-display text-[clamp(3.3rem,8vw,8.2rem)] leading-[0.9] tracking-[-0.035em] uppercase">
+          {eyebrow && <Eyebrow className="text-primary">{eyebrow}</Eyebrow>}
+          <h1 className="mt-6 max-w-[14ch] font-display text-[clamp(3.3rem,8vw,8.2rem)] leading-[0.9] tracking-[-0.035em] uppercase">
             {title}
             <span className="block text-primary">{accent}</span>
           </h1>
@@ -214,7 +214,7 @@ export function EditorialHero({
           </ActionLink>
           {variant === "story" && (
             <p className="mt-10 text-[0.6rem] font-bold uppercase tracking-[0.14em] text-background/65">
-              Blumenau, 2014 — O começo de muitos encontros.
+              Blumenau, 2018 — O início de um sonho.
             </p>
           )}
         </div>

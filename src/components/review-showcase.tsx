@@ -29,17 +29,12 @@ export function ReviewShowcase() {
 
   return (
     <div>
-      <div className="grid gap-7 border-b border-primary/45 pb-9 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-end lg:gap-16 lg:pb-12">
+      <div className="grid gap-7 pb-9 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-end lg:gap-16 lg:pb-12">
         <div>
-          <Eyebrow className="text-primary">Quem prova, conta</Eyebrow>
-          <DisplayTitle className="max-w-[9ch] text-background">
-            A mesa fala <span className="text-primary">por nós.</span>
+          <DisplayTitle className="max-w-[12ch] text-background">
+            O que estão <span className="text-primary">falando por aí.</span>
           </DisplayTitle>
         </div>
-        <BodyCopy className="max-w-sm text-background/65 lg:pb-2">
-          Sem publi e sem texto ensaiado. Só avaliações reais de quem provou e já sabe o caminho
-          de volta.
-        </BodyCopy>
       </div>
 
       <div className="relative isolate grid min-h-[31rem] place-items-center overflow-hidden border-b border-primary/45 py-14 sm:min-h-[34rem] sm:py-20">
@@ -48,12 +43,6 @@ export function ReviewShowcase() {
           className="pointer-events-none absolute -left-3 top-8 -z-10 font-display text-[13rem] leading-none text-primary/[0.08] sm:text-[18rem]"
         >
           “
-        </span>
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-2 bottom-0 -z-10 font-display text-[10rem] leading-none text-background/[0.035] sm:text-[15rem]"
-        >
-          0{activeReview + 1}
         </span>
 
         <figure
@@ -93,7 +82,6 @@ export function ReviewShowcase() {
                   : "text-background/50 hover:bg-primary/[0.07] hover:text-background"
               }`}
             >
-              <span className="text-[0.58rem] font-extrabold tracking-[0.16em]">0{index + 1}</span>
               <span className="text-[0.65rem] font-extrabold tracking-[0.08em] sm:text-xs">
                 {item.name}
               </span>

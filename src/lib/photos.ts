@@ -1,103 +1,38 @@
-// Fotos originais em public/images. Atualize os caminhos aqui após a conversão para WebP.
 import type { StaticImageData } from "next/image";
 
+const photo = (src: string, width = 6000, height = 4000): StaticImageData => ({
+  src,
+  width,
+  height,
+});
+
 export const photos = {
-  heroBurrito: {
-    src: "/images/burrito/Nacho Man 2025 Ebraim Martini-234.jpg",
-    width: 6000,
-    height: 4000,
+  home: {
+    heroVideoPoster: photo("/images/burrito/big_man.jpg"),
+    burrito: photo("/images/burrito/hot_chicken.jpg"),
+    tacos: photo("/images/tacos/camaron.jpg"),
+    quesadilla: photo("/images/quesadilhas/la_gordita.jpg"),
+    loadedNachos: photo("/images/nachos/chili_beans.jpg"),
+    churros: photo("/images/doces/palito.jpg"),
+    balnearioFacade: photo("/images/ambiente/fachada_balneario.jpg", 2364, 1330),
+    galleryCustomer: photo("/images/pessoas/FE NachoMan-19.JPG", 3909, 5863),
+    galleryFood: photo("/images/ambiente/Nacho Man 2025 Ebraim Martini-462.jpg"),
+    galleryDecor: photo("/images/ambiente/Nacho Man 2025 Ebraim Martini-404.jpg"),
   },
-  burrito: {
-    src: "/images/burrito/Nacho Man 2025 Ebraim Martini-229.jpg",
-    width: 6000,
-    height: 4000,
+  about: {
+    heroGroup: photo("/images/pessoas/_DSC7193.jpg", 3936, 2216),
+    blumenauInterior: photo("/images/ambiente/interior_blumenau.webp", 1264, 842),
+    customerExperience: photo("/images/pessoas/FE NachoMan-102.JPG", 3835, 5753),
+    foodTable: photo("/images/ambiente/Nacho Man 2025 Ebraim Martini-107.jpg", 5731, 3821),
+    chipsAndGuacamole: photo("/images/porcoes/chips&guaca.jpg"),
   },
-  chips: {
-    src: "/images/porcoes/Nacho Man 2025 Ebraim Martini-557.jpg",
-    width: 6000,
-    height: 4000,
+  menu: {
+    heroGroup: photo("/images/ambiente/Nacho Man 2025 Ebraim Martini-142.jpg", 6000, 4000),
   },
-  churros: {
-    src: "/images/churros/Nacho Man 2025 Ebraim Martini-464.jpg",
-    width: 6000,
-    height: 4000,
+  contact: {
+    heroGroup: photo("/images/pessoas/FE NachoMan-55.JPG", 4000, 6000),
   },
-  churrosSocial: {
-    src: "/images/churros/Nacho Man 2025 Ebraim Martini-470.jpg",
-    width: 6000,
-    height: 4000,
+  storeLocator: {
+    background: photo("/images/ambiente/Nacho Man 2025 Ebraim Martini-093.jpg"),
   },
-  table: {
-    src: "/images/ambiente/Nacho Man 2025 Ebraim Martini-093.jpg",
-    width: 6000,
-    height: 4000,
-  },
-  feast: {
-    src: "/images/ambiente/Nacho Man 2025 Ebraim Martini-123.jpg",
-    width: 6000,
-    height: 4000,
-  },
-  preparation: {
-    src: "/images/ambiente/Nacho Man 2025 Ebraim Martini-146.jpg",
-    width: 6000,
-    height: 4000,
-  },
-  masks: {
-    src: "/images/ambiente/Nacho Man 2025 Ebraim Martini-404.jpg",
-    width: 6000,
-    height: 4000,
-  },
-  foods: {
-    src: "/images/ambiente/Nacho Man 2025 Ebraim Martini-462.jpg",
-    width: 6000,
-    height: 4000,
-  },
-  balneario: {
-    src: "/images/ambiente/fachada_balneario.jpg",
-    width: 6000,
-    height: 4000,
-  },
-  blumenau: {
-    src: "/images/ambiente/fachada_blumenau.webp",
-    width: 6000,
-    height: 4000,
-  },
-  friends: { src: "/images/pessoas/FE NachoMan-65.JPG", width: 3480, height: 5220 },
-  homePeople: { src: "/images/pessoas/_DSC7193.jpg", width: 3936, height: 2216 },
-  contact: { src: "/images/pessoas/FE NachoMan-55.JPG", width: 4000, height: 6000 },
-  aboutPerson: { src: "/images/pessoas/FE NachoMan-19.JPG", width: 3909, height: 5863 },
-  aboutDrink: { src: "/images/pessoas/FE NachoMan-31.JPG", width: 4000, height: 6000 },
-  aboutNachos: { src: "/images/pessoas/FE NachoMan-112.JPG", width: 4000, height: 6000 },
-  aboutFood: {
-    src: "/images/ambiente/Nacho Man 2025 Ebraim Martini-107.jpg",
-    width: 5731,
-    height: 3821,
-  },
-  aboutAtmosphere: { src: "/images/pessoas/FE NachoMan-102.JPG", width: 3835, height: 5753 },
-  quesadilla: {
-    src: "/images/quesadilhas/Nacho Man 2025 Ebraim Martini-643.jpg",
-    width: 6000,
-    height: 4000,
-  },
-  tacos: { src: "/images/tacos/Nacho Man 2025 Ebraim Martini-042.jpg", width: 6000, height: 4000 },
-  guacamole: {
-    src: "/images/molhos_adicionais/Nacho Man 2025 Ebraim Martini-119.jpg",
-    width: 5333,
-    height: 4000,
-  },
-  pico: {
-    src: "/images/molhos_adicionais/Nacho Man 2025 Ebraim Martini-126.jpg",
-    width: 6000,
-    height: 4000,
-  },
-  sourCream: {
-    src: "/images/molhos_adicionais/Nacho Man 2025 Ebraim Martini-130.jpg",
-    width: 5333,
-    height: 4000,
-  },
-  portions: {
-    src: "/images/porcoes/Nacho Man 2025 Ebraim Martini-581.jpg",
-    width: 6000,
-    height: 4000,
-  },
-} satisfies Record<string, StaticImageData>;
+} as const;

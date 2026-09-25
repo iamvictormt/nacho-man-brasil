@@ -9,14 +9,28 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
 import { menuSections, type MenuItem } from "@/lib/menu";
+import { cn } from "@/lib/utils";
+import { photos } from "@/lib/photos";
+
+const menuGridLayouts = {
+  1: "auto-rows-[360px] md:grid-cols-1 md:auto-rows-[460px] lg:auto-rows-[560px]",
+  2: "auto-rows-[290px] md:grid-cols-2 md:auto-rows-[360px] lg:auto-rows-[420px]",
+  3: "auto-rows-[290px] md:grid-cols-2",
+  4: "auto-rows-[290px] md:grid-cols-2 md:grid-rows-[290px_290px_340px]",
+  5: "auto-rows-[290px] md:grid-cols-2",
+} as const;
+
+type MenuGridCount = keyof typeof menuGridLayouts;
 
 function MenuImage({
   item,
-  featured = false,
+  className,
+  sizes,
   onOpen,
 }: {
   item: MenuItem;
-  featured?: boolean;
+  className?: string;
+  sizes: string;
   onOpen: () => void;
 }) {
   return (
@@ -24,13 +38,16 @@ function MenuImage({
       type="button"
       onClick={onOpen}
       aria-label={`Ampliar foto de ${item.name}`}
-      className={`group relative min-h-[290px] overflow-hidden rounded-[2rem] bg-foreground ${featured ? "md:row-span-2 md:min-h-[600px]" : "md:min-h-[290px]"}`}
+      className={cn(
+        "group relative min-h-[290px] overflow-hidden rounded-[2rem] bg-foreground",
+        className,
+      )}
     >
       <Image
         src={item.image}
         alt={item.name}
         fill
-        sizes={featured ? "(min-width: 1024px) 46vw, 100vw" : "(min-width: 1024px) 25vw, 100vw"}
+        sizes={sizes}
         className="object-cover transition-transform duration-700 group-hover:scale-105"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-foreground/75 via-transparent to-transparent" />
@@ -43,6 +60,43 @@ function MenuImage({
         </span>
       </span>
     </button>
+  );
+}
+
+function MenuImageGrid({
+  items,
+  sectionId,
+  onOpen,
+}: {
+  items: MenuItem[];
+  sectionId: string;
+  onOpen: (itemIndex: number) => void;
+}) {
+  const layoutCount = Math.min(Math.max(items.length, 1), 5) as MenuGridCount;
+  const hasFeaturedImage = items.length >= 3;
+  const wideImageSizes = "(min-width: 1024px) 64vw, (min-width: 768px) 100vw, 100vw";
+  const regularImageSizes =
+    "(min-width: 1024px) 32vw, (min-width: 768px) 50vw, 100vw";
+
+  return (
+    <div className={cn("grid gap-4", menuGridLayouts[layoutCount])}>
+      {items.map((item, itemIndex) => {
+        const isWideFooter = items.length === 4 && itemIndex === 3;
+
+        return (
+          <MenuImage
+            key={`${sectionId}-${item.name}`}
+            item={item}
+            className={cn(
+              hasFeaturedImage && itemIndex === 0 && "md:row-span-2",
+              isWideFooter && "md:col-span-2",
+            )}
+            sizes={items.length === 1 || isWideFooter ? wideImageSizes : regularImageSizes}
+            onOpen={() => onOpen(itemIndex)}
+          />
+        );
+      })}
+    </div>
   );
 }
 
@@ -178,7 +232,7 @@ function MenuCarousel({
 }
 
 export default function CardapioPage() {
-  const heroImage = menuSections[1].items[1].image;
+  const heroImage = photos.menu.heroGroup;
   const [activeGallery, setActiveGallery] = useState<ActiveGallery | null>(null);
 
   return (
@@ -187,10 +241,10 @@ export default function CardapioPage() {
 
       <EditorialHero
         variant="menu"
-        eyebrow="Cardápio / Encontre seu favorito"
-        title="Escolha com os olhos."
-        accent="Volte pelo sabor."
-        copy="Burritos bem recheados, nachos para dividir e muito mais. Explore as categorias e encontre sua próxima vontade."
+        eyebrow=""
+        title="Comida mexicana"
+        accent="raiz e tex-mex."
+        copy="Tem pra todos os gostos, pra quem gosta de sabor raíz e pra quem ama o Tex-Mex."
         image={heroImage}
         alt="Porção Nacho Man para compartilhar"
         href="#burritos"
@@ -243,23 +297,17 @@ export default function CardapioPage() {
                     <p className="mt-6 max-w-sm font-heading text-2xl font-extrabold uppercase leading-tight">
                       {section.statement}
                     </p>
-                    <p className="mt-5 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
-                      Fotos oficiais
-                    </p>
                   </div>
                 </div>
 
                 <div
-                  className={`grid auto-rows-[290px] gap-4 md:grid-cols-2 lg:col-span-8 ${reversed ? "lg:order-1" : "lg:order-2"}`}
+                  className={`lg:col-span-8 ${reversed ? "lg:order-1" : "lg:order-2"}`}
                 >
-                  {section.items.map((item, itemIndex) => (
-                    <MenuImage
-                      key={`${section.id}-${item.name}`}
-                      item={item}
-                      featured={section.items.length > 2 && itemIndex === 0}
-                      onOpen={() => setActiveGallery({ sectionIndex, itemIndex })}
-                    />
-                  ))}
+                  <MenuImageGrid
+                    items={section.items}
+                    sectionId={section.id}
+                    onOpen={(itemIndex) => setActiveGallery({ sectionIndex, itemIndex })}
+                  />
                 </div>
               </div>
             </section>
