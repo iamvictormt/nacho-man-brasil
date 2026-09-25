@@ -24,16 +24,16 @@ import { StreetTicker } from "@/components/street-ticker";
 import { photos } from "@/lib/photos";
 
 const timeline = [
-  { date: "2018", title: "A primeira mesa", copy: "Nossa história começa em Blumenau." },
+  { date: "2018", title: "Tudo começou com um sonho.", copy: "Uma garagem, uma ideia e a coragem de transformar paixão por comida mexicana em uma marca." },
   {
     date: "Hoje",
-    title: "Mais gente por perto",
-    copy: "Novos sabores, novas mesas e o mesmo cuidado.",
+    title: "Um sonho que ganhou o Brasil.",
+    copy: "Mais de 30 unidades levando a experiência Nacho Man para diferentes lugares do país.",
   },
   {
     date: "Amanhã",
-    title: "O próximo encontro",
-    copy: "Seguimos levando nosso jeito a mais cidades.",
+    title: "O próximo capítulo está só começando.",
+    copy: "Ser referência nacional em comida mexicana de qualidade, experiência e personalidade.",
   },
 ];
 
@@ -145,28 +145,38 @@ export default function QuemSomosPage() {
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
           <div className="lg:col-span-5">
             <DisplayTitle className="max-w-[12ch]">
-              Não é só comida, é
-              <span className="text-primary">
-                <br /> a experiência completa.
-              </span>
+              Por trás da experiência, <br />
+              <span className="text-primary">existe uma fábrica.</span>
             </DisplayTitle>
+            <BodyCopy className="my-7 text-background/65">
+              A experiência Nacho Man começa muito antes de chegar a sua mesa.
+            </BodyCopy>
+            <BodyCopy className="my-7 text-background/65">
+              Na Nacho Factory, desenvolvemos e produzimos boa parte dos produtos que fazem parte da
+              nossa operação: proteínas, molhos, churros, sobremesas e muito mais.
+            </BodyCopy>
+
+            <BodyCopy className="my-7 text-background/65">
+              Uma estrutura própria criada para garantir padrão, qualidade e escala, abastecendo
+              nossas unidades e levando o sabor Nacho Man para diferentes lugares do Brasil.
+            </BodyCopy>
+
+            <BodyCopy className="my-7 text-background/65">
+              Para entregar uma experiência completa, também precisamos construir tudo o que existe
+              por trás dela.
+            </BodyCopy>
           </div>
 
           <figure className="group relative min-h-[560px] overflow-hidden rounded-[2rem] lg:col-span-7 lg:min-h-[840px]">
             <Image
-              src={photos.about.customerExperience}
-              alt="Cliente aproveitando burritos na Nacho Man"
+              src={photos.about.nachoFactoryFacade}
+              alt="Fachada da Nacho Factory"
               fill
               sizes="(min-width: 1024px) 58vw, 100vw"
               style={{ objectPosition: "50% 12%", transformOrigin: "50% 12%" }}
               className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/10 to-transparent" />
-            <figcaption className="absolute inset-x-5 bottom-5 sm:inset-x-8 sm:bottom-8">
-              <p className="mt-5 max-w-[15ch] font-display text-4xl uppercase leading-[0.95] text-background sm:text-6xl">
-                A experiência <span className="text-primary">Nacho Man.</span>
-              </p>
-            </figcaption>
+
           </figure>
         </div>
       </PageSection>

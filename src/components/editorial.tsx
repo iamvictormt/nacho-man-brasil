@@ -1,6 +1,6 @@
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { ORDER_URL } from "@/lib/links";
@@ -219,13 +219,6 @@ export function EditorialHero({
           )}
         </div>
       </div>
-      <a
-        href={href}
-        aria-label={action}
-        className="absolute bottom-5 right-5 grid size-12 place-items-center rounded-full border border-background/35 text-background transition hover:border-primary hover:bg-primary hover:text-foreground md:bottom-8 md:right-8"
-      >
-        <ArrowDown size={18} aria-hidden="true" />
-      </a>
     </section>
   );
 }

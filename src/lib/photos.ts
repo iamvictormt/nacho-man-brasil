@@ -22,7 +22,7 @@ export const photos = {
   about: {
     heroGroup: photo("/images/pessoas/clientes-mesa-nacho-man.webp", 2560, 1441),
     blumenauInterior: photo("/images/ambiente/interior-nacho-man-blumenau.webp", 1264, 842),
-    customerExperience: photo("/images/pessoas/cliente-com-burritos.webp", 2000, 3000),
+    nachoFactoryFacade: photo("/images/ambiente/fachada-nacho-factory.webp", 2000, 1333),
     foodTable: photo("/images/ambiente/mesa-burritos-tacos.webp"),
     chipsAndGuacamole: photo("/images/porcoes/chips-guacamole.webp"),
   },
