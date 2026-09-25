@@ -12,6 +12,7 @@ const navItems = [
   { label: "Quem Somos", href: "/quem-somos" },
   { label: "Cardápio", href: "/cardapio" },
   { label: "Contato", href: "/contato" },
+  { label: "Unidades", href: "/unidades" },
   { label: "Encontrar loja", href: "/encontrar-loja" },
 ];
 
@@ -64,7 +65,7 @@ export function SiteFooter() {
                 rel="noreferrer"
                 className="flex items-center gap-2 hover:text-primary"
               >
-                <Instagram className="size-4" /> Instagram
+                <Instagram className="size-4" /> @nachoman
               </a>
             </div>
           </div>

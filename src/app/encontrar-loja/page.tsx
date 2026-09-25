@@ -1,18 +1,23 @@
 import type { Metadata } from "next";
-import { SiteHeader } from "@/components/site-header";
+
 import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 import { StoreLocator } from "@/components/store-locator";
+import { getStoresWithGalleries } from "@/lib/store-gallery";
 
 export const metadata: Metadata = {
   title: "Encontrar loja | Nacho Man",
-  description: "Encontre uma unidade Nacho Man, consulte os horários e trace sua rota.",
+  description:
+    "Encontre a unidade Nacho Man mais próxima e confira horários, atendimento e formas de pagamento.",
 };
 
 export default function EncontrarLojaPage() {
+  const stores = getStoresWithGalleries();
+
   return (
-    <main className="bg-background pt-[69px] text-foreground lg:pt-[65px]">
+    <main className="min-h-screen overflow-x-clip bg-background text-foreground">
       <SiteHeader />
-      <StoreLocator />
+      <StoreLocator stores={stores} />
       <SiteFooter />
     </main>
   );

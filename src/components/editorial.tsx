@@ -159,6 +159,41 @@ export function SectionHeading({
   );
 }
 
+export function EditorialHeroContent({
+  eyebrow,
+  title,
+  accent,
+  copy,
+  note,
+  children,
+}: {
+  eyebrow?: string;
+  title: string;
+  accent: string;
+  copy: string;
+  note?: React.ReactNode;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="site-container relative pb-14 pt-32 md:pb-20 md:pt-40">
+      <div className="max-w-4xl motion-safe:animate-[rise-in_700ms_cubic-bezier(0.16,1,0.3,1)_both]">
+        {eyebrow && <Eyebrow className="text-primary">{eyebrow}</Eyebrow>}
+        <h1 className="mt-6 max-w-[14ch] font-display text-[clamp(3.3rem,8vw,8.2rem)] leading-[0.9] tracking-[-0.035em] uppercase">
+          {title}
+          <span className="block text-primary">{accent}</span>
+        </h1>
+        <BodyCopy className="my-7 max-w-[31rem] text-background/80">{copy}</BodyCopy>
+        <div className="flex flex-wrap items-center gap-5">{children}</div>
+        {note && (
+          <p className="mt-10 text-[0.6rem] font-bold uppercase tracking-[0.14em] text-background/65">
+            {note}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export function EditorialHero({
   eyebrow,
   title,
@@ -178,13 +213,15 @@ export function EditorialHero({
   alt: string;
   href: string;
   action: string;
-  variant: "story" | "menu" | "contact";
+  variant: "story" | "menu" | "contact" | "store";
 }) {
   const position =
     variant === "contact"
       ? "object-[center_42%]"
       : variant === "story"
         ? "object-[62%_center] md:object-[center_40%]"
+        : variant === "store"
+          ? "object-[58%_center] md:object-center"
         : "object-center";
 
   return (
@@ -201,24 +238,17 @@ export function EditorialHero({
         className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,oklch(0.12_0_0/0.9),oklch(0.12_0_0/0.52)_58%,oklch(0.12_0_0/0.15)),linear-gradient(0deg,oklch(0.12_0_0/0.68),transparent_52%)]"
         aria-hidden="true"
       />
-      <div className="site-container pb-14 pt-32 md:pb-20 md:pt-40">
-        <div className="max-w-4xl motion-safe:animate-[rise-in_700ms_cubic-bezier(0.16,1,0.3,1)_both]">
-          {eyebrow && <Eyebrow className="text-primary">{eyebrow}</Eyebrow>}
-          <h1 className="mt-6 max-w-[14ch] font-display text-[clamp(3.3rem,8vw,8.2rem)] leading-[0.9] tracking-[-0.035em] uppercase">
-            {title}
-            <span className="block text-primary">{accent}</span>
-          </h1>
-          <BodyCopy className="my-7 max-w-[31rem] text-background/80">{copy}</BodyCopy>
-          <ActionLink href={href} light>
-            {action}
-          </ActionLink>
-          {variant === "story" && (
-            <p className="mt-10 text-[0.6rem] font-bold uppercase tracking-[0.14em] text-background/65">
-              Blumenau, 2018 — O início de um sonho.
-            </p>
-          )}
-        </div>
-      </div>
+      <EditorialHeroContent
+        eyebrow={eyebrow}
+        title={title}
+        accent={accent}
+        copy={copy}
+        note={variant === "story" ? "Blumenau, 2018 — O início de um sonho." : undefined}
+      >
+        <ActionLink href={href} light>
+          {action}
+        </ActionLink>
+      </EditorialHeroContent>
     </section>
   );
 }

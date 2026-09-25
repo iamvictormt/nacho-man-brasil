@@ -88,11 +88,6 @@ export default function QuemSomosPage() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/10 to-transparent" />
 
-            <div className="absolute left-5 top-5 flex items-center gap-3 rounded-full bg-background px-4 py-2 text-[0.62rem] font-extrabold uppercase tracking-[0.14em] text-foreground sm:left-8 sm:top-8">
-              <span className="size-2 rounded-full bg-accent" />
-              Blumenau · SC
-            </div>
-
             <div className="absolute inset-x-5 bottom-5 sm:inset-x-8 sm:bottom-8">
               <p className="max-w-[12ch] font-display text-[clamp(3.4rem,7vw,7rem)] uppercase leading-[0.86] tracking-[-0.025em] text-background">
                 De Blumenau <br />

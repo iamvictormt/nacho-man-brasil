@@ -17,7 +17,7 @@ import {
 } from "@/components/editorial";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { ORDER_URL } from "@/lib/links";
+import { FRANCHISE_WHATSAPP_URL, ORDER_URL, WHATSAPP_DISPLAY, WHATSAPP_URL } from "@/lib/links";
 import { photos } from "@/lib/photos";
 
 const channels = [
@@ -25,8 +25,8 @@ const channels = [
     Icon: MessageCircle,
     title: "Bora conversar?",
     label: "WhatsApp",
-    value: "(47) 9 9161-0728",
-    href: "https://wa.me/5547991610728",
+    value: WHATSAPP_DISPLAY,
+    href: WHATSAPP_URL,
     action: "Abrir WhatsApp",
   },
   {
@@ -41,7 +41,7 @@ const channels = [
     Icon: MapPin,
     title: "Nossa origem tem endereço.",
     label: "Blumenau · SC",
-    value: "Rua Wilhelm Schellworth , 200 - Blumenau, SC",
+    value: "Rua Wilhelm Schellworth, 200 · Blumenau, SC",
   },
 ];
 
@@ -78,35 +78,56 @@ export default function ContatoPage() {
         </SectionHeading>
 
         <div className="grid gap-4 md:grid-cols-3">
-          {channels.map(({ Icon, ...channel }) => (
-            <a
-              href={channel.href}
-              key={channel.label}
-              className="group flex min-h-80 flex-col gap-6 rounded-[1.5rem] border border-border bg-card p-7 transition duration-200 hover:-translate-y-1 hover:bg-primary"
-            >
-              <div className="flex justify-between gap-4">
-                <Icon size={26} />
-                <span className="text-[0.65rem] font-extrabold uppercase tracking-[0.16em]">
-                  {channel.label}
-                </span>
-              </div>
-              <h2 className="font-heading text-4xl font-extrabold uppercase leading-none">
-                {channel.title}
-              </h2>
-              <p className="break-words text-sm leading-7">{channel.value}</p>
-              <span className="mt-auto flex items-center justify-between border-t border-foreground/15 pt-5 text-xs font-extrabold uppercase">
-                {channel.action}
-                <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </span>
-            </a>
-          ))}
+          {channels.map(({ Icon, ...channel }) => {
+            const content = (
+              <>
+                <div className="flex justify-between gap-4">
+                  <Icon size={26} />
+                  <span className="text-[0.65rem] font-extrabold uppercase tracking-[0.16em]">
+                    {channel.label}
+                  </span>
+                </div>
+                <h2 className="font-heading text-4xl font-extrabold uppercase leading-none">
+                  {channel.title}
+                </h2>
+                <p className="break-words text-sm leading-7">{channel.value}</p>
+                {channel.action && (
+                  <span className="mt-auto flex items-center justify-between border-t border-foreground/15 pt-5 text-xs font-extrabold uppercase">
+                    {channel.action}
+                    <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </span>
+                )}
+              </>
+            );
+
+            if (!channel.href) {
+              return (
+                <article
+                  key={channel.label}
+                  className="flex min-h-80 flex-col gap-6 rounded-[1.5rem] border border-border bg-card p-7"
+                >
+                  {content}
+                </article>
+              );
+            }
+
+            return (
+              <a
+                href={channel.href}
+                key={channel.label}
+                className="group flex min-h-80 flex-col gap-6 rounded-[1.5rem] border border-border bg-card p-7 transition duration-200 hover:-translate-y-1 hover:bg-primary"
+              >
+                {content}
+              </a>
+            );
+          })}
         </div>
       </PageSection>
 
       <PageSection tone="ink" containerClassName="grid gap-12 lg:grid-cols-2 lg:gap-20">
         <div>
           <DisplayTitle className="max-w-[11ch]">
-            Antes do oi, <span className="text-primary">talvez esteja aqui.</span>
+            Hablamos <span className="text-primary">Espanhol ;]</span>
           </DisplayTitle>
           <a
             href="https://www.instagram.com/nachoman/"
@@ -139,11 +160,11 @@ export default function ContatoPage() {
             </AccordionTrigger>
             <AccordionContent className="pb-6">
               <p className="mb-5 text-sm leading-7 text-background/70">
-                Na página de lojas você encontra as informações das unidades e os links para traçar
-                sua rota.
+                Na página de unidades você encontra as informações, horários e formas de
+                atendimento.
               </p>
-              <ActionLink href="/encontrar-loja" light>
-                Encontrar loja
+              <ActionLink href="/unidades" light>
+                Ver unidades
               </ActionLink>
             </AccordionContent>
           </AccordionItem>
@@ -156,10 +177,10 @@ export default function ContatoPage() {
             </AccordionTrigger>
             <AccordionContent className="pb-6">
               <p className="mb-5 text-sm leading-7 text-background/70">
-                Fale com nossa equipe pelo WhatsApp ou envie sua proposta para
-                franquias@nachomanbrasil.com.br.
+                Fale com nossa equipe pelo Whatsapp ou envie um e-mail para
+                franquias@nachomanbrasil.com.br
               </p>
-              <ActionLink href="https://wa.me/5535997405132" light>
+              <ActionLink href={FRANCHISE_WHATSAPP_URL} light>
                 Falar sobre franquias
               </ActionLink>
             </AccordionContent>

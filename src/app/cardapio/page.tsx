@@ -243,7 +243,7 @@ export default function CardapioPage() {
         variant="menu"
         eyebrow=""
         title="Comida mexicana"
-        accent="do seu jeito"
+        accent="do seu jeito."
         copy="Do sabor mais raiz ao Tex-Mex, tem sempre um Nacho Man que combina com você."
         image={heroImage}
         alt="Porção Nacho Man para compartilhar"
