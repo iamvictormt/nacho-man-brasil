@@ -37,13 +37,55 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { photos } from "@/lib/photos";
-import type { Store } from "@/lib/stores";
+import type { PaymentBrand, Store } from "@/lib/stores";
 
 const normalize = (value: string) =>
   value
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase();
+
+const paymentBrandAssets: Record<PaymentBrand, { src: string; label: string }> = {
+  mastercard: { src: "/images/cards/mastercard.png", label: "Mastercard" },
+  visa: { src: "/images/cards/visa.png", label: "Visa" },
+  elo: { src: "/images/cards/elo.png", label: "Elo" },
+  alelo: { src: "/images/cards/alelo.png", label: "Alelo" },
+  "ifood-beneficios": {
+    src: "/images/cards/ifood-beneficios.png",
+    label: "iFood Benefícios",
+  },
+  sodexo: { src: "/images/cards/sodexo.png", label: "Sodexo" },
+};
+
+function PaymentBrandList({ brands }: { brands?: PaymentBrand[] }) {
+  if (!brands?.length) {
+    return <p className="mt-3 text-xs leading-5 text-muted-foreground">Consulte a unidade</p>;
+  }
+
+  return (
+    <div className="mt-3 flex flex-wrap gap-2">
+      {brands.map((brand) => {
+        const asset = paymentBrandAssets[brand];
+
+        return (
+          <span
+            key={brand}
+            title={asset.label}
+            className="relative h-8 w-14 overflow-hidden rounded-lg border border-foreground/10 bg-background shadow-sm"
+          >
+            <Image
+              src={asset.src}
+              alt={asset.label}
+              fill
+              sizes="56px"
+              className="object-contain p-1.5"
+            />
+          </span>
+        );
+      })}
+    </div>
+  );
+}
 
 const placeholderGallery = ["Fachada", "Ambiente", "Experiência"] as const;
 
@@ -307,10 +349,10 @@ function StoreCard({
             )}
           </div>
 
-          <div className="mt-7 grid gap-6 border-y border-border py-6">
+          <div className="mt-7 grid gap-x-6 gap-y-7 border-y border-border py-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
             <div className="flex gap-3">
               <Clock3 className="mt-0.5 size-5 shrink-0 text-accent" aria-hidden="true" />
-              <div>
+              <div className="min-w-0">
                 <h4 className="text-xs font-extrabold uppercase tracking-widest">Horários</h4>
                 <ul className="mt-2 space-y-1 text-xs leading-5 text-muted-foreground">
                   {store.hours.map((hour) => (
@@ -322,7 +364,7 @@ function StoreCard({
 
             <div className="flex gap-3">
               <Bike className="mt-0.5 size-5 shrink-0 text-accent" aria-hidden="true" />
-              <div>
+              <div className="min-w-0">
                 <h4 className="text-xs font-extrabold uppercase tracking-widest">Atendimento</h4>
                 <div className="mt-2 flex flex-wrap gap-2">
                   {store.serviceModes ? (
@@ -340,25 +382,21 @@ function StoreCard({
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="grid gap-4 pt-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-            <div className="rounded-2xl bg-muted p-4">
-              <p className="flex items-center gap-2 text-[0.65rem] font-extrabold uppercase tracking-widest">
-                <CreditCard className="size-4 text-accent" aria-hidden="true" /> Cartões
-              </p>
-              <p className="mt-2 text-xs leading-5 text-muted-foreground">
-                {store.acceptsCards ? "Crédito e débito aceitos" : "Consulte as formas aceitas"}
-              </p>
+            <div className="flex gap-3">
+              <CreditCard className="mt-0.5 size-5 shrink-0 text-accent" aria-hidden="true" />
+              <div className="min-w-0">
+                <h4 className="text-xs font-extrabold uppercase tracking-widest">Cartões</h4>
+                <PaymentBrandList brands={store.paymentCards} />
+              </div>
             </div>
-            <div className="rounded-2xl bg-muted p-4">
-              <p className="flex items-center gap-2 text-[0.65rem] font-extrabold uppercase tracking-widest">
-                <WalletCards className="size-4 text-accent" aria-hidden="true" />
-                Vale-refeição
-              </p>
-              <p className="mt-2 text-xs leading-5 text-muted-foreground">
-                {store.acceptsMealVoucher ? "Aceito nesta unidade" : "Consulte a disponibilidade"}
-              </p>
+
+            <div className="flex gap-3">
+              <WalletCards className="mt-0.5 size-5 shrink-0 text-accent" aria-hidden="true" />
+              <div className="min-w-0">
+                <h4 className="text-xs font-extrabold uppercase tracking-widest">Vale-refeição</h4>
+                <PaymentBrandList brands={store.mealVouchers} />
+              </div>
             </div>
           </div>
         </div>

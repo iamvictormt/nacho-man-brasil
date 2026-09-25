@@ -1,3 +1,11 @@
+export type PaymentBrand =
+  | "mastercard"
+  | "visa"
+  | "elo"
+  | "alelo"
+  | "ifood-beneficios"
+  | "sodexo";
+
 export type Store = {
   slug: string;
   name: string;
@@ -5,8 +13,8 @@ export type Store = {
   uf: string;
   hours: string[];
   serviceModes?: string[];
-  acceptsCards?: boolean;
-  acceptsMealVoucher?: boolean;
+  paymentCards?: PaymentBrand[];
+  mealVouchers?: PaymentBrand[];
   features?: string[];
   image?: string;
   gallery?: Array<{
@@ -30,6 +38,7 @@ const eveningHours = [
 ];
 
 const serviceModes = ["Presencial", "Delivery"];
+const paymentCards: PaymentBrand[] = ["mastercard", "visa", "elo"];
 
 export const stores: Store[] = [
   {
@@ -39,7 +48,7 @@ export const stores: Store[] = [
     uf: "BA",
     hours: standardHours,
     serviceModes,
-    acceptsCards: true,
+    paymentCards,
   },
   {
     slug: "guara-brasilia-df",
@@ -48,8 +57,8 @@ export const stores: Store[] = [
     uf: "DF",
     hours: ["Todos os dias, das 11h30 às 23h"],
     serviceModes,
-    acceptsCards: true,
-    acceptsMealVoucher: true,
+    paymentCards,
+    mealVouchers: ["alelo", "sodexo"],
   },
   {
     slug: "cristalina-go",
@@ -61,7 +70,7 @@ export const stores: Store[] = [
       "Sexta, sábado e domingo, das 18h às 22h30",
     ],
     serviceModes,
-    acceptsCards: true,
+    paymentCards,
   },
   {
     slug: "caldas-novas-go",
@@ -70,7 +79,7 @@ export const stores: Store[] = [
     uf: "GO",
     hours: ["Todos os dias, das 11h às 23h"],
     serviceModes,
-    acceptsCards: true,
+    paymentCards,
   },
   {
     slug: "prado-belo-horizonte-mg",
@@ -79,7 +88,7 @@ export const stores: Store[] = [
     uf: "MG",
     hours: standardHours,
     serviceModes,
-    acceptsCards: true,
+    paymentCards,
   },
   {
     slug: "uberlandia-mg",
@@ -88,7 +97,7 @@ export const stores: Store[] = [
     uf: "MG",
     hours: standardHours,
     serviceModes,
-    acceptsCards: true,
+    paymentCards,
   },
   {
     slug: "buritis-belo-horizonte-mg",
@@ -97,7 +106,7 @@ export const stores: Store[] = [
     uf: "MG",
     hours: standardHours,
     serviceModes,
-    acceptsCards: true,
+    paymentCards: ["mastercard", "visa"],
   },
   {
     slug: "santa-amelia-mg",
@@ -114,7 +123,7 @@ export const stores: Store[] = [
     uf: "PR",
     hours: eveningHours,
     serviceModes,
-    acceptsCards: true,
+    paymentCards,
   },
   {
     slug: "curitiba-pr",
@@ -135,7 +144,7 @@ export const stores: Store[] = [
       "Domingo, das 18h30 às 22h30",
     ],
     serviceModes,
-    acceptsCards: true,
+    paymentCards,
   },
   {
     slug: "blumenau-sc",
@@ -144,8 +153,8 @@ export const stores: Store[] = [
     uf: "SC",
     hours: standardHours,
     serviceModes,
-    acceptsCards: true,
-    acceptsMealVoucher: true,
+    paymentCards,
+    mealVouchers: ["alelo", "ifood-beneficios", "sodexo"],
     features: ["Aceita pets", "Promoções da semana"],
   },
   {
@@ -155,8 +164,8 @@ export const stores: Store[] = [
     uf: "SC",
     hours: eveningHours,
     serviceModes,
-    acceptsCards: true,
-    acceptsMealVoucher: true,
+    paymentCards,
+    mealVouchers: ["alelo"],
   },
   {
     slug: "joinville-sc",
@@ -165,7 +174,7 @@ export const stores: Store[] = [
     uf: "SC",
     hours: standardHours,
     serviceModes,
-    acceptsCards: true,
+    paymentCards,
   },
   {
     slug: "sao-jose-sc",
@@ -174,7 +183,7 @@ export const stores: Store[] = [
     uf: "SC",
     hours: ["Todos os dias, das 11h às 23h"],
     serviceModes,
-    acceptsCards: true,
+    paymentCards,
   },
   {
     slug: "praia-brava-itajai-sc",
@@ -186,8 +195,8 @@ export const stores: Store[] = [
       "Quinta a sábado, das 11h30 às 23h",
     ],
     serviceModes,
-    acceptsCards: true,
-    acceptsMealVoucher: true,
+    paymentCards,
+    mealVouchers: ["ifood-beneficios"],
   },
   {
     slug: "balneario-picarras-sc",
@@ -204,7 +213,7 @@ export const stores: Store[] = [
     uf: "SC",
     hours: standardHours,
     serviceModes,
-    acceptsCards: true,
+    paymentCards,
   },
   {
     slug: "tubarao-sc",
@@ -221,8 +230,8 @@ export const stores: Store[] = [
     uf: "SP",
     hours: standardHours,
     serviceModes,
-    acceptsCards: true,
-    acceptsMealVoucher: true,
+    paymentCards,
+    mealVouchers: ["sodexo"],
   },
   {
     slug: "itapeva-sp",
@@ -251,7 +260,7 @@ export const stores: Store[] = [
     uf: "SP",
     hours: standardHours,
     serviceModes,
-    acceptsCards: true,
+    paymentCards,
   },
   {
     slug: "jacarei-sp",
@@ -284,6 +293,6 @@ export const stores: Store[] = [
       "Domingo, das 19h às 23h30",
     ],
     serviceModes,
-    acceptsCards: true,
+    paymentCards,
   },
 ];
