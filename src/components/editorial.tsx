@@ -165,6 +165,8 @@ export function EditorialHeroContent({
   accent,
   copy,
   note,
+  stats,
+  statsNote,
   children,
 }: {
   eyebrow?: string;
@@ -172,6 +174,8 @@ export function EditorialHeroContent({
   accent: string;
   copy: string;
   note?: React.ReactNode;
+  stats?: ReadonlyArray<{ value: string; label: string }>;
+  statsNote?: string;
   children: React.ReactNode;
 }) {
   return (
@@ -184,6 +188,30 @@ export function EditorialHeroContent({
         </h1>
         <BodyCopy className="my-7 max-w-[31rem] text-background/80">{copy}</BodyCopy>
         <div className="flex flex-wrap items-center gap-5">{children}</div>
+        {stats && stats.length > 0 && (
+          <div className="mt-9 max-w-3xl">
+            <div className="grid overflow-hidden rounded-[1.5rem] border border-background/15 bg-foreground/75 shadow-2xl backdrop-blur-md sm:grid-cols-3">
+              {stats.map((item, index) => (
+                <div
+                  key={item.label}
+                  className={`px-5 py-5 sm:px-6 ${index > 0 ? "border-t border-background/15 sm:border-l sm:border-t-0" : ""}`}
+                >
+                  <strong className="block font-display text-4xl leading-none text-primary sm:text-5xl">
+                    {item.value}
+                  </strong>
+                  <span className="mt-2 block text-[0.6rem] font-extrabold uppercase tracking-[0.12em] text-background/60">
+                    {item.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+            {statsNote && (
+              <p className="mt-3 max-w-3xl text-[0.58rem] leading-5 text-background/50">
+                {statsNote}
+              </p>
+            )}
+          </div>
+        )}
         {note && (
           <p className="mt-10 text-[0.6rem] font-bold uppercase tracking-[0.14em] text-background/65">
             {note}
@@ -204,6 +232,8 @@ export function EditorialHero({
   href,
   action,
   variant,
+  stats,
+  statsNote,
 }: {
   eyebrow: string | undefined;
   title: string;
@@ -214,6 +244,8 @@ export function EditorialHero({
   href: string;
   action: string;
   variant: "story" | "menu" | "contact" | "store";
+  stats?: ReadonlyArray<{ value: string; label: string }>;
+  statsNote?: string;
 }) {
   const position =
     variant === "contact"
@@ -222,7 +254,7 @@ export function EditorialHero({
         ? "object-[62%_center] md:object-[center_40%]"
         : variant === "store"
           ? "object-[58%_center] md:object-center"
-        : "object-center";
+          : "object-center";
 
   return (
     <section className="relative isolate flex min-h-[650px] items-center overflow-hidden bg-foreground text-background md:min-h-[900px]">
@@ -243,6 +275,8 @@ export function EditorialHero({
         title={title}
         accent={accent}
         copy={copy}
+        stats={stats}
+        statsNote={statsNote}
         note={variant === "story" ? "Blumenau, 2018 — O início de um sonho." : undefined}
       >
         <ActionLink href={href} light>
@@ -259,7 +293,7 @@ export function ClosingBanner() {
       <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 text-center">
         <div>
           <DisplayTitle className="max-w-none text-[clamp(2.8rem,5vw,5.2rem)] text-background">
-            Deu fome? <br/> A gente resolve.
+            Deu fome? <br /> A gente resolve.
           </DisplayTitle>
         </div>
         <ActionLink href={ORDER_URL}>Fazer meu pedido</ActionLink>

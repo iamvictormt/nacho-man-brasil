@@ -408,9 +408,7 @@ function StoreCard({
         >
           Explorar galeria
           <span className="flex items-center gap-2 text-muted-foreground">
-            {photoCount
-              ? `${photoCount} ${photoCount === 1 ? "foto" : "fotos"}`
-              : "Fotos em breve"}
+            {photoCount ? `${photoCount} ${photoCount === 1 ? "foto" : "fotos"}` : "Fotos em breve"}
             <Maximize2 className="size-4" aria-hidden="true" />
           </span>
         </button>
@@ -617,7 +615,7 @@ export function StoreLocator({ stores }: { stores: Store[] }) {
             </DisplayTitle>
           </div>
           <div className="lg:col-span-4 lg:pb-1">
-            <ActionLink href="/#franquia" className="mt-7">
+            <ActionLink href="/franquia" className="mt-7">
               Quero ser franqueado
             </ActionLink>
           </div>

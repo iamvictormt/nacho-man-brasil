@@ -56,7 +56,7 @@ export function SiteFooter() {
           <div>
             <p className="mb-4 text-xs font-bold uppercase text-background/45">Fale com a gente</p>
             <div className="grid gap-3 text-sm text-background/70">
-              <Link href="/#franquia" className="hover:text-primary">
+              <Link href="/franquia" className="hover:text-primary">
                 Quero ser franqueado
               </Link>
               <a

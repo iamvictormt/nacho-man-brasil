@@ -32,6 +32,9 @@ export const photos = {
   contact: {
     heroGroup: photo("/images/pessoas/clientes-brindando-drinks.webp", 2560, 3840),
   },
+  franchise: {
+    hero: photo("/images/unidades/curitiba-pr/fachada-02.webp", 2048, 1365),
+  },
   storeLocator: {
     background: photo("/images/ambiente/mesa-tacos-mascaras-lucha-libre.webp", 2560, 1707),
   },

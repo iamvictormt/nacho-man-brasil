@@ -1,10 +1,4 @@
-export type PaymentBrand =
-  | "mastercard"
-  | "visa"
-  | "elo"
-  | "alelo"
-  | "ifood-beneficios"
-  | "sodexo";
+export type PaymentBrand = "mastercard" | "visa" | "elo" | "alelo" | "ifood-beneficios" | "sodexo";
 
 export type Store = {
   slug: string;
@@ -82,6 +76,13 @@ export const stores: Store[] = [
     paymentCards,
   },
   {
+    slug: "dourados-ms",
+    name: "Dourados",
+    state: "Mato Grosso do Sul",
+    uf: "MS",
+    hours: ["Consulte os horários da unidade"],
+  },
+  {
     slug: "prado-belo-horizonte-mg",
     name: "Prado, Belo Horizonte",
     state: "Minas Gerais",
@@ -115,6 +116,13 @@ export const stores: Store[] = [
     uf: "MG",
     hours: standardHours,
     serviceModes,
+  },
+  {
+    slug: "ipatinga-mg",
+    name: "Ipatinga",
+    state: "Minas Gerais",
+    uf: "MG",
+    hours: ["Consulte os horários da unidade"],
   },
   {
     slug: "londrina-pr",
@@ -190,10 +198,7 @@ export const stores: Store[] = [
     name: "Praia Brava, Itajaí",
     state: "Santa Catarina",
     uf: "SC",
-    hours: [
-      "Domingo a quarta, das 11h30 às 22h",
-      "Quinta a sábado, das 11h30 às 23h",
-    ],
+    hours: ["Domingo a quarta, das 11h30 às 22h", "Quinta a sábado, das 11h30 às 23h"],
     serviceModes,
     paymentCards,
     mealVouchers: ["ifood-beneficios"],

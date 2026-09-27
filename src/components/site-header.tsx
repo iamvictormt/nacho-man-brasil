@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { type MouseEvent, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight, Building2, MapPin, Menu, Store, X } from "lucide-react";
+import { ArrowUpRight, MapPin, Menu, Store, X } from "lucide-react";
 import { IconMascara } from "@/components/brand-icons";
 import { Button } from "@/components/ui/button";
 
@@ -17,7 +17,7 @@ const nav = [
 
 const navSecondary = [
   { label: "Encontrar loja", href: "/encontrar-loja" },
-  { label: "Tenha sua Franquia", href: "/#franquia" },
+  { label: "Tenha sua Franquia", href: "/franquia" },
 ];
 
 export function SiteHeader() {
@@ -116,7 +116,9 @@ export function SiteHeader() {
               <MapPin className="size-4" /> Encontrar loja
             </Link>
             <Link
-              href="/#franquia"
+              href="/franquia"
+              onClick={(event) => handleNavigationClick(event, "/franquia")}
+              aria-current={pathname === "/franquia" ? "page" : undefined}
               className="inline-flex items-center gap-2 rounded-full bg-accent px-3 py-2 text-[10px] xl:text-xs font-bold uppercase tracking-wide text-accent-foreground transition-transform hover:scale-[1.04]"
             >
               <Store className="size-4" /> Tenha sua Franquia
@@ -184,7 +186,6 @@ export function SiteHeader() {
               </div>
 
               <div className="mobile-menu-item grid content-start gap-3 md:pt-1">
-
                 <Link
                   href={navSecondary[0].href}
                   onClick={() => setMenuOpen(false)}

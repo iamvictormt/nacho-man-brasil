@@ -207,7 +207,7 @@ export default function Home() {
               franquia.
             </p>
           </div>
-          <ActionLink href="/contato#canais">Quero ser franqueado</ActionLink>
+          <ActionLink href="/franquia">Quero ser franqueado</ActionLink>
         </div>
       </PageSection>
 

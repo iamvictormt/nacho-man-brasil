@@ -17,7 +17,7 @@ import {
 } from "@/components/editorial";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { FRANCHISE_WHATSAPP_URL, ORDER_URL, WHATSAPP_DISPLAY, WHATSAPP_URL } from "@/lib/links";
+import { ORDER_URL, WHATSAPP_DISPLAY, WHATSAPP_URL } from "@/lib/links";
 import { photos } from "@/lib/photos";
 
 const channels = [
@@ -180,8 +180,8 @@ export default function ContatoPage() {
                 Fale com nossa equipe pelo Whatsapp ou envie um e-mail para
                 franquias@nachomanbrasil.com.br
               </p>
-              <ActionLink href={FRANCHISE_WHATSAPP_URL} light>
-                Falar sobre franquias
+              <ActionLink href="/franquia#contato" light>
+                Conhecer a franquia
               </ActionLink>
             </AccordionContent>
           </AccordionItem>
