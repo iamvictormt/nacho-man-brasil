@@ -57,7 +57,7 @@ export const menuSections = [
         image: photo("/images/tacos/taco-carne-asada.webp", 1707, 2560),
       },
       {
-        name: "Taco Vegetariano",
+        name: "Taco Fajitas",
         image: photo("/images/tacos/taco-fajitas.webp"),
       },
     ],
@@ -114,17 +114,17 @@ export const menuSections = [
     ],
   },
   {
-    name: "Quesadilhas",
-    id: "quesadilhas",
+    name: "Quesadillas",
+    id: "quesadillas",
     statement: "Douradinhas, recheadas e prontas pra conquistar.",
     items: [
       {
         name: "Quesadilla La Gordita",
-        image: photo("/images/quesadilhas/quesadilla-la-gordita.webp"),
+        image: photo("/images/quesadillas/quesadilla-la-gordita.webp"),
       },
       {
         name: "Quesadilla Costelinha",
-        image: photo("/images/quesadilhas/quesadilla-costelinha.webp", 2560, 1707),
+        image: photo("/images/quesadillas/quesadilla-costelinha.webp", 2560, 1707),
       },
     ],
   },
@@ -173,8 +173,8 @@ export const menuSections = [
     statement: "Pra brindar, refrescar e acompanhar seu lado mais mexicano.",
     items: [
       {
-        name: "Pink Limonade",
-        image: photo("/images/bebidas/bebida-pink-limonade.webp", 1707, 2560),
+        name: "Pink Lemonade",
+        image: photo("/images/bebidas/bebida-pink-lemonade.webp", 1707, 2560),
       },
       {
         name: "Lollipop",

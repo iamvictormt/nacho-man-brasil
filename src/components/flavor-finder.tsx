@@ -62,7 +62,7 @@ export function FlavorFinder() {
           Quem disse que comida mexicana só tem pimenta?
         </BodyCopy>
 
-        <div className="mt-8 grid gap-4 lg:gap-2" role="tablist" aria-label="Escolha seu tipo de fome">
+        <div className="mt-8 grid gap-4 lg:gap-3" role="tablist" aria-label="Escolha seu tipo de fome">
           {moods.map((item, index) => (
             <button
               key={item.id}
@@ -78,7 +78,7 @@ export function FlavorFinder() {
                   : "hover:bg-background/10",
               )}
             >
-              <span className="flex items-center gap-3">
+              <span className="flex items-center gap-4">
                 <span className="text-xs opacity-45">0{index + 1}</span>
                 {item.tab}
               </span>

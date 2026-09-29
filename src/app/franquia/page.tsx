@@ -27,7 +27,7 @@ const modelReasons = [
   "Não exige experiência no ramo",
   "Expansão com presença nacional",
   "Operação facilitada",
-  "Alta lucratividade",
+  "Produtos exclusivos",
 ];
 
 const businessNumbers = [
@@ -78,7 +78,7 @@ export default function FranquiaPage() {
               Um mercado com espaço para <span className="text-accent">ser diferente.</span>
             </DisplayTitle>
             <BodyCopy className="mt-7">
-              Criada em 2018, a Nacho Man nasceu para levar ao Brasil sabores autênticos da
+              Criado em 2018, o Nacho Man nasceu para levar ao Brasil sabores autênticos da
               culinária mexicana raiz em uma experiência atual, reconhecível e preparada para
               expansão.
             </BodyCopy>
@@ -108,7 +108,7 @@ export default function FranquiaPage() {
         <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-16">
           <div className="text-background lg:col-span-5">
             <DisplayTitle className="text-background">
-              Produção artesanal de <span className="text-primary">tortilhas e molhos.</span>
+              Produção artesanal de <span className="text-primary">molhos e cultivo de pimentas mexicanas.</span>
             </DisplayTitle>
             <BodyCopy className="mt-7 text-background/75">
               Ingredientes de qualidade e produção própria ajudam a preservar frescor, sabor e
@@ -205,7 +205,7 @@ export default function FranquiaPage() {
         <div className="grid gap-12 lg:grid-cols-12 lg:items-start lg:gap-16">
           <div className="text-background lg:sticky lg:top-36 lg:col-span-5">
             <DisplayTitle className="text-background">
-              Abra uma unidade <span className="text-foreground">na sua cidade.</span>
+              Abra um Nacho Man <span className="text-foreground">na sua cidade.</span>
             </DisplayTitle>
             <BodyCopy className="mt-7 text-background/75">
               Envie seus dados pelo formulário e abra uma conversa no WhatsApp com a equipe de

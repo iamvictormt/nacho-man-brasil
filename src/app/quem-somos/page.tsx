@@ -24,7 +24,11 @@ import { StreetTicker } from "@/components/street-ticker";
 import { photos } from "@/lib/photos";
 
 const timeline = [
-  { date: "2018", title: "Tudo começou com um sonho.", copy: "Uma garagem, uma ideia e a coragem de transformar paixão por comida mexicana em uma marca." },
+  {
+    date: "2018",
+    title: "Tudo começou com um sonho.",
+    copy: "Uma garagem, uma ideia e a coragem de transformar paixão por comida mexicana em uma marca.",
+  },
   {
     date: "Hoje",
     title: "Um sonho que ganhou o Brasil.",
@@ -60,6 +64,44 @@ const houseCode = [
   },
 ];
 
+const factoryGallery = [
+  {
+    image: photos.about.nachoFactory.manufacture,
+    alt: "Fábrica da Nacho Factory",
+    label: "Fábrica",
+    className: "col-span-2 row-span-2 lg:col-span-7 lg:row-span-2",
+    sizes: "(min-width: 1024px) 34vw, 100vw",
+  },
+  {
+    image: photos.about.nachoFactory.sauces,
+    alt: "Molhos Sweet Chili e Piña Habanero produzidos pela Nacho Factory",
+    label: "Molhos",
+    className: "lg:col-span-5",
+    sizes: "(min-width: 1024px) 24vw, 50vw",
+  },
+  {
+    image: photos.about.nachoFactory.production,
+    alt: "Preparo de proteínas na linha de produção da Nacho Factory",
+    label: "Produção",
+    className: "lg:col-span-5",
+    sizes: "(min-width: 1024px) 24vw, 50vw",
+  },
+  {
+    image: photos.about.nachoFactory.coldStorage,
+    alt: "Estoque refrigerado da Nacho Factory",
+    label: "Estoque",
+    className: "lg:col-span-5",
+    sizes: "(min-width: 1024px) 24vw, 50vw",
+  },
+  {
+    image: photos.about.nachoFactory.packedProducts,
+    alt: "Produtos embalados e identificados na Nacho Factory",
+    label: "Produtos embalados",
+    className: "lg:col-span-7",
+    sizes: "(min-width: 1024px) 34vw, 50vw",
+  },
+] as const;
+
 export default function QuemSomosPage() {
   return (
     <main className="min-h-screen overflow-x-clip bg-background text-foreground">
@@ -71,7 +113,7 @@ export default function QuemSomosPage() {
         accent="Alma brasileira."
         copy="Foi em um pequeno delivery de comida mexicana que nasceu a melhor rede de comida mexicana do Brasil."
         image={photos.about.heroGroup}
-        alt="Amigos compartilhando um encontro na Nacho Man"
+        alt="Amigos compartilhando um encontro no Nacho Man"
         href="#origem"
         action="Conheça nosso jeito"
       />
@@ -81,7 +123,7 @@ export default function QuemSomosPage() {
           <figure className="group relative min-h-[510px] overflow-hidden rounded-[2rem] bg-foreground lg:col-span-7 lg:min-h-[680px]">
             <Image
               src={photos.about.blumenauInterior}
-              alt="Interior da primeira loja da Nacho Man em Blumenau"
+              alt="Interior da primeira loja do Nacho Man em Blumenau"
               fill
               sizes="(min-width: 1024px) 58vw, 100vw"
               className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -109,10 +151,10 @@ export default function QuemSomosPage() {
               </p>
             </div>
 
-            <div className="mt-14 grid gap-6 pt-4">
+            <div className="mt-14 grid gap-4 pt-4">
               <BodyCopy className="text-background/62">
-                Em 5 de abril de 2018, Will, o Nacho Man colocou os primeiros burritos na rua. Não
-                tinha grande estrutura. Não tinha fórmula pronta. Tinha uma ideia, muita vontade e a
+                Em 5 de abril de 2018, o Nacho Man colocou os primeiros burritos na rua. Não tinha
+                grande estrutura. Não tinha fórmula pronta. Tinha uma ideia, muita vontade e a
                 coragem de começar.
               </BodyCopy>
               <BodyCopy className="text-background/62">
@@ -143,36 +185,53 @@ export default function QuemSomosPage() {
               Por trás da experiência, <br />
               <span className="text-primary">existe uma fábrica.</span>
             </DisplayTitle>
-            <BodyCopy className="my-7 text-background/65">
-              A experiência Nacho Man começa muito antes de chegar a sua mesa.
-            </BodyCopy>
-            <BodyCopy className="my-7 text-background/65">
-              Na Nacho Factory, desenvolvemos e produzimos boa parte dos produtos que fazem parte da
-              nossa operação: proteínas, molhos, churros, sobremesas e muito mais.
-            </BodyCopy>
 
-            <BodyCopy className="my-7 text-background/65">
-              Uma estrutura própria criada para garantir padrão, qualidade e escala, abastecendo
-              nossas unidades e levando o sabor Nacho Man para diferentes lugares do Brasil.
-            </BodyCopy>
+            <div className="mt-6 grid gap-4 pt-4">
+              <BodyCopy className="text-background/62">
+                A experiência Nacho Man começa muito antes de chegar a sua mesa.
+              </BodyCopy>
+              <BodyCopy className="text-background/62">
+                Na Nacho Factory, desenvolvemos e produzimos boa parte dos produtos que fazem parte
+                da nossa operação: proteínas, molhos, churros, sobremesas e muito mais.
+              </BodyCopy>
 
-            <BodyCopy className="my-7 text-background/65">
-              Para entregar uma experiência completa, também precisamos construir tudo o que existe
-              por trás dela.
-            </BodyCopy>
+              <BodyCopy className="text-background/62">
+                Uma estrutura própria criada para garantir padrão, qualidade e escala, abastecendo
+                nossas unidades e levando o sabor Nacho Man para diferentes lugares do Brasil.
+              </BodyCopy>
+
+              <BodyCopy className="text-background/62">
+                Para entregar uma experiência completa, também precisamos construir tudo o que
+                existe por trás dela.
+              </BodyCopy>
+            </div>
           </div>
 
-          <figure className="group relative min-h-[560px] overflow-hidden rounded-[2rem] lg:col-span-7 lg:min-h-[840px]">
-            <Image
-              src={photos.about.nachoFactoryFacade}
-              alt="Fachada da Nacho Factory"
-              fill
-              sizes="(min-width: 1024px) 58vw, 100vw"
-              style={{ objectPosition: "50% 12%", transformOrigin: "50% 12%" }}
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-
-          </figure>
+          <div className="grid grid-cols-2 auto-rows-[180px] gap-3 sm:auto-rows-[240px] lg:col-span-7 lg:h-[840px] lg:grid-cols-12 lg:grid-rows-3 lg:auto-rows-auto">
+            {factoryGallery.map((item) => (
+              <figure
+                key={item.label}
+                className={`group relative overflow-hidden rounded-[1.5rem] border border-background/10 bg-background/5 ${item.className}`}
+              >
+                <Image
+                  src={item.image}
+                  alt={item.alt}
+                  fill
+                  sizes={item.sizes}
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                />
+                <div
+                  className="absolute inset-0 bg-gradient-to-t from-foreground/75 via-transparent to-transparent"
+                  aria-hidden="true"
+                />
+                <figcaption className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3 text-background sm:inset-x-5 sm:bottom-5">
+                  <span className="text-[0.65rem] font-extrabold uppercase tracking-[0.18em]">
+                    {item.label}
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </PageSection>
 
@@ -187,7 +246,7 @@ export default function QuemSomosPage() {
           <div className="relative h-[300px] overflow-hidden rounded-[1.5rem] sm:h-[480px]">
             <Image
               src={photos.about.foodTable}
-              alt="Mesa com pratos da Nacho Man para compartilhar"
+              alt="Mesa com pratos do Nacho Man para compartilhar"
               fill
               sizes="(min-width: 768px) 60vw, 100vw"
               className="object-cover"

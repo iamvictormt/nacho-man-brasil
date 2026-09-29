@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Star } from "lucide-react";
 
-import { BodyCopy, DisplayTitle, Eyebrow } from "@/components/editorial";
+import { DisplayTitle } from "@/components/editorial";
 
 const reviews = [
   {
@@ -55,7 +55,7 @@ export function ReviewShowcase() {
               <Star key={star} className="size-5 fill-current" aria-hidden="true" />
             ))}
           </div>
-          <blockquote className="font-heading text-[clamp(1.75rem,3.4vw,3.65rem)] font-bold leading-[1.12]">
+          <blockquote className="font-heading text-[clamp(2rem,3.4vw,3.75rem)] font-bold leading-[1.12]">
             “{review.quote}”
           </blockquote>
           <figcaption className="mt-9">

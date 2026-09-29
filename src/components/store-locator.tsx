@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import {
   BadgePercent,
   Bike,
+  Building2,
+  CalendarDays,
   ChevronLeft,
   ChevronRight,
   Clock3,
@@ -322,34 +324,64 @@ function StoreCard({
       >
         <div>
           <div className="flex flex-wrap items-start justify-between gap-4">
-            <div>
+            <div className="min-w-0">
               <p className="text-[0.65rem] font-extrabold uppercase tracking-[0.18em] text-muted-foreground">
                 {store.state}
               </p>
               <h3 className="mt-2 max-w-lg font-heading text-4xl font-extrabold uppercase leading-[0.92] sm:text-5xl">
                 {store.name}
               </h3>
+              {store.features?.length && (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {store.features.map((feature) => (
+                    <span
+                      key={feature}
+                      className="inline-flex min-h-9 items-center gap-2 rounded-full border border-foreground/10 bg-muted px-3.5 py-2 text-[0.62rem] font-extrabold uppercase tracking-[0.08em] text-foreground"
+                    >
+                      {feature === "Aceita pets" ? (
+                        <PawPrint className="size-3.5 shrink-0 text-accent" aria-hidden="true" />
+                      ) : (
+                        <BadgePercent
+                          className="size-3.5 shrink-0 text-accent"
+                          aria-hidden="true"
+                        />
+                      )}
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
-            {store.features && (
-              <div className="flex flex-wrap gap-2 sm:justify-end">
-                {store.features.map((feature) => (
-                  <span
-                    key={feature}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-2 text-[0.62rem] font-extrabold uppercase tracking-wide"
-                  >
-                    {feature === "Aceita pets" ? (
-                      <PawPrint className="size-3" aria-hidden="true" />
-                    ) : (
-                      <BadgePercent className="size-3" aria-hidden="true" />
-                    )}
-                    {feature}
-                  </span>
-                ))}
-              </div>
+            {store.status && (
+              <span className="inline-flex items-center rounded-full bg-accent px-3 py-2 text-[0.62rem] font-extrabold uppercase tracking-wide text-accent-foreground">
+                {store.status}
+              </span>
             )}
           </div>
 
           <div className="mt-7 grid gap-x-6 gap-y-7 border-y border-border py-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+            {store.cnpj && (
+              <div className="flex gap-3">
+                <Building2 className="mt-0.5 size-5 shrink-0 text-accent" aria-hidden="true" />
+                <div className="min-w-0">
+                  <h4 className="text-xs font-extrabold uppercase tracking-widest">CNPJ</h4>
+                  <p className="mt-2 text-xs leading-5 text-muted-foreground">{store.cnpj}</p>
+                </div>
+              </div>
+            )}
+
+            {store.openingDate && (
+              <div className="flex gap-3">
+                <CalendarDays className="mt-0.5 size-5 shrink-0 text-accent" aria-hidden="true" />
+                <div className="min-w-0">
+                  <h4 className="text-xs font-extrabold uppercase tracking-widest">Inauguração</h4>
+                  <p className="mt-2 text-xs leading-5 text-muted-foreground">
+                    {store.openingDate}
+                  </p>
+                </div>
+              </div>
+            )}
+
             <div className="flex gap-3">
               <Clock3 className="mt-0.5 size-5 shrink-0 text-accent" aria-hidden="true" />
               <div className="min-w-0">
@@ -404,7 +436,7 @@ function StoreCard({
         <button
           type="button"
           onClick={onOpen}
-          className="mt-7 flex items-center justify-between gap-5 border-t border-foreground/15 pt-5 text-left text-xs font-extrabold uppercase tracking-[0.12em] transition-colors hover:text-accent"
+          className="mt-7 flex items-center justify-between gap-5 pt-5 text-left text-xs font-extrabold uppercase tracking-[0.12em] transition-colors hover:text-accent"
         >
           Explorar galeria
           <span className="flex items-center gap-2 text-muted-foreground">
@@ -428,7 +460,7 @@ export function StoreLocator({ stores }: { stores: Store[] }) {
     (store) =>
       (!state || store.state === state) &&
       normalize(
-        `${store.name} ${store.state} ${store.uf} ${store.features?.join(" ") ?? ""}`,
+        `${store.name} ${store.state} ${store.uf} ${store.cnpj ?? ""} ${store.status ?? ""} ${store.features?.join(" ") ?? ""}`,
       ).includes(normalizedQuery),
   );
 

@@ -1,9 +1,10 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { ArrowUpRight, CheckCheck, UserRound, X } from "lucide-react";
+import { ArrowUpRight, CheckCheck, ShoppingBag, UserRound, X } from "lucide-react";
 
-import { FRANCHISE_WHATSAPP_URL } from "@/lib/links";
+import { FRANCHISE_WHATSAPP_URL, ORDER_URL } from "@/lib/links";
 
 function WhatsappMark({ className }: { className?: string }) {
   return (
@@ -14,7 +15,45 @@ function WhatsappMark({ className }: { className?: string }) {
 }
 
 export function FranchiseWhatsapp() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+
+  if (pathname === "/cardapio") {
+    return (
+      <aside
+        className="franchise-whatsapp fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 z-60 font-sans sm:bottom-[max(1.5rem,env(safe-area-inset-bottom))] sm:right-6"
+        aria-label="Pedido online"
+      >
+        <a
+          href={ORDER_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Fazer pedido no site Nacho Man, abre em nova guia"
+          className="group flex min-h-14 items-center gap-2 rounded-full border-2 border-background bg-accent py-1.5 pl-1.5 pr-3 text-background shadow-[0_14px_34px_oklch(0_0_0/0.28)] transition hover:-translate-y-1 hover:bg-foreground focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-primary sm:min-h-16 sm:gap-3 sm:py-2 sm:pl-2 sm:pr-5"
+        >
+          <span className="grid size-10 shrink-0 place-items-center rounded-full bg-background text-accent transition-transform group-hover:-rotate-6 group-hover:scale-105 sm:size-11">
+            <ShoppingBag
+              className="size-[1.125rem] sm:size-5"
+              strokeWidth={2.25}
+              aria-hidden="true"
+            />
+          </span>
+          <span className="min-w-0 text-left leading-none">
+            <span className="hidden text-[0.52rem] font-extrabold uppercase tracking-[0.16em] text-background/65 sm:block">
+              Cardápio online
+            </span>
+            <span className="block whitespace-nowrap font-heading text-sm font-extrabold uppercase tracking-[0.04em] sm:mt-1 sm:text-base">
+              Fazer pedido
+            </span>
+          </span>
+          <ArrowUpRight
+            className="hidden size-4 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 sm:block"
+            aria-hidden="true"
+          />
+        </a>
+      </aside>
+    );
+  }
 
   return (
     <aside
@@ -57,7 +96,7 @@ export function FranchiseWhatsapp() {
             <div className="relative w-[92%] rounded-[.25rem_.75rem_.75rem_.75rem] bg-white px-3 py-3 text-[0.76rem] leading-relaxed shadow-sm after:absolute after:-left-2 after:top-0 after:size-3 after:bg-white after:[clip-path:polygon(100%_0,100%_100%,0_0)]">
               <p className="mb-1.5 text-[0.82rem]">Olá! 👋</p>
               <p className="mb-1.5">
-                <strong>Já pensou em levar a Nacho Man para a sua cidade?</strong>
+                <strong>Já pensou em levar o Nacho Man para a sua cidade?</strong>
               </p>
               <p>
                 Nosso time pode te explicar como funciona e tirar todas as suas dúvidas sobre abrir

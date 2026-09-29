@@ -95,9 +95,9 @@ export function FranchiseForm() {
               <SelectValue placeholder="Selecione uma faixa" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="R$ 169 mil a R$ 250 mil">R$ 169 mil a R$ 250 mil</SelectItem>
-              <SelectItem value="R$ 250 mil a R$ 350 mil">R$ 250 mil a R$ 350 mil</SelectItem>
-              <SelectItem value="Mais de R$ 350 mil">Mais de R$ 350 mil</SelectItem>
+              <SelectItem value="R$ 299 mil a R$ 399 mil">R$ 299 mil a R$ 399 mil</SelectItem>
+              <SelectItem value="R$ 399 mil a R$ 499 mil">R$ 399 mil a R$ 499 mil</SelectItem>
+              <SelectItem value="Mais de R$ 499 mil">Mais de R$ 499 mil</SelectItem>
             </SelectContent>
           </Select>
         </div>

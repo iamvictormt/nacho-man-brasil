@@ -59,7 +59,7 @@ export default function ContatoPage() {
         accent="de um bom papo."
         copy="Uma dúvida, uma ideia ou o próximo grande encontro. Escolha um canal e fale com a nossa equipe."
         image={photos.contact.heroGroup}
-        alt="Pessoas reunidas na Nacho Man"
+        alt="Pessoas reunidas no Nacho Man"
         href="#canais"
         action="Vamos conversar"
       />

@@ -34,10 +34,10 @@ const favorites = [
     id: "tacos",
   },
   {
-    name: "Quesadilhas",
+    name: "Quesadillas",
     caption: "Gostosas e Queijudas.",
     image: photos.home.quesadilla,
-    id: "quesadilhas",
+    id: "quesadillas",
   },
 ];
 
@@ -163,7 +163,7 @@ export default function Home() {
           <div className="relative overflow-hidden rounded-[1.5rem] sm:row-span-2 lg:col-span-2">
             <Image
               src={photos.home.galleryCustomer}
-              alt="Cliente se divertindo na Nacho Man"
+              alt="Cliente se divertindo no Nacho Man"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover transition-transform duration-700 hover:scale-105"
@@ -172,7 +172,7 @@ export default function Home() {
           <div className="relative overflow-hidden rounded-[1.5rem] lg:col-span-2">
             <Image
               src={photos.home.galleryFood}
-              alt="Mesa com pratos da Nacho Man"
+              alt="Mesa com pratos do Nacho Man"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover transition-transform duration-700 hover:scale-105"

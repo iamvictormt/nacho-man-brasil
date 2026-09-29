@@ -6,7 +6,7 @@ const tickerIcons = [IconCoracao, IconFogo, IconCacto, IconEstrela, IconPimenta]
 export function StreetTicker({
   items,
   className,
-  label = "Destaques da Nacho Man",
+  label = "Destaques do Nacho Man",
   tilted = false,
 }: {
   items?: string[];

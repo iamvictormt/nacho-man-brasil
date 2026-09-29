@@ -13,7 +13,7 @@ const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 export const metadata: Metadata = {
   title: "Nacho Man | Mexicano do nosso jeito",
   description:
-    "Burritos, nachos, tacos e combos mexicanos preparados do seu jeito. Peça agora ou encontre a Nacho Man mais próxima.",
+    "Burritos, nachos, tacos e combos mexicanos preparados do seu jeito. Peça agora ou encontre o Nacho Man mais próxima.",
   authors: [{ name: "Nacho Man" }],
   manifest: "/manifest.json",
   appleWebApp: {
