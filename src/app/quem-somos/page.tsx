@@ -32,7 +32,7 @@ const timeline = [
   {
     date: "Hoje",
     title: "Um sonho que ganhou o Brasil.",
-    copy: "Mais de 30 unidades levando a experiência Nacho Man para diferentes lugares do país.",
+    copy: "Mais de 25 unidades levando a experiência Nacho Man para diferentes lugares do país.",
   },
   {
     date: "Amanhã",

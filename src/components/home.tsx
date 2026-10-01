@@ -142,7 +142,7 @@ export default function Home() {
             O Nacho Man surgiu em 2018 como delivery de comida mexicana em Blumenau SC. Naquela
             época, Will (o criador da marca) só tinha um sonho, oferecer a melhor e mais autêntica
             comida mexicana da cidade. O sonho deu tão certo que virou uma Rede de Franquias com
-            mais de 30 Unidades espalhadas pelo Brasil.
+            mais de 25 Unidades espalhadas pelo Brasil.
           </BodyCopy>
           <ActionLink href="/quem-somos">Conheça nossa história</ActionLink>
         </div>

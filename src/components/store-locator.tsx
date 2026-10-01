@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import {
   BadgePercent,
   Bike,
-  Building2,
   CalendarDays,
   ChevronLeft,
   ChevronRight,
@@ -360,16 +359,6 @@ function StoreCard({
           </div>
 
           <div className="mt-7 grid gap-x-6 gap-y-7 border-y border-border py-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-            {store.cnpj && (
-              <div className="flex gap-3">
-                <Building2 className="mt-0.5 size-5 shrink-0 text-accent" aria-hidden="true" />
-                <div className="min-w-0">
-                  <h4 className="text-xs font-extrabold uppercase tracking-widest">CNPJ</h4>
-                  <p className="mt-2 text-xs leading-5 text-muted-foreground">{store.cnpj}</p>
-                </div>
-              </div>
-            )}
-
             {store.openingDate && (
               <div className="flex gap-3">
                 <CalendarDays className="mt-0.5 size-5 shrink-0 text-accent" aria-hidden="true" />
