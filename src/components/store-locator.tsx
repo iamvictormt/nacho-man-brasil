@@ -10,7 +10,10 @@ import {
   ChevronRight,
   Clock3,
   CreditCard,
+  ExternalLink,
+  MapPinned,
   Maximize2,
+  Navigation,
   PawPrint,
   Search,
   Store as StoreIcon,
@@ -91,6 +94,14 @@ function PaymentBrandList({ brands }: { brands?: PaymentBrand[] }) {
 const placeholderGallery = ["Fachada", "Ambiente", "Experiência"] as const;
 
 type ActiveGallery = { store: Store; itemIndex: number };
+
+const mapQueryFor = (store: Store) => `Nacho Man ${store.name}, ${store.address}`;
+
+const mapEmbedUrlFor = (store: Store) =>
+  `https://www.google.com/maps?q=${encodeURIComponent(mapQueryFor(store))}&output=embed`;
+
+const mapDirectionsUrlFor = (store: Store) =>
+  `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(mapQueryFor(store))}`;
 
 function StoreGallery({
   active,
@@ -251,16 +262,103 @@ function StoreGallery({
   );
 }
 
+function StoreMap({ store, onClose }: { store: Store; onClose: () => void }) {
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [onClose]);
+
+  if (!store.address) return null;
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Localização da unidade ${store.name}`}
+      className="fixed inset-0 z-[110] grid place-items-center bg-foreground/90 p-3 backdrop-blur-md sm:p-6"
+      onClick={onClose}
+    >
+      <div
+        className="flex max-h-[calc(100vh-1.5rem)] w-full max-w-6xl flex-col overflow-hidden rounded-[1.75rem] border border-background/15 bg-background shadow-2xl sm:max-h-[calc(100vh-3rem)]"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="flex shrink-0 items-start justify-between gap-5 border-b border-border px-5 py-4 sm:px-7 sm:py-5">
+          <div className="flex min-w-0 gap-3.5">
+            <span className="grid size-11 shrink-0 place-content-center rounded-full bg-accent text-accent-foreground">
+              <MapPinned className="size-5" aria-hidden="true" />
+            </span>
+            <div className="min-w-0">
+              <p className="text-[0.62rem] font-extrabold uppercase tracking-[0.18em] text-accent">
+                Localização
+              </p>
+              <h2 className="mt-1 truncate font-heading text-2xl font-extrabold uppercase sm:text-3xl">
+                {store.name}
+              </h2>
+              <p className="mt-1 max-w-3xl text-xs leading-5 text-muted-foreground sm:text-sm">
+                {store.address}
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Fechar mapa"
+            className="grid size-11 shrink-0 place-content-center rounded-full bg-foreground text-background transition-transform hover:rotate-6"
+          >
+            <X className="size-5" aria-hidden="true" />
+          </button>
+        </div>
+
+        <div className="relative min-h-[260px] flex-1 bg-muted sm:min-h-[520px]">
+          <iframe
+            src={mapEmbedUrlFor(store)}
+            title={`Mapa da unidade Nacho Man em ${store.name}`}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+            className="absolute inset-0 size-full border-0"
+          />
+        </div>
+
+        <div className="flex shrink-0 flex-col gap-3 border-t border-border bg-card px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-7">
+          <p className="text-xs leading-5 text-muted-foreground">
+            Confira a rota e o tempo de viagem diretamente no Google Maps.
+          </p>
+          <a
+            href={mapDirectionsUrlFor(store)}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-accent px-5 text-xs font-extrabold uppercase tracking-[0.1em] text-accent-foreground transition-transform hover:-translate-y-0.5"
+          >
+            Traçar rota
+            <ExternalLink className="size-4" aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function StoreCard({
   store,
   index,
-  storeNumber,
   onOpen,
+  onOpenMap,
 }: {
   store: Store;
   index: number;
-  storeNumber: number;
   onOpen: () => void;
+  onOpenMap: () => void;
 }) {
   const coverImage = store.gallery?.[0]?.image ?? store.image;
   const photoCount = store.gallery?.filter((photo) => !photo.placeholder).length ?? 0;
@@ -351,11 +449,6 @@ function StoreCard({
                 </div>
               )}
             </div>
-            {store.status && (
-              <span className="inline-flex items-center rounded-full bg-accent px-3 py-2 text-[0.62rem] font-extrabold uppercase tracking-wide text-accent-foreground">
-                {store.status}
-              </span>
-            )}
           </div>
 
           <div className="mt-7 grid gap-x-6 gap-y-7 border-y border-border py-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
@@ -370,6 +463,26 @@ function StoreCard({
                 </div>
               </div>
             )}
+
+            <div className="flex gap-3">
+              <MapPinned className="mt-0.5 size-5 shrink-0 text-accent" aria-hidden="true" />
+              <div className="min-w-0">
+                <h4 className="text-xs font-extrabold uppercase tracking-widest">Localização</h4>
+                <p className="mt-2 text-xs leading-5 text-muted-foreground">
+                  {store.address ?? "Endereço em breve"}
+                </p>
+                {store.address && (
+                  <button
+                    type="button"
+                    onClick={onOpenMap}
+                    className="mt-3 inline-flex items-center gap-2 text-[0.68rem] font-extrabold uppercase tracking-[0.1em] text-foreground transition-colors hover:text-accent"
+                  >
+                    Ver no mapa
+                    <Navigation className="size-3.5" aria-hidden="true" />
+                  </button>
+                )}
+              </div>
+            </div>
 
             <div className="flex gap-3">
               <Clock3 className="mt-0.5 size-5 shrink-0 text-accent" aria-hidden="true" />
@@ -442,6 +555,7 @@ export function StoreLocator({ stores }: { stores: Store[] }) {
   const [state, setState] = useState("");
   const [query, setQuery] = useState("");
   const [activeGallery, setActiveGallery] = useState<ActiveGallery | null>(null);
+  const [activeMap, setActiveMap] = useState<Store | null>(null);
   const states = [...new Set(stores.map((store) => store.state))];
   const normalizedQuery = normalize(query.trim());
   const hasFilters = Boolean(state || query);
@@ -449,7 +563,7 @@ export function StoreLocator({ stores }: { stores: Store[] }) {
     (store) =>
       (!state || store.state === state) &&
       normalize(
-        `${store.name} ${store.state} ${store.uf} ${store.cnpj ?? ""} ${store.status ?? ""} ${store.features?.join(" ") ?? ""}`,
+        `${store.name} ${store.state} ${store.uf} ${store.address ?? ""} ${store.cnpj ?? ""} ${store.status ?? ""} ${store.features?.join(" ") ?? ""}`,
       ).includes(normalizedQuery),
   );
 
@@ -599,8 +713,8 @@ export function StoreLocator({ stores }: { stores: Store[] }) {
                   key={store.slug}
                   store={store}
                   index={index}
-                  storeNumber={stores.findIndex((candidate) => candidate.slug === store.slug) + 1}
                   onOpen={() => setActiveGallery({ store, itemIndex: 0 })}
+                  onOpenMap={() => setActiveMap(store)}
                 />
               ))}
             </div>
@@ -650,6 +764,8 @@ export function StoreLocator({ stores }: { stores: Store[] }) {
           onClose={() => setActiveGallery(null)}
         />
       )}
+
+      {activeMap && <StoreMap store={activeMap} onClose={() => setActiveMap(null)} />}
     </>
   );
 }

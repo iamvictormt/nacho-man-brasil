@@ -5,6 +5,7 @@ export type Store = {
   name: string;
   state: string;
   uf: string;
+  address?: string;
   cnpj?: string;
   openingDate?: string;
   status?: "Em implantação";
@@ -49,6 +50,7 @@ export const stores: Store[] = [
     name: "Águas Claras",
     state: "Distrito Federal",
     uf: "DF",
+    address: "Avenida das Araucárias, s/n - Sul (Águas Claras), Brasília - DF",
     cnpj: "63.686.601/0001-10",
     hours: dailyHours(
       "11h30 às 23h",
@@ -65,6 +67,7 @@ export const stores: Store[] = [
     name: "Balneário Camboriú",
     state: "Santa Catarina",
     uf: "SC",
+    address: "Rua 1000, 86 - Centro, Balneário Camboriú - SC",
     cnpj: "55.478.175/0001-09",
     openingDate: "02/06/2022",
     hours: dailyHours(
@@ -85,6 +88,7 @@ export const stores: Store[] = [
     name: "Prado, Belo Horizonte",
     state: "Minas Gerais",
     uf: "MG",
+    address: "Avenida Francisco Sá, 383 - Prado, Belo Horizonte - MG",
     cnpj: "52.814.546/0001-80",
     hours: dailyHours(
       "Fechada",
@@ -103,6 +107,7 @@ export const stores: Store[] = [
     name: "Santa Amélia",
     state: "Minas Gerais",
     uf: "MG",
+    address: "Avenida Guarapari, 918 - Santa Amélia, Belo Horizonte - MG",
     cnpj: "55.949.133/0001-09",
     openingDate: "20/02/2025",
     hours: dailyHours(
@@ -121,6 +126,7 @@ export const stores: Store[] = [
     name: "Blumenau",
     state: "Santa Catarina",
     uf: "SC",
+    address: "Rua Joinville, 861 - Vila Nova, Blumenau - SC",
     cnpj: "29.884.930/0001-37",
     hours: dailyHours(
       "Fechada",
@@ -141,6 +147,7 @@ export const stores: Store[] = [
     name: "Praia Brava, Itajaí",
     state: "Santa Catarina",
     uf: "SC",
+    address: "Rua Delfim Mário de Pádua Peixoto, 500, Loja LB 01 - Praia Brava, Itajaí - SC",
     cnpj: "52.587.732/0001-23",
     openingDate: "02/06/2025",
     hours: dailyHours(
@@ -161,6 +168,7 @@ export const stores: Store[] = [
     name: "Caldas Novas",
     state: "Goiás",
     uf: "GO",
+    address: "Rua Cirilo Lopes Moraes, s/n, Qd. 12, Lt. 17 - Do Turista, Caldas Novas - GO",
     cnpj: "53.930.956/0001-59",
     openingDate: "30/01/2025",
     hours: dailyHours(
@@ -180,6 +188,7 @@ export const stores: Store[] = [
     name: "Cristalina",
     state: "Goiás",
     uf: "GO",
+    address: "Rua Pastor Roberval, 443, esquina com Getúlio Vargas - Centro, Cristalina - GO",
     cnpj: "53.249.984/0001-05",
     openingDate: "19/09/2024",
     hours: dailyHours(
@@ -199,6 +208,7 @@ export const stores: Store[] = [
     name: "Curitiba",
     state: "Paraná",
     uf: "PR",
+    address: "Rua Itupava, 1517 - Hugo Lange, Curitiba - PR",
     cnpj: "21.329.367/0001-23",
     openingDate: "13/02/2025",
     hours: dailyHours(
@@ -217,6 +227,7 @@ export const stores: Store[] = [
     name: "Guará, Brasília",
     state: "Distrito Federal",
     uf: "DF",
+    address: "QI 27, Bloco A, s/n, Guará Shopping - Guará II, Brasília - DF",
     cnpj: "53.108.889/0001-91",
     openingDate: "16/02/2024",
     hours: dailyHours(
@@ -237,6 +248,7 @@ export const stores: Store[] = [
     name: "Goiânia",
     state: "Goiás",
     uf: "GO",
+    address: "Avenida T-50, Qd. 26, Casa 3 - Setor Marista, Goiânia - GO",
     hours: dailyHours(
       "Fechada",
       "18h30 às 22h30",
@@ -252,6 +264,7 @@ export const stores: Store[] = [
     name: "Ipatinga",
     state: "Minas Gerais",
     uf: "MG",
+    address: "Rua John Kennedy, 296 - Cidade Nobre, Ipatinga - MG",
     cnpj: "56.980.654/0001-83",
     hours: dailyHours(
       "18h às 22h30",
@@ -268,6 +281,7 @@ export const stores: Store[] = [
     name: "Itapeva",
     state: "São Paulo",
     uf: "SP",
+    address: "Rua Floriano Peixoto, 40 - Centro, Itapeva - SP",
     cnpj: "55.310.196/0001-02",
     openingDate: "12/12/2024",
     hours: dailyHours(
@@ -286,6 +300,7 @@ export const stores: Store[] = [
     name: "Jacareí",
     state: "São Paulo",
     uf: "SP",
+    address: "Avenida Jorge Madid, 67, Loja 6 - Jacareí - SP",
     cnpj: "57.933.275/0001-03",
     openingDate: "13/02/2025",
     hours: dailyHours(
@@ -304,6 +319,7 @@ export const stores: Store[] = [
     name: "Joinville",
     state: "Santa Catarina",
     uf: "SC",
+    address: "Rua Quinze de Novembro, 1294 - América, Joinville - SC",
     cnpj: "50.715.399/0001-65",
     openingDate: "11/10/2023",
     hours: dailyHours(
@@ -323,6 +339,7 @@ export const stores: Store[] = [
     name: "Linhares",
     state: "Espírito Santo",
     uf: "ES",
+    address: "Avenida Augusto Calmon, 1648, Sala 02 - Centro, Linhares - ES",
     cnpj: "43.247.637/0001-90",
     openingDate: "08/08/2025",
     hours: dailyHours(
@@ -340,6 +357,7 @@ export const stores: Store[] = [
     name: "Londrina",
     state: "Paraná",
     uf: "PR",
+    address: "Rua João XXIII, 408 - Judith, Londrina - PR",
     cnpj: "50.925.859/0001-80",
     openingDate: "04/08/2023",
     hours: dailyHours(
@@ -376,6 +394,7 @@ export const stores: Store[] = [
     name: "Mogi Guaçu",
     state: "São Paulo",
     uf: "SP",
+    address: "Rua Chico de Paula, 903 - Centro, Mogi Guaçu - SP",
     cnpj: "60.995.949/0001-09",
     hours: dailyHours(
       "Fechada",
@@ -392,6 +411,7 @@ export const stores: Store[] = [
     name: "Balneário Piçarras",
     state: "Santa Catarina",
     uf: "SC",
+    address: "Rua Geraldina Silva Santos, 136 - Centro, Balneário Piçarras - SC",
     cnpj: "58.993.921/0001-82",
     hours: dailyHours(
       "11h às 23h",
@@ -409,6 +429,7 @@ export const stores: Store[] = [
     name: "Rio do Sul",
     state: "Santa Catarina",
     uf: "SC",
+    address: "Alameda Aristiliano Ramos, 1755 - Jardim América, Rio do Sul - SC",
     cnpj: "53.472.237/0001-31",
     hours: dailyHours(
       "Fechada",
@@ -427,6 +448,7 @@ export const stores: Store[] = [
     name: "Rio Verde",
     state: "Goiás",
     uf: "GO",
+    address: "Rua Gumercindo Ferreira, 294 - Setor Central, Rio Verde - GO",
     cnpj: "59.474.987/0001-29",
     hours: dailyHours(
       "18h30 às 23h",
@@ -443,6 +465,7 @@ export const stores: Store[] = [
     name: "Rita Maria",
     state: "Santa Catarina",
     uf: "SC",
+    address: "Alameda Annita Hoepcke da Silva, 112 - Centro, Florianópolis - SC",
     cnpj: "51.245.001/0001-37",
     hours: dailyHours(
       "11h à 0h",
@@ -459,6 +482,7 @@ export const stores: Store[] = [
     name: "Salto",
     state: "São Paulo",
     uf: "SP",
+    address: "Rua Alemanha, 51 - Jardim Celani, Salto - SP",
     cnpj: "54.924.034/0001-00",
     openingDate: "04/07/2025",
     hours: dailyHours(
@@ -476,6 +500,7 @@ export const stores: Store[] = [
     name: "São José",
     state: "Santa Catarina",
     uf: "SC",
+    address: "Avenida Presidente Kennedy, 861, Sala 10 - Kobrasol, São José - SC",
     cnpj: "51.718.573/0001-96",
     openingDate: "25/11/2023",
     hours: dailyHours(
@@ -495,6 +520,7 @@ export const stores: Store[] = [
     name: "São José dos Campos",
     state: "São Paulo",
     uf: "SP",
+    address: "Rua das Arraias, 83, Loja 4 - Parque Residencial Aquarius, São José dos Campos - SP",
     cnpj: "59.474.124/0001-51",
     openingDate: "02/05/2025",
     hours: dailyHours(
