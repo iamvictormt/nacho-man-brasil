@@ -1,4 +1,4 @@
-export type PaymentBrand = "mastercard" | "visa" | "elo" | "alelo" | "ifood-beneficios" | "sodexo";
+export type PaymentBrand = string;
 
 export type Store = {
   slug: string;
@@ -7,12 +7,16 @@ export type Store = {
   uf: string;
   address?: string;
   cnpj?: string;
+  phone?: string;
   openingDate?: string;
   status?: "Em implantação";
   hours: string[];
   serviceModes?: string[];
   paymentCards?: PaymentBrand[];
   mealVouchers?: PaymentBrand[];
+  paymentNotes?: string;
+  mealVoucherNotes?: string;
+  menuOptions?: string[];
   features?: string[];
   image?: string;
   gallery?: Array<{
@@ -100,7 +104,10 @@ export const stores: Store[] = [
       "18h às 22h",
     ),
     serviceModes,
-    paymentCards,
+    paymentCards: ["Mastercard", "Visa", "Elo", "American Express"],
+    mealVouchers: ["Ticket", "VR", "Pluxee", "Alelo"],
+    phone: "+55 (31) 98248-3221",
+    menuOptions: [],
   },
   {
     slug: "santa-amelia-mg",
@@ -160,8 +167,10 @@ export const stores: Store[] = [
       "11h às 22h",
     ),
     serviceModes,
-    paymentCards,
-    mealVouchers: ["ifood-beneficios"],
+    paymentCards: ["Visa", "Mastercard", "Elo", "American Express", "Diners"],
+    mealVouchers: [],
+    phone: "+55 (47) 9283-5758",
+    menuOptions: ["Bowl"],
   },
   {
     slug: "caldas-novas-go",
@@ -181,7 +190,10 @@ export const stores: Store[] = [
       "17h às 23h",
     ),
     serviceModes,
-    paymentCards,
+    paymentCards: ["Todas as bandeiras"],
+    mealVouchers: ["Voucher Parceiro"],
+    phone: "+55 (64) 99997-4519",
+    menuOptions: ["Bowl"],
   },
   {
     slug: "cristalina-go",
@@ -201,7 +213,10 @@ export const stores: Store[] = [
       "Fechada",
     ),
     serviceModes,
-    paymentCards,
+    paymentCards: ["Todas as bandeiras"],
+    mealVouchers: ["Voucher Parceiro"],
+    phone: "+55 (61) 99827-0888",
+    menuOptions: ["Bowl"],
   },
   {
     slug: "curitiba-pr",
@@ -221,6 +236,10 @@ export const stores: Store[] = [
       "18h às 22h30",
     ),
     serviceModes,
+    paymentCards: ["Visa", "Mastercard", "Elo"],
+    mealVouchers: [],
+    phone: "+55 (41) 99248-8840",
+    menuOptions: [],
   },
   {
     slug: "guara-brasilia-df",
@@ -240,8 +259,10 @@ export const stores: Store[] = [
       "11h30 às 23h",
     ),
     serviceModes,
-    paymentCards,
-    mealVouchers: ["alelo", "sodexo"],
+    paymentCards: ["Visa", "Mastercard", "American Express", "Elo", "Maestro", "Caju", "Hipercard"],  
+    mealVouchers: ["Ticket", "Alelo", "Sodexo"],
+    phone: "+55 (61) 3972-2548",
+    menuOptions: ["Rodízio", "Bowl"],
   },
   {
     slug: "goiania-go",
@@ -294,6 +315,10 @@ export const stores: Store[] = [
       "18h às 22h",
     ),
     serviceModes,
+    paymentCards: ["Visa", "Mastercard", "Elo", "American Express", "Hipercard", "Outras bandeiras"],
+    mealVouchers: [],
+    phone: "+55 (15) 99808-9303",
+    menuOptions: ["Rodízio", "Bowl"],
   },
   {
     slug: "jacarei-sp",
@@ -313,6 +338,10 @@ export const stores: Store[] = [
       "16h às 22h",
     ),
     serviceModes,
+    paymentCards: ["Visa", "Mastercard", "Elo", "American Express"],
+    mealVouchers: ["VR"],
+    phone: "+55 (12) 99163-8910",
+    menuOptions: ["Rodízio", "Bowl"],
   },
   {
     slug: "joinville-sc",
@@ -351,6 +380,10 @@ export const stores: Store[] = [
       "18h às 23h",
       "18h às 22h",
     ),
+    paymentCards: ["Todas as bandeiras"],
+    mealVouchers: ["Promokit", "iFood Benefícios"],
+    phone: "+55 (27) 99895-7704",
+    menuOptions: ["Bowl"],
   },
   {
     slug: "londrina-pr",
@@ -423,6 +456,10 @@ export const stores: Store[] = [
       "Fechada",
     ),
     serviceModes,
+    paymentCards: ["Todas as bandeiras"],
+    mealVouchers: ["Ticket"],
+    phone: "+55 (47) 99780-0042",
+    menuOptions: ["Rodízio", "Bowl"],
   },
   {
     slug: "rio-do-sul-sc",
@@ -441,7 +478,10 @@ export const stores: Store[] = [
       "18h às 22h",
     ),
     serviceModes,
-    paymentCards,
+    paymentCards: ["Cabal", "Mastercard", "Visa", "Elo", "American Express", "Hipercard"],
+    mealVouchers: ["Cabal alimentação e refeição", "iFood Benefícios"],
+    phone: "+55 (47) 98438-4162",
+    menuOptions: ["Rodízio"],
   },
   {
     slug: "rio-verde-go",
@@ -458,23 +498,6 @@ export const stores: Store[] = [
       "18h30 às 23h30",
       "18h30 às 23h30",
       "18h30 às 23h",
-    ),
-  },
-  {
-    slug: "rita-maria-sc",
-    name: "Rita Maria",
-    state: "Santa Catarina",
-    uf: "SC",
-    address: "Alameda Annita Hoepcke da Silva, 112 - Centro, Florianópolis - SC",
-    cnpj: "51.245.001/0001-37",
-    hours: dailyHours(
-      "11h à 0h",
-      "11h à 0h",
-      "11h à 0h",
-      "11h à 0h",
-      "11h à 0h",
-      "11h à 0h",
-      "11h à 0h",
     ),
   },
   {

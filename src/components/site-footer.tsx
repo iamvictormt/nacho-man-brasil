@@ -29,7 +29,7 @@ export function SiteFooter() {
         <div className="grid gap-10 border-b border-background/15 pb-12 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1.3fr]">
           <div>
             <Image
-              src="/images/brand/logo-nacho-man-branco.png"
+              src="/images/brand/logo-nacho-man-branco.webp"
               alt="Nacho Man"
               width={220}
               height={40}
@@ -60,7 +60,7 @@ export function SiteFooter() {
                 Quero ser franqueado
               </Link>
               <a
-                href="https://www.instagram.com/nachomanbrasil/"
+                href="https://www.instagram.com/nachoman/"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-2 hover:text-primary"

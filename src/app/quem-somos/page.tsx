@@ -100,6 +100,27 @@ const factoryGallery = [
     className: "lg:col-span-7",
     sizes: "(min-width: 1024px) 34vw, 50vw",
   },
+  {
+    image: photos.about.nachoFactory.tomatoes,
+    alt: "Tomates frescos usados na produção da Nacho Factory",
+    label: "Tomates",
+    className: "lg:col-span-4",
+    sizes: "(min-width: 1024px) 22vw, 50vw",
+  },
+  {
+    image: photos.about.nachoFactory.mexicanGreenTomatoes,
+    alt: "Tomates verdes mexicanos selecionados pela Nacho Factory",
+    label: "Tomate verde mexicano",
+    className: "lg:col-span-4",
+    sizes: "(min-width: 1024px) 22vw, 50vw",
+  },
+  {
+    image: photos.about.nachoFactory.jalapenoPeppers,
+    alt: "Pimentas jalapeño usadas nas receitas da Nacho Factory",
+    label: "Pimenta jalapeño",
+    className: "lg:col-span-4",
+    sizes: "(min-width: 1024px) 22vw, 50vw",
+  },
 ] as const;
 
 export default function QuemSomosPage() {
@@ -207,7 +228,7 @@ export default function QuemSomosPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 auto-rows-[180px] gap-3 sm:auto-rows-[240px] lg:col-span-7 lg:h-[840px] lg:grid-cols-12 lg:grid-rows-3 lg:auto-rows-auto">
+          <div className="grid grid-cols-2 auto-rows-[180px] gap-3 sm:auto-rows-[240px] lg:col-span-7 lg:grid-cols-12 lg:auto-rows-[240px]">
             {factoryGallery.map((item) => (
               <figure
                 key={item.label}

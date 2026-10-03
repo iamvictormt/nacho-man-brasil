@@ -15,8 +15,10 @@ import {
   Maximize2,
   Navigation,
   PawPrint,
+  Phone,
   Search,
   Store as StoreIcon,
+  Utensils,
   WalletCards,
   X,
 } from "lucide-react";
@@ -50,26 +52,52 @@ const normalize = (value: string) =>
     .toLowerCase();
 
 const paymentBrandAssets: Record<PaymentBrand, { src: string; label: string }> = {
-  mastercard: { src: "/images/cards/mastercard.png", label: "Mastercard" },
-  visa: { src: "/images/cards/visa.png", label: "Visa" },
-  elo: { src: "/images/cards/elo.png", label: "Elo" },
-  alelo: { src: "/images/cards/alelo.png", label: "Alelo" },
+  mastercard: { src: "/images/cards/mastercard.webp", label: "Mastercard" },
+  visa: { src: "/images/cards/visa.webp", label: "Visa" },
+  elo: { src: "/images/cards/elo.webp", label: "Elo" },
+  "american-express": {
+    src: "/images/cards/american-express.webp",
+    label: "American Express",
+  },
+  diners: { src: "/images/cards/diners.webp", label: "Diners Club" },
+  hipercard: { src: "/images/cards/hipercard.webp", label: "Hipercard" },
+  maestro: { src: "/images/cards/maestro.webp", label: "Maestro" },
+  caju: { src: "/images/cards/caju.webp", label: "Caju" },
+  alelo: { src: "/images/cards/alelo.webp", label: "Alelo" },
   "ifood-beneficios": {
-    src: "/images/cards/ifood-beneficios.png",
+    src: "/images/cards/ifood-beneficios.webp",
     label: "iFood Benefícios",
   },
-  sodexo: { src: "/images/cards/sodexo.png", label: "Sodexo" },
+  ticket: { src: "/images/cards/ticket.webp", label: "Ticket" },
+  promokit: { src: "/images/cards/promokit.webp", label: "Promokit" },
+  sodexo: { src: "/images/cards/sodexo.webp", label: "Sodexo" },
 };
 
 function PaymentBrandList({ brands }: { brands?: PaymentBrand[] }) {
-  if (!brands?.length) {
+  if (brands === undefined) {
     return <p className="mt-3 text-xs leading-5 text-muted-foreground">Consulte a unidade</p>;
+  }
+
+  if (brands.length === 0) {
+    return <p className="mt-3 text-xs leading-5 text-muted-foreground">Não aceita</p>;
   }
 
   return (
     <div className="mt-3 flex flex-wrap gap-2">
       {brands.map((brand) => {
-        const asset = paymentBrandAssets[brand];
+        const assetKey = normalize(brand).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+        const asset = paymentBrandAssets[assetKey];
+
+        if (!asset) {
+          return (
+            <span
+              key={brand}
+              className="inline-flex min-h-8 items-center rounded-lg border border-foreground/10 bg-background px-2.5 text-[0.65rem] font-semibold text-foreground"
+            >
+              {brand}
+            </span>
+          );
+        }
 
         return (
           <span
@@ -308,6 +336,7 @@ function StoreMap({ store, onClose }: { store: Store; onClose: () => void }) {
                 {store.address}
               </p>
             </div>
+
           </div>
           <button
             type="button"
@@ -484,6 +513,23 @@ function StoreCard({
               </div>
             </div>
 
+            {store.phone && (
+              <div className="flex gap-3">
+                <Phone className="mt-0.5 size-5 shrink-0 text-accent" aria-hidden="true" />
+                <div className="min-w-0">
+                  <h4 className="text-xs font-extrabold uppercase tracking-widest">WhatsApp</h4>
+                  <a
+                    href={`https://wa.me/${store.phone.replace(/\D/g, "")}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-2 inline-block text-xs leading-5 text-muted-foreground underline decoration-foreground/20 underline-offset-4 hover:text-foreground"
+                  >
+                    {store.phone}
+                  </a>
+                </div>
+              </div>
+            )}
+
             <div className="flex gap-3">
               <Clock3 className="mt-0.5 size-5 shrink-0 text-accent" aria-hidden="true" />
               <div className="min-w-0">
@@ -522,6 +568,9 @@ function StoreCard({
               <div className="min-w-0">
                 <h4 className="text-xs font-extrabold uppercase tracking-widest">Cartões</h4>
                 <PaymentBrandList brands={store.paymentCards} />
+                {store.paymentNotes && (
+                  <p className="mt-2 text-xs leading-5 text-muted-foreground">{store.paymentNotes}</p>
+                )}
               </div>
             </div>
 
@@ -530,8 +579,34 @@ function StoreCard({
               <div className="min-w-0">
                 <h4 className="text-xs font-extrabold uppercase tracking-widest">Vale-refeição</h4>
                 <PaymentBrandList brands={store.mealVouchers} />
+                {store.mealVoucherNotes && (
+                  <p className="mt-2 text-xs leading-5 text-muted-foreground">
+                    {store.mealVoucherNotes}
+                  </p>
+                )}
               </div>
             </div>
+
+            {Boolean(store.menuOptions?.length) && (
+              <div className="flex gap-3">
+                <Utensils className="mt-0.5 size-5 shrink-0 text-accent" aria-hidden="true" />
+                <div className="min-w-0">
+                  <h4 className="text-xs font-extrabold uppercase tracking-widest">
+                    Rodízio e bowl
+                  </h4>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {store.menuOptions?.map((option) => (
+                      <span
+                        key={option}
+                        className="rounded-full bg-muted px-3 py-1.5 text-[0.65rem] font-bold uppercase"
+                      >
+                        {option}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -563,7 +638,7 @@ export function StoreLocator({ stores }: { stores: Store[] }) {
     (store) =>
       (!state || store.state === state) &&
       normalize(
-        `${store.name} ${store.state} ${store.uf} ${store.address ?? ""} ${store.cnpj ?? ""} ${store.status ?? ""} ${store.features?.join(" ") ?? ""}`,
+        `${store.name} ${store.state} ${store.uf} ${store.address ?? ""} ${store.cnpj ?? ""} ${store.phone ?? ""} ${store.status ?? ""} ${store.features?.join(" ") ?? ""}`,
       ).includes(normalizedQuery),
   );
 
