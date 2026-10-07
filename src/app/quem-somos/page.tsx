@@ -109,8 +109,8 @@ const factoryGallery = [
   },
   {
     image: photos.about.nachoFactory.mexicanGreenTomatoes,
-    alt: "Tomates verdes mexicanos selecionados pela Nacho Factory",
-    label: "Tomate verde mexicano",
+    alt: "Pimentas verdes mexicanas cultivadas pela Nacho Factory",
+    label: "Plantação Própria de Pimentas Mexicanas",
     className: "lg:col-span-4",
     sizes: "(min-width: 1024px) 22vw, 50vw",
   },
