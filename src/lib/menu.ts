@@ -57,8 +57,8 @@ export const menuSections = [
         image: photo("/images/tacos/taco-carne-asada.webp", 1707, 2560),
       },
       {
-        name: "Taco Fajitas",
-        image: photo("/images/tacos/taco-fajitas.webp"),
+        name: "Autênticos Mexicanos",
+        image: photo("/images/tacos/autenticos-mexicanos.webp"),
       },
     ],
   },
