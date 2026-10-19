@@ -28,7 +28,7 @@ export const photos = {
       production: photo("/images/nacho-factory/carnes.webp", 1600, 1854),
       coldStorage: photo("/images/nacho-factory/deposito.webp", 1600, 2133),
       packedProducts: photo("/images/nacho-factory/carnes-embaladas.webp", 1600, 2133),
-      tomatoes: photo("/images/nacho-factory/tomate.webp", 597, 1280),
+      pimentasMexicanas: photo("/images/nacho-factory/pimentas-mexicanas.webp", 597, 1280),
       mexicanGreenTomatoes: photo("/images/nacho-factory/tomate-verde-mexicano.webp", 960, 1280),
       jalapenoPeppers: photo("/images/nacho-factory/pimenta-jalapeno.webp", 960, 1280),
     },
