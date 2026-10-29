@@ -18,6 +18,8 @@ export function FranchiseWhatsapp() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
+  if (pathname === "/links") return null;
+
   if (pathname === "/cardapio") {
     return (
       <aside
@@ -65,7 +67,7 @@ export function FranchiseWhatsapp() {
           id="franchise-whatsapp-message"
           className="max-h-[calc(100dvh-2rem-env(safe-area-inset-bottom))] w-[min(360px,calc(100vw-2rem))] origin-bottom-right overflow-x-hidden overflow-y-auto rounded-[1.5rem_1.5rem_.35rem_1.5rem] border border-[#245c52]/20 bg-[#f2eee2] text-[#26332f] shadow-[0_22px_64px_oklch(0_0_0/0.26)] motion-safe:animate-[chat-in_620ms_cubic-bezier(0.16,1,0.3,1)_both]"
           role="dialog"
-          aria-label="Converse sobre abrir uma filial"
+          aria-label="Converse sobre abrir uma franquia"
         >
           <div className="grid min-h-17 grid-cols-[auto_1fr_auto] items-center gap-3 bg-[#27685e] px-3.5 py-3 text-white">
             <span
@@ -100,7 +102,7 @@ export function FranchiseWhatsapp() {
               </p>
               <p>
                 Nosso time pode te explicar como funciona e tirar todas as suas dúvidas sobre abrir
-                uma filial.
+                uma franquia.
               </p>
               <span className="mt-1 flex items-center justify-end gap-1 text-[0.57rem] text-[#71817c]">
                 10:32 <CheckCheck size={15} className="text-sky-500" aria-label="Mensagem lida" />
@@ -127,7 +129,7 @@ export function FranchiseWhatsapp() {
           type="button"
           className="relative grid size-15 place-items-center rounded-full border-2 border-white bg-[#25d366] text-white shadow-[0_14px_34px_oklch(0_0_0/0.28)] transition hover:-translate-y-1 hover:-rotate-3 hover:bg-[#20bd5b] focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-primary sm:size-16"
           onClick={() => setIsOpen(true)}
-          aria-label="Você tem uma mensagem. Falar sobre abrir uma filial"
+          aria-label="Você tem uma mensagem. Falar sobre abrir uma franquia"
           aria-expanded="false"
           aria-controls="franchise-whatsapp-message"
         >

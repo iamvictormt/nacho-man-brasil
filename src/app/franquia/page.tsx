@@ -205,7 +205,7 @@ export default function FranquiaPage() {
         <div className="grid gap-12 lg:grid-cols-12 lg:items-start lg:gap-16">
           <div className="text-background lg:sticky lg:top-36 lg:col-span-5">
             <DisplayTitle className="text-background">
-              Abra um Nacho Man <span className="text-foreground">na sua cidade.</span>
+              Abra uma franquia Nacho Man <span className="text-foreground">na sua cidade.</span>
             </DisplayTitle>
             <BodyCopy className="mt-7 text-background/75">
               Envie seus dados pelo formulário e abra uma conversa no WhatsApp com a equipe de

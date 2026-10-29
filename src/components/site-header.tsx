@@ -72,7 +72,7 @@ export function SiteHeader() {
             className="flex min-w-0 items-center xl:justify-self-start"
           >
             <Image
-              src="/images/brand/logo-nacho-man-branco.webp"
+              src="/images/brand/logo-nacho-man-branco.svg"
               alt="Nacho Man"
               width={220}
               height={40}

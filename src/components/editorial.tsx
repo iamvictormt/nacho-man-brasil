@@ -46,33 +46,48 @@ export function ActionLink({
   children,
   light = false,
   accent = false,
+  external = false,
   className,
 }: {
   href: string;
   children: React.ReactNode;
   light?: boolean;
   accent?: boolean;
+  external?: boolean;
   className?: string;
 }) {
-  return (
-    <Link
-      href={href}
-      className={cn(
-        "group inline-flex min-h-12 w-fit max-w-full items-center justify-between gap-7 rounded-full border px-5 py-3 text-[0.68rem] font-extrabold uppercase tracking-[0.045em] transition duration-200 hover:-translate-y-0.5 focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-accent",
-        light
-          ? "border-primary bg-primary text-primary-foreground hover:bg-background"
-          : "border-foreground bg-foreground text-background hover:bg-background hover:text-foreground",
-        accent &&
-          "border-accent bg-accent text-accent-foreground hover:bg-background hover:text-foreground",
-        className,
-      )}
-    >
+  const linkClassName = cn(
+    "group inline-flex min-h-12 w-fit max-w-full items-center justify-between gap-7 rounded-full border px-5 py-3 text-[0.68rem] font-extrabold uppercase tracking-[0.045em] transition duration-200 hover:-translate-y-0.5 focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-accent",
+    light
+      ? "border-primary bg-primary text-primary-foreground hover:bg-background"
+      : "border-foreground bg-foreground text-background hover:bg-background hover:text-foreground",
+    accent &&
+      "border-accent bg-accent text-accent-foreground hover:bg-background hover:text-foreground",
+    className,
+  );
+
+  const content = (
+    <>
       <span>{children}</span>
       <ArrowUpRight
         size={18}
         aria-hidden="true"
         className="shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
       />
+    </>
+  );
+
+  if (external) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={linkClassName}>
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} className={linkClassName}>
+      {content}
     </Link>
   );
 }

@@ -48,7 +48,7 @@ export default function Home() {
 
       <section
         className="relative isolate flex min-h-[650px] items-center overflow-hidden bg-foreground text-background md:min-h-[900px]"
-        aria-label="Bem-vindo à Nacho Man"
+        aria-label="Bem-vindo ao Nacho Man"
       >
         <HeroVideo />
         <div
