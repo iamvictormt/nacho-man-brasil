@@ -22,13 +22,13 @@ npm run build
 npm start
 ```
 
+Para publicar no Vercel, importe o repositório e mantenha as configurações automáticas do Next.js. O build usa a pasta `.next`, que é gerada automaticamente e não é versionada.
+
 ## Estrutura
 
 - src/app: páginas, layout, metadados, estilos globais e telas de erro.
 - src/components: página inicial, ícones da marca e componentes de interface.
-- src/assets: imagens locais, incluindo logotipos e foto da franquia.
-- public: favicon e robots.txt.
-- docs-design.md: conceito visual original preservado.
-- roadmap.md: planejamento do projeto.
+- src/lib: dados e funções compartilhadas.
+- public: imagens, vídeos e outros arquivos públicos.
 
-As interações existentes foram preservadas. O formulário de novidades apenas confirma o cadastro na interface; ainda não há integração com um serviço de envio ou banco de dados.
+O formulário de experiência em `/links` envia os dados para um Google Forms pela rota `/api/customer-leads`.

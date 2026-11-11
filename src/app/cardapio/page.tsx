@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { EditorialHero, ClosingBanner } from "@/components/editorial";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
 
 import { SiteFooter } from "@/components/site-footer";
@@ -233,7 +233,44 @@ function MenuCarousel({
 
 export default function CardapioPage() {
   const heroImage = photos.menu.heroGroup;
+  const [activeCategory, setActiveCategory] = useState(menuSections[0]?.id ?? "");
+  const categoryNavRef = useRef<HTMLElement>(null);
   const [activeGallery, setActiveGallery] = useState<ActiveGallery | null>(null);
+
+  useEffect(() => {
+    let frame = 0;
+
+    const updateActiveCategory = () => {
+      const activationLine = categoryNavRef.current?.getBoundingClientRect().bottom ?? 0;
+      let currentCategory = menuSections[0]?.id ?? "";
+
+      for (const section of menuSections) {
+        const element = document.getElementById(section.id);
+        if (element && element.getBoundingClientRect().top <= activationLine + 1) {
+          currentCategory = section.id;
+        } else {
+          break;
+        }
+      }
+
+      setActiveCategory(currentCategory);
+    };
+
+    const handleScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(updateActiveCategory);
+    };
+
+    updateActiveCategory();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
 
   return (
     <main className="min-h-screen overflow-x-clip bg-background text-foreground">
@@ -252,6 +289,7 @@ export default function CardapioPage() {
       />
 
       <nav
+        ref={categoryNavRef}
         className="sticky top-[69px] z-40 overflow-x-auto border-b border-foreground/15 bg-background/95 backdrop-blur xl:top-[78px]"
         aria-label="Categorias do cardápio"
       >
@@ -260,9 +298,19 @@ export default function CardapioPage() {
             <a
               key={category.id}
               href={`#${category.id}`}
-              className="group flex items-center gap-2 rounded-full px-4 py-3 transition-colors hover:bg-foreground hover:text-background focus-visible:bg-foreground focus-visible:text-background"
+              aria-current={activeCategory === category.id ? "location" : undefined}
+              onClick={() => setActiveCategory(category.id)}
+              className={cn(
+                "group flex items-center gap-2 rounded-full px-4 py-3 transition-colors hover:bg-foreground hover:text-background focus-visible:bg-foreground focus-visible:text-background",
+                activeCategory === category.id && "bg-foreground/10",
+              )}
             >
-              <span className="text-[9px] text-foreground/35 group-hover:text-accent">
+              <span
+                className={cn(
+                  "text-[9px] text-foreground/35 group-hover:text-accent",
+                  activeCategory === category.id && "text-accent",
+                )}
+              >
                 {String(index + 1).padStart(2, "0")}
               </span>
               {category.name}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Anton, Barlow_Condensed, Manrope } from "next/font/google";
 import { HashScrollManager } from "@/components/hash-scroll-manager";
+import { RouteScrollManager } from "@/components/route-scroll-manager";
 import { FranchiseWhatsapp } from "@/components/franchise-whatsapp";
 import "./globals.css";
 const anton = Anton({ weight: "400", subsets: ["latin"], variable: "--font-anton" });
@@ -33,8 +34,13 @@ export const metadata: Metadata = {
 };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pt-BR" className={[anton.variable, barlow.variable, manrope.variable].join(" ")}>
+    <html
+      lang="pt-BR"
+      data-scroll-behavior="smooth"
+      className={[anton.variable, barlow.variable, manrope.variable].join(" ")}
+    >
       <body>
+        <RouteScrollManager />
         <HashScrollManager />
         {children}
         <FranchiseWhatsapp />
